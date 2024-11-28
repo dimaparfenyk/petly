@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { Pet } = require("../../models");
+const { Pet } = require("../../models/pets");
 
 const removePet = async (req, res) => {
   const { id } = req.params;

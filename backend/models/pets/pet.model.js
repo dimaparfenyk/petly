@@ -3,10 +3,11 @@ const { model, Schema } = require("mongoose");
 const petSchema = new Schema(
   {
     name: { type: String, require: true },
-    birth: { type: String },
-    breed: { type: String, require: true },
-    age: { type: String },
+    birth: { type: String, require: true },
+    breed: { type: String },
     price: { type: Number },
+    image: { type: String },
+    description: { type: String },
     favorite: {
       type: Boolean,
       default: false,

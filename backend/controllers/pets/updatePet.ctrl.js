@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { Pet } = require("../../models");
+const { Pet } = require("../../models/pets");
 
 const updatePet = async (req, res) => {
   const { id } = req.params;
