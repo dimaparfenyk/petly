@@ -1,9 +1,10 @@
+const Joi = require("joi");
 const { model, Schema } = require("mongoose");
 
 const petSchema = new Schema(
   {
-    name: { type: String, require: true },
-    birth: { type: String, require: true },
+    name: { type: String, required: true },
+    birth: { type: String, required: true },
     breed: { type: String },
     price: { type: Number },
     image: { type: String },
@@ -18,4 +19,15 @@ const petSchema = new Schema(
 
 const Pet = model("Pet", petSchema);
 
-module.exports = { Pet };
+const addSchema = Joi.object({
+  name: Joi.string().required(),
+  birth: Joi.string(),
+  breed: Joi.string().required(),
+  price: Joi.number(),
+  description: Joi.string(),
+  favorite: Joi.boolean(),
+});
+
+const schemas = { addSchema };
+
+module.exports = { Pet, schemas };

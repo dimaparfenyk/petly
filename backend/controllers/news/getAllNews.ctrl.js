@@ -1,3 +1,4 @@
+const { ctrlWrapper } = require("../../helpers");
 const news = require("../../models/news");
 
 const getAllNews = async (req, res) => {
@@ -5,4 +6,4 @@ const getAllNews = async (req, res) => {
   res.json(data);
 };
 
-module.exports = getAllNews;
+module.exports = { getAllNews: ctrlWrapper(getAllNews) };

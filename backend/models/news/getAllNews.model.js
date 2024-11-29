@@ -3,12 +3,8 @@ const path = require("path");
 const newsFilePath = path.join(__dirname, "../../", "db/data/news.json");
 
 const getAllNews = async () => {
-  try {
-    const res = await fs.readFile(newsFilePath);
-    return JSON.parse(res);
-  } catch (error) {
-    console.log(error.message);
-  }
+  const result = await fs.readFile(newsFilePath);
+  return JSON.parse(result);
 };
 
 module.exports = getAllNews;

@@ -1,3 +1,3 @@
-const getAllSponsors = require("./getAllSponsorsList.ctrl");
+const { getAllSponsors } = require("./getAllSponsorsList.ctrl");
 
 module.exports = { getAllSponsors };

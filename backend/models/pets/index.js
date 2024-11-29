@@ -1,3 +1,3 @@
-const { Pet } = require("./pet.model");
+const { Pet, schemas } = require("./pet.model");
 
-module.exports = { Pet };
+module.exports = { Pet, schemas };

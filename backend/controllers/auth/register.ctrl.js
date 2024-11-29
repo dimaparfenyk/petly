@@ -15,7 +15,7 @@ const register = async (req, res) => {
     res.status(200).json({ success: true, data: result });
   } catch (error) {
     console.error("error in post user method ");
-    res.status(500).json({ success: false, message: error.message });
+    res.status(500).json({ success: false, message: "Server error" });
   }
 };
 

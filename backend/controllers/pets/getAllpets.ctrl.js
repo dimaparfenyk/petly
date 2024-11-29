@@ -1,13 +1,9 @@
+const { ctrlWrapper } = require("../../helpers");
 const { Pet } = require("../../models/pets");
 
 const getAllPets = async (req, res) => {
-  try {
-    const data = await Pet.find({});
-    res.status(200).json({ success: true, data });
-  } catch (error) {
-    console.error("Error in Get pet:", error.message);
-    res.status(500).json({ success: false, message: error.message });
-  }
+  const data = await Pet.find({});
+  res.status(200).json({ success: true, data });
 };
 
-module.exports = getAllPets;
+module.exports = { getAllPets: ctrlWrapper(getAllPets) };

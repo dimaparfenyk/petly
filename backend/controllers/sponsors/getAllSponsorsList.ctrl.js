@@ -1,12 +1,9 @@
+const { ctrlWrapper } = require("../../helpers");
 const sponsors = require("../../models/sponsors");
 
 const getAllSponsors = async (req, res) => {
-  try {
-    const data = await sponsors.getAllSponsors();
-    res.json(data);
-  } catch (error) {
-    console.log(error.message);
-  }
+  const data = await sponsors.getAllSponsors();
+  res.json(data);
 };
 
-module.exports = getAllSponsors;
+module.exports = { getAllSponsors: ctrlWrapper(getAllSponsors) };
