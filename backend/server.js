@@ -12,10 +12,7 @@ const { PORT, MONGODB_KEY } = process.env;
 
 mongoose
   .connect(MONGODB_KEY)
-  .then(() => {
-    console.log("Server work");
-    app.listen(PORT);
-  })
+  .then(app.listen(PORT))
   .catch((err) => {
     console.log(err.message);
     process.exit(1);

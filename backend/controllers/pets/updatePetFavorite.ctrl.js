@@ -1,7 +1,7 @@
 const { Pet } = require("../../models/pet");
 const { ctrlWrapper, HttpError } = require("../../helpers");
 
-const updatePet = async (req, res) => {
+const updatePetFavorite = async (req, res) => {
   const { id } = req.params;
 
   const result = await Pet.findByIdAndUpdate(id, req.body, { new: true });
@@ -15,4 +15,4 @@ const updatePet = async (req, res) => {
   });
 };
 
-module.exports = { updatePet: ctrlWrapper(updatePet) };
+module.exports = { updatePetFavorite: ctrlWrapper(updatePetFavorite) };

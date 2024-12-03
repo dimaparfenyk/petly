@@ -1,5 +1,5 @@
 const { ctrlWrapper } = require("../../helpers");
-const { Pet } = require("../../models/pets");
+const { Pet } = require("../../models/pet");
 
 const getAllPets = async (req, res) => {
   const data = await Pet.find({});

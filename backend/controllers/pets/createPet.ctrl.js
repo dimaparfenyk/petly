@@ -1,4 +1,4 @@
-const { Pet } = require("../../models/pets");
+const { Pet } = require("../../models/pet");
 const { ctrlWrapper } = require("../../helpers");
 
 const createPet = async (req, res) => {

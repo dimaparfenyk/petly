@@ -1,13 +1,8 @@
-const mongoose = require("mongoose");
-const { Pet } = require("../../models/pets");
+const { Pet } = require("../../models/pet");
 const { ctrlWrapper, HttpError } = require("../../helpers");
 
 const removePet = async (req, res) => {
   const { id } = req.params;
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ message: "Invalid Id" });
-  }
 
   const data = await Pet.findByIdAndDelete(id);
 
