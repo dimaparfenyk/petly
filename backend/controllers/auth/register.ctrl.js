@@ -1,22 +1,19 @@
+const bcrypt = require("bcrypt");
+const { ctrlWrapper, HttpError } = require("../../helpers");
 const { User } = require("../../models/user");
 
 const register = async (req, res) => {
-  const data = req.body;
-  const { name, email, password, city, phone } = data;
+  const { email, password } = req.body;
+  const user = await User.findOne({ email });
 
-  if (!name || !email || !password || !city || !phone) {
-    return res
-      .status(400)
-      .json({ success: false, message: "Fill in all required fields." });
+  if (user) {
+    throw HttpError(409, "Email is already in use");
   }
 
-  try {
-    const result = await User.create({ ...data });
-    res.status(200).json({ success: true, data: result });
-  } catch (error) {
-    console.error("error in post user method ");
-    res.status(500).json({ success: false, message: "Server error" });
-  }
+  const hashPassword = await bcrypt.hash(password, 10);
+
+  const newUser = await User.create({ ...req.body, password: hashPassword });
+  res.status(201).json({ email: newUser.email, name: newUser.name });
 };
 
-module.exports = register;
+module.exports = { register: ctrlWrapper(register) };

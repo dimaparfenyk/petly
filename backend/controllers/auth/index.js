@@ -1,3 +1,4 @@
-const register = require("./register.ctrl");
+const { login } = require("./login.ctrl");
+const { register } = require("./register.ctrl");
 
-module.exports = { register };
+module.exports = { register, login };

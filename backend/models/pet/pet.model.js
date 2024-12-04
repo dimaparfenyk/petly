@@ -17,13 +17,17 @@ const catList = getData("../db/data/catBreeds.json");
 
 const petSchema = new Schema(
   {
-    name: { type: String, required: true },
+    name: { type: String, required: [true, "Name is required"] },
     birth: { type: String, required: true, match: dateRegexp },
     specie: {
       type: String,
       enum: specieList,
     },
-    sex: { type: String, required: true, enum: ["male", "female"] },
+    sex: {
+      type: String,
+      required: [true, "Sex is required"],
+      enum: ["male", "female"],
+    },
     breed: { type: String },
     price: { type: Number },
     image: { type: String },
@@ -32,16 +36,16 @@ const petSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    createdAt: {
-      type: String,
-      default: Math.floor(Date.now() / 1000),
-    },
-    updatedAt: {
-      type: String,
-      default: Math.floor(Date.now() / 1000),
-    },
+    // createdAt: {
+    //   type: String,
+    //   default: Math.floor(Date.now() / 1000),
+    // },
+    // updatedAt: {
+    //   type: String,
+    //   default: Math.floor(Date.now() / 1000),
+    // },
   },
-  { versionKey: false }
+  { versionKey: false, timestamps: true }
 );
 
 petSchema.post("save", handleMongooseError);

@@ -7,21 +7,28 @@ const {
   removePet,
   updatePetFavorite,
 } = require("../controllers/pets");
-const { validateBody, isValidId } = require("../middlewars");
+const { validateBody, isValidId, authenticate } = require("../middlewars");
 const { schemas } = require("../models/pet");
 
 const petsRouter = express.Router();
 
-petsRouter.get("/", getAllPets);
-petsRouter.get("/:id", isValidId, getPetById);
-petsRouter.post("/", validateBody(schemas.addSchema), createPet);
-petsRouter.put("/:id", isValidId, validateBody(schemas.addSchema), updatePet);
+petsRouter.get("/", authenticate, getAllPets);
+petsRouter.get("/:id", authenticate, isValidId, getPetById);
+petsRouter.post("/", authenticate, validateBody(schemas.addSchema), createPet);
+petsRouter.put(
+  "/:id",
+  authenticate,
+  isValidId,
+  validateBody(schemas.addSchema),
+  updatePet
+);
 petsRouter.patch(
   "/:id/favorite",
+  authenticate,
   isValidId,
   validateBody(schemas.updateFavoriteSchema),
   updatePetFavorite
 );
-petsRouter.delete("/:id", isValidId, removePet);
+petsRouter.delete("/:id", authenticate, isValidId, removePet);
 
 module.exports = petsRouter;
