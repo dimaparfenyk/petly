@@ -36,6 +36,11 @@ const petSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
     // createdAt: {
     //   type: String,
     //   default: Math.floor(Date.now() / 1000),

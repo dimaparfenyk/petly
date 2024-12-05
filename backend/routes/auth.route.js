@@ -1,6 +1,6 @@
 const express = require("express");
-const { register, login } = require("../controllers/auth");
-const { validateBody } = require("../middlewars");
+const { register, login, getCurrent, logout } = require("../controllers/auth");
+const { validateBody, authenticate } = require("../middlewars");
 const { schemas } = require("../models/user");
 
 const authRouter = express.Router();
@@ -12,5 +12,9 @@ authRouter.post(
 );
 
 authRouter.post("/login", validateBody(schemas.loginUserSchema), login);
+
+authRouter.get("/current", authenticate, getCurrent);
+
+authRouter.post("/logout", authenticate, logout);
 
 module.exports = authRouter;
