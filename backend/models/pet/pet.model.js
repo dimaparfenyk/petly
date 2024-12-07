@@ -41,14 +41,9 @@ const petSchema = new Schema(
       ref: "user",
       required: true,
     },
-    // createdAt: {
-    //   type: String,
-    //   default: Math.floor(Date.now() / 1000),
-    // },
-    // updatedAt: {
-    //   type: String,
-    //   default: Math.floor(Date.now() / 1000),
-    // },
+    petImgUrl: {
+      type: String,
+    },
   },
   { versionKey: false, timestamps: true }
 );
