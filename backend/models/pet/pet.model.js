@@ -32,10 +32,6 @@ const petSchema = new Schema(
     price: { type: Number },
     image: { type: String },
     description: { type: String },
-    favorite: {
-      type: Boolean,
-      default: false,
-    },
     owner: {
       type: Schema.Types.ObjectId,
       ref: "user",
@@ -60,13 +56,8 @@ const addSchema = Joi.object({
   breed: Joi.string().required(),
   price: Joi.number(),
   description: Joi.string(),
-  favorite: Joi.boolean(),
 });
 
-const updateFavoriteSchema = Joi.object({
-  favorite: Joi.boolean().required(),
-});
-
-const schemas = { addSchema, updateFavoriteSchema };
+const schemas = { addSchema };
 
 module.exports = { Pet, schemas };

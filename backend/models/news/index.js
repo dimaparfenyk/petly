@@ -1,3 +1,3 @@
-const getAllNews = require("./getAllNews.model");
+const { News } = require("./getAllNews.model");
 
-module.exports = { getAllNews };
+module.exports = { News };

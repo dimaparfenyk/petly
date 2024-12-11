@@ -5,7 +5,7 @@ const getAllPets = async (req, res) => {
   const { _id: owner } = req.user;
 
   const data = await Pet.find({ owner });
-  res.status(200).json({ success: true, data });
+  res.status(200).json(data);
 };
 
 module.exports = { getAllPets: ctrlWrapper(getAllPets) };

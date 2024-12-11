@@ -1,3 +1,3 @@
-const getAllSponsors = require("./getAllSponsors.model");
+const { Sponsors } = require("./getAllSponsors.model");
 
-module.exports = { getAllSponsors };
+module.exports = { Sponsors };

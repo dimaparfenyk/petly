@@ -4,6 +4,7 @@ const { handleMongooseError } = require("../../helpers");
 
 const dateRegexp = /^\d{2}-\d{2}-\d{4}$/;
 const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const phoneRegexp = /^(\+\d{1,3}[- ]?)?\(?\d{1,4}\)?[- ]?\d{1,4}[- ]?\d{1,9}$/;
 
 const userSchema = new Schema(
   {
@@ -26,6 +27,7 @@ const userSchema = new Schema(
     phone: {
       type: String,
       required: true,
+      match: phoneRegexp,
       unique: true,
     },
     birthday: {
@@ -35,6 +37,7 @@ const userSchema = new Schema(
     avatarURL: {
       type: String,
     },
+
     token: {
       type: String,
       default: null,

@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const { ctrlWrapper, HttpError } = require("../../helpers");
+const { HttpError } = require("../../helpers");
 const { User } = require("../../models/user");
 
 const register = async (req, res) => {
@@ -16,4 +16,4 @@ const register = async (req, res) => {
   res.status(201).json({ email: newUser.email, name: newUser.name });
 };
 
-module.exports = { register: ctrlWrapper(register) };
+module.exports = register;

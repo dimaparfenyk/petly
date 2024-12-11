@@ -5,7 +5,6 @@ const {
   createPet,
   updatePet,
   removePet,
-  updatePetFavorite,
 } = require("../controllers/pets");
 const {
   validateBody,
@@ -33,13 +32,7 @@ petsRouter.put(
   validateBody(schemas.addSchema),
   updatePet
 );
-petsRouter.patch(
-  "/:id/favorite",
-  authenticate,
-  isValidId,
-  validateBody(schemas.updateFavoriteSchema),
-  updatePetFavorite
-);
+
 petsRouter.delete("/:id", authenticate, isValidId, removePet);
 
 module.exports = petsRouter;

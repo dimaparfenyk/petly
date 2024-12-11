@@ -1,10 +1,20 @@
-const fs = require("fs/promises");
-const path = require("path");
-const newsFilePath = path.join(__dirname, "../../", "db/data/news.json");
+const { model, Schema } = require("mongoose");
+const { handleMongooseError } = require("../../helpers");
 
-const getAllNews = async () => {
-  const result = await fs.readFile(newsFilePath);
-  return JSON.parse(result);
-};
+const dateRegexp = /^\d{2}-\d{2}-\d{4}$/;
 
-module.exports = getAllNews;
+const newsSchema = new Schema(
+  {
+    title: { type: String, required: true },
+    url: { type: String, required: true },
+    description: { type: String, required: true },
+    date: { type: String, match: dateRegexp },
+  },
+  { versionKey: false, timestamps: true }
+);
+
+newsSchema.post("save", handleMongooseError);
+
+const News = model("News", newsSchema);
+
+module.exports = { News };

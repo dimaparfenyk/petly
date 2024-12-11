@@ -7,7 +7,6 @@ const petsImgDir = path.join(__dirname, "../../../frontend/public/pets");
 
 const createPet = async (req, res) => {
   const { _id: owner } = req.user;
-  console.log(req.file);
 
   const { path: tempUpload, originalname } = req.file;
   const resultUpload = path.join(petsImgDir, originalname);
