@@ -1,17 +1,14 @@
 const path = require("path");
-const fs = require("fs/promises");
 const { Pet } = require("../../models/pet");
-const { ctrlWrapper } = require("../../helpers");
+const { ctrlWrapper, uploadFile } = require("../../helpers");
 
-const petsImgDir = path.join(__dirname, "../../../frontend/public/pets");
+const petsImgDir = path.join(__dirname, "../../public/pets");
 
 const createPet = async (req, res) => {
   const { _id: owner } = req.user;
-
-  const { path: tempUpload, originalname } = req.file;
-  const resultUpload = path.join(petsImgDir, originalname);
-  await fs.rename(tempUpload, resultUpload);
-  const petImgUrl = path.join("pets", originalname);
+  const petImgUrl = req.file
+    ? await uploadFile(req, petsImgDir, "pets")
+    : path.join("pets", "pet-avatar.png");
 
   const result = await Pet.create({ ...req.body, owner, petImgUrl });
   res.status(201).json({ message: "Pet's data successfully created", result });
