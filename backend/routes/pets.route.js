@@ -16,7 +16,7 @@ const { schemas } = require("../models/pet");
 
 const petsRouter = express.Router();
 
-petsRouter.get("/", getAllPets);
+petsRouter.get("/", authenticate, getAllPets);
 petsRouter.get("/:id", authenticate, isValidId, getPetById);
 petsRouter.post(
   "/",
