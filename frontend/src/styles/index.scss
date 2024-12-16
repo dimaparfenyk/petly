@@ -1,1 +1,5 @@
-@import "../styles/variables";
+@use "../styles/fonts";
+
+@use "../styles/variables";
+@use "../styles/mixins";
+@use "../styles/reset";

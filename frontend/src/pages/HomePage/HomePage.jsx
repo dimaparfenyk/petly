@@ -1,12 +1,14 @@
-import PageTitle from "../../components/PageTittle/PageTitle";
-import PageWrapper from "../../components/PageWrapper/PageWrapper";
+import Container from "../../components/Container";
+import css from "./_HomePage.module.scss";
 
 const HomePage = () => {
   const text = "Take good care of your small pets";
   return (
-    <PageWrapper>
-      <PageTitle text={text} />
-    </PageWrapper>
+    <Container>
+      <section className={css.hero_section}>
+        <h1 className={css.title}>{text}</h1>
+      </section>
+    </Container>
   );
 };
 

@@ -1,5 +1,6 @@
 // Global variables
-$base-bg: #fdf7f2;
+$primary-bg: #fdf7f2;
+$accent-color: #ff6101;
 
 // button styles
 $primary-btn-color: #f59256;
@@ -14,3 +15,6 @@ $light-text-color: #ffffff;
 
 //card variables
 $card-bg: #ffffff;
+
+// transition variables
+$transition: 0.3s all ease-in-out;

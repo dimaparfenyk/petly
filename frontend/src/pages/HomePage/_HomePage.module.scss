@@ -1,0 +1,17 @@
+@use "../../styles/_variables.scss";
+
+.title {
+  display: inline-block;
+  width: 40%;
+  font-size: 4.25rem;
+  color: variables.$primary-dark-text-color;
+}
+
+.hero_section {
+  width: 100%;
+  height: 100vh;
+  padding-top: 5.75rem;
+  background-image: url("../../../public/images/home-bg-img.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}

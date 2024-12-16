@@ -1,12 +1,13 @@
-import NavBar from "../NavBar/NavBar";
+import Container from "../Container";
+import NavBar from "../NavBar";
+import css from "./_Header.module.scss";
 
 const Header = () => {
   return (
-    <header>
-      <div>
-        <img src="/images/petly.png" alt="logo" />
-      </div>
-      <NavBar />
+    <header className={css.header}>
+      <Container>
+        <NavBar />
+      </Container>
     </header>
   );
 };

@@ -1,11 +1,11 @@
-import PageTitle from "../../components/PageTittle/PageTitle";
-import PageWrapper from "../../components/PageWrapper/PageWrapper";
+import PageTitle from "../../components/PageTittle";
+import Container from "../../components/Container";
 
 const SponsorsPage = () => {
   return (
-    <PageWrapper>
+    <Container>
       <PageTitle text={"Sponsors Page"} />
-    </PageWrapper>
+    </Container>
   );
 };
 

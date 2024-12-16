@@ -1,0 +1,24 @@
+@use "../../styles/variables";
+
+.button {
+  min-width: 7rem;
+  height: 3rem;
+  padding: 10px 28px;
+  border: none;
+  border-radius: 40px;
+  background-color: variables.$primary-btn-color;
+  color: variables.$light-text-color;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  transition: variables.$transition;
+
+  &:hover,
+  &:focus {
+    background-color: variables.$accent-color;
+  }
+}
+
+.button.active {
+  background-color: variables.$accent-color;
+}

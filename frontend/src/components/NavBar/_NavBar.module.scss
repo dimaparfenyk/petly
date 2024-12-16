@@ -1,0 +1,56 @@
+@use "../../styles/variables";
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav_list {
+  display: flex;
+  margin-left: 5rem;
+  letter-spacing: 0.8px;
+
+  & .nav_item {
+    font-size: 1.25rem;
+    font-weight: 500;
+    cursor: pointerprimary;
+  }
+
+  & .nav_item:not(:first-child) {
+    margin-left: 5rem;
+  }
+}
+
+.nav_item.active {
+  color: variables.$primary-btn-color;
+  border-bottom: 1px solid variables.$primary-btn-color;
+}
+
+.nav_link {
+  padding-top: 1rem;
+  transition: variables.$transition;
+
+  &:hover,
+  &:focus {
+    color: variables.$accent-color;
+  }
+}
+
+.logo {
+  font-family: Popons sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 2.25px;
+
+  span {
+    color: variables.$accent-color;
+  }
+}
+
+.nav_auth {
+  margin-left: auto;
+  button + button {
+    margin-left: 1.25rem;
+  }
+}
