@@ -7,14 +7,18 @@
 }
 
 .nav_list {
-  display: flex;
-  margin-left: 5rem;
-  letter-spacing: 0.8px;
+  display: none;
+
+  @media screen and (min-width: 991px) {
+    display: flex;
+    margin-left: 5rem;
+    letter-spacing: 0.8px;
+  }
 
   & .nav_item {
     font-size: 1.25rem;
     font-weight: 500;
-    cursor: pointerprimary;
+    cursor: pointer;
   }
 
   & .nav_item:not(:first-child) {
@@ -39,9 +43,13 @@
 
 .logo {
   font-family: Popons sans-serif;
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 700;
   letter-spacing: 2.25px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 2rem;
+  }
 
   span {
     color: variables.$accent-color;
@@ -49,8 +57,32 @@
 }
 
 .nav_auth {
+  display: none;
   margin-left: auto;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
   button + button {
     margin-left: 1.25rem;
+  }
+}
+
+.burger_btn {
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
+  border: none;
+  background-color: inherit;
+  @media screen and (min-width: 768px) {
+    margin-left: 20px;
+  }
+  @media screen and (min-width: 991px) {
+    display: none;
+  }
+
+  .burger {
+    width: 30px;
+    height: 20px;
   }
 }

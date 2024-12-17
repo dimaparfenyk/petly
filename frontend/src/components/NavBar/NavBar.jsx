@@ -1,18 +1,14 @@
+import { RxHamburgerMenu } from "react-icons/rx";
 import Button from "../Button";
 import css from "./_NavBar.module.scss";
 
 const NavBar = () => {
   return (
     <nav className={css.nav}>
-      <div className={css.logo}>
+      <a href="/" className={css.logo}>
         pe<span>t</span>ly
-      </div>
+      </a>
       <ul className={css.nav_list}>
-        <li className={`${css.nav_item} ${css.active}`}>
-          <a className={css.nav_link} href="/">
-            Home
-          </a>
-        </li>
         <li className={css.nav_item}>
           <a className={css.nav_link} href="/news">
             News
@@ -34,6 +30,9 @@ const NavBar = () => {
         <Button text={"Login"} />
         <Button text={"Registration"} />
       </div>
+      <button type="button" className={css.burger_btn}>
+        <RxHamburgerMenu className={css.burger} />
+      </button>
     </nav>
   );
 };

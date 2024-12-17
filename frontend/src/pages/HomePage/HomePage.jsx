@@ -4,11 +4,11 @@ import css from "./_HomePage.module.scss";
 const HomePage = () => {
   const text = "Take good care of your small pets";
   return (
-    <Container>
-      <section className={css.hero_section}>
+    <section className={css.hero_section}>
+      <Container>
         <h1 className={css.title}>{text}</h1>
-      </section>
-    </Container>
+      </Container>
+    </section>
   );
 };
 

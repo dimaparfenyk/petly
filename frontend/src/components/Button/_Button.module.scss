@@ -1,24 +1,18 @@
 @use "../../styles/variables";
+@use "../../styles/mixins";
 
 .button {
-  min-width: 7rem;
-  height: 3rem;
-  padding: 10px 28px;
-  border: none;
-  border-radius: 40px;
-  background-color: variables.$primary-btn-color;
-  color: variables.$light-text-color;
-  font-size: 1.25rem;
-  font-weight: 500;
-  letter-spacing: 0.8px;
-  transition: variables.$transition;
+  @include mixins.primaryButton(
+    variables.$primary-btn-color,
+    variables.$light-text-color,
+    variables.$accent-color
+  );
 
-  &:hover,
-  &:focus {
-    background-color: variables.$accent-color;
-  }
+  border: none;
+  transition: variables.$transition;
 }
 
-.button.active {
+.button .active {
+  border: 1px solid red;
   background-color: variables.$accent-color;
 }
