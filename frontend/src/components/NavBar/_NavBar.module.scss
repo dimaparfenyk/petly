@@ -27,8 +27,8 @@
 }
 
 .nav_item.active {
-  color: variables.$primary-btn-color;
-  border-bottom: 1px solid variables.$primary-btn-color;
+  color: variables.$secondary-btn-font-color;
+  border-bottom: 1px solid variables.$primary-btn-bgcolor;
 }
 
 .nav_link {
@@ -63,6 +63,11 @@
   @media screen and (min-width: 768px) {
     display: block;
   }
+  button.active {
+    border: 1px solid red;
+    background-color: variables.$accent-color;
+  }
+
   button + button {
     margin-left: 1.25rem;
   }

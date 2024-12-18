@@ -15,14 +15,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "frontend", "dist", "index.html"));
-});
-
 app.use("/api/auth", authRouter);
 app.use("/api/pets", petsRouter);
 app.use("/api/news", newsRouter);
 app.use("/api/sponsors", sponsorsRouter);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "frontend", "index.html"));
+});
 
 app.use((err, req, res, next) => {
   const { status = 500, message = "Server error" } = err;

@@ -3,16 +3,25 @@
 
 .button {
   @include mixins.primaryButton(
-    variables.$primary-btn-color,
-    variables.$light-text-color,
+    variables.$primary-btn-bgcolor,
+    variables.$primary-btn-font-color,
     variables.$accent-color
   );
 
   border: none;
-  transition: variables.$transition;
 }
 
-.button .active {
-  border: 1px solid red;
-  background-color: variables.$accent-color;
+.button.active {
+  @include mixins.primaryButton(
+    variables.$secondary-btn-bgcolor,
+    variables.$secondary-btn-font-color,
+    variables.$accent-color
+  );
+
+  border: 2px solid variables.$accent-color;
+
+  &:hover,
+  &:focus {
+    color: variables.$secondary-btn-bgcolor;
+  }
 }
