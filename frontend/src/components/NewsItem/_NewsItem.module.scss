@@ -9,12 +9,30 @@
   @media screen and (min-width: 1200px) {
     flex-basis: calc((100% - 64px) / 3);
   }
-  &::before {
-    content: url("/images/separator-news-articles.png");
+}
+
+.separator {
+  width: 200px;
+  height: 4px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  background: linear-gradient(
+    0deg,
+    rgba(255, 99, 78, 1) 0%,
+    rgba(255, 223, 72, 1) 100%
+  );
+  @media screen and (min-width: 768px) {
+    width: 280px;
+    height: 8px;
+  }
+  @media screen and (min-width: 1200px) {
+    width: 340px;
   }
 }
 
 .card_title {
+  margin-bottom: 16px;
+  font-size: variables.$mb-subtitle-text-size;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;

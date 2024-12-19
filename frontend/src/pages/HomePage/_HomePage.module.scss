@@ -2,12 +2,13 @@
 
 .hero_section {
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 80px);
   padding-top: 64px;
 
   background-image: url("../../../public/images/mb-hero-bg-img.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
+  background-position: right;
 
   @media screen and (min-width: 768px) {
     padding-top: 92px;

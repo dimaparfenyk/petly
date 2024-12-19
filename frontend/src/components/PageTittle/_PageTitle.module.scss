@@ -1,10 +1,12 @@
 @use "../../styles/variables";
 
 .page_title {
+  margin-bottom: 28px;
   font-size: variables.$mb-subtitle-text-size * 1rem;
   color: variables.$primary-dark-text-color;
 
   @media screen and (min-width: 768px) {
+    margin-bottom: 40px;
     font-size: variables.$tb-subtitle-text-size * 1rem;
   }
 }
