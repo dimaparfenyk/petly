@@ -1,11 +1,13 @@
+import { useEffect, useState } from "react";
+
 import PageTitle from "../../components/PageTittle";
 import Container from "../../components/Container";
-import css from "./_NewsPage.module.scss";
-import { useEffect, useState } from "react";
-import api from "../../api/news";
 import NewsList from "../../components/NewsList/NewsList";
 import Section from "../../components/Section";
 import Filter from "../../components/Filter";
+import Wrapper from "../../components/Wrapper";
+
+import api from "../../api/news";
 
 const NewsPage = () => {
   const [news, setNews] = useState([]);
@@ -22,11 +24,11 @@ const NewsPage = () => {
   return (
     <Section>
       <Container>
-        <div className={css.wrapper}>
+        <Wrapper>
           <PageTitle text={"News Page"} />
           <Filter />
           <NewsList news={news} />
-        </div>
+        </Wrapper>
       </Container>
     </Section>
   );
