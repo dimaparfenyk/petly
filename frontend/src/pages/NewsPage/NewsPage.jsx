@@ -13,13 +13,8 @@ const NewsPage = () => {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
-    getNews();
+    api.fetchNews().then((res) => setNews(res));
   }, []);
-
-  async function getNews() {
-    const data = await api.fetchNews();
-    setNews(data);
-  }
 
   return (
     <Section>

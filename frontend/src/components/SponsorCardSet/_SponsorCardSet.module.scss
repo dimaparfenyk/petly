@@ -1,0 +1,28 @@
+@use "../../styles/variables";
+
+.sponsors_list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  row-gap: variables.$gap;
+
+  @media screen and (min-width: 768px) {
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    li:not(:nth-child(2n + 1)) {
+      margin-left: 32px;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    li:not(:nth-child(2n + 1)) {
+      margin-left: 0;
+    }
+
+    li:not(:nth-child(3n + 1)) {
+      margin-left: 32px;
+    }
+  }
+}

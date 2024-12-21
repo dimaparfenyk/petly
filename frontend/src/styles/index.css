@@ -1,10 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Manrope:wght@400;500;600;700&family=Montserrat:wght@400;500&family=Poppins:wght@400;700&display=swap");
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: Manrope Poppins Inter sans-serif;
+  font-family: Manrope Poppins Inter Arial sans-serif;
   background-color: #fdf7f2;
 }
 
@@ -48,4 +49,4 @@ a {
 
 button {
   cursor: pointer;
-}/*# sourceMappingURL=index.css.map */
+} /*# sourceMappingURL=index.css.map */

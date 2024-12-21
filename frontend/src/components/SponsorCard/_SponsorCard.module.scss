@@ -1,0 +1,63 @@
+@use "../../styles/variables";
+
+.sponsor_item {
+  width: 280px;
+  min-height: 192px;
+  padding: 12px 4px;
+  border-radius: 20px;
+  background-color: variables.$card-bg;
+
+  @media screen and (min-width: 768px) {
+    width: auto;
+    min-height: 246px;
+    flex-basis: calc((100% - 32px) / 2);
+  }
+
+  @media screen and (min-width: 1200px) {
+    min-height: 287px;
+    flex-basis: calc((100% - 64px) / 3);
+  }
+}
+
+.article {
+  display: flex;
+  flex-direction: column;
+}
+
+.card_title {
+  margin: 0 auto 12px;
+  color: variables.$secondary-btn-font-color;
+
+  @media screen and (min-width: 768px) {
+    margin: 0 auto 16px;
+  }
+
+  @media screen and (min-width: 1200px) {
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+.meta_box {
+  display: flex;
+  align-items: flex-start;
+  .meta_block:not(:last-child) {
+    margin-bottom: 4px;
+  }
+}
+
+.meta_img {
+  max-width: 110px;
+  height: 78px;
+  margin-right: 12px;
+}
+
+.meta_text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}

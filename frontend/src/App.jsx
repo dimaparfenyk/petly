@@ -5,8 +5,6 @@ import PetsPage from "./pages/PetsPage";
 import SponsorsPage from "./pages/SponsorsPage";
 import Header from "./components/Header";
 
-import "./styles/index.scss";
-
 function App() {
   return (
     <>

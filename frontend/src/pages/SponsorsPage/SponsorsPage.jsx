@@ -13,13 +13,9 @@ const SponsorsPage = () => {
   const [sponsors, setSponsors] = useState([]);
 
   useEffect(() => {
-    getSponsors();
+    api.fetchSponsors().then((res) => setSponsors(res));
   }, []);
 
-  async function getSponsors() {
-    const data = await api.fetchSponsors();
-    setSponsors(data);
-  }
   return (
     <Section>
       <Container>
