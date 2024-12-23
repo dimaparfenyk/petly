@@ -1,8 +1,12 @@
 import css from "./_Button.module.scss";
 
-const Button = ({ text, type = "button", children }) => {
+const Button = ({ text, type = "button", isActive, onClick, children }) => {
   return (
-    <button type={type} className={`${css.button} `}>
+    <button
+      type={type}
+      className={`${css.button} ${isActive ? css.active : ""}`}
+      onClick={onClick}
+    >
       {children}
       {text}
     </button>

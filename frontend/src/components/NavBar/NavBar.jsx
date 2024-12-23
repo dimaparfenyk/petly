@@ -1,8 +1,15 @@
+import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Button from "../Button";
 import css from "./_NavBar.module.scss";
 
 const NavBar = () => {
+  const [activeButton, setActiveButton] = useState("registration");
+
+  const handleButtonClick = (name) => {
+    setActiveButton(name);
+  };
+
   return (
     <nav className={css.nav}>
       <a href="/" className={css.logo}>
@@ -27,8 +34,18 @@ const NavBar = () => {
       </ul>
 
       <div className={css.nav_auth}>
-        <Button text={"Login"} />
-        <Button text={"Registration"} />
+        <Button
+          text={"Login"}
+          name="login"
+          isActive={activeButton === "login"}
+          onClick={() => handleButtonClick("login")}
+        />
+        <Button
+          text={"Registration"}
+          name="registration"
+          isActive={activeButton === "registration"}
+          onClick={() => handleButtonClick("registration")}
+        />
       </div>
       <button type="button" className={css.burger_btn}>
         <RxHamburgerMenu className={css.burger} />
