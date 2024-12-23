@@ -6,6 +6,7 @@
   padding: 12px 4px;
   border-radius: 20px;
   background-color: variables.$card-bg;
+  box-shadow: rgba(49, 21, 4, 0.07) 7px 4px 14px;
 
   @media screen and (min-width: 768px) {
     width: auto;
@@ -26,13 +27,22 @@
 
 .card_title {
   margin: 0 auto 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
   color: variables.$secondary-btn-font-color;
+  transition: variables.$transition;
+
+  &:hover {
+    color: variables.$accent-color;
+  }
 
   @media screen and (min-width: 768px) {
+    font-size: 1rem;
     margin: 0 auto 16px;
   }
 
   @media screen and (min-width: 1200px) {
+    font-size: 1.25rem;
   }
 
   a {
@@ -43,8 +53,21 @@
 .meta_box {
   display: flex;
   align-items: flex-start;
+}
+
+.meta_info {
   .meta_block:not(:last-child) {
     margin-bottom: 4px;
+  }
+}
+
+.meta_block {
+  position: relative;
+}
+
+.meta_block.active {
+  .meta_text {
+    color: variables.$accent-color;
   }
 }
 
