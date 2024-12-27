@@ -56,7 +56,9 @@ const SponsorCard = ({ sponsor = {} }) => {
               }}
             >
               <p className={css.meta_text}>Time:</p>
-              <p className={css.meta_text}>{getWorkDayText()}</p>
+              <p className={`${css.meta_text} ${css.time_text}`}>
+                {getWorkDayText()}
+              </p>
               {workDays && isWorkDaysBoxOpen && (
                 <WorkDaysCard days={workDays} />
               )}

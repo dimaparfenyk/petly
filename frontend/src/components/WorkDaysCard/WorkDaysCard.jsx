@@ -8,10 +8,8 @@ const WorkDaysCard = ({ days }) => {
       <ul className={css.days_list}>
         {days.map(({ from, to, isOpen, _id }, index) => (
           <li key={_id} className={css.day_item}>
-            <p className={css.week_day}>{weekDays[index]}</p>
-            <p className={css.work_time_text}>
-              {isOpen ? `${from} - ${to} ` : "Closed"}
-            </p>
+            <span className={css.week_day}>{weekDays[index]}</span>
+            {isOpen ? `${from} - ${to} ` : "Closed"}
           </li>
         ))}
       </ul>

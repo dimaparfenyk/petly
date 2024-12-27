@@ -12,9 +12,6 @@
 }
 
 .day_item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   font-size: 12px;
   font-weight: 400;
 }
@@ -23,6 +20,8 @@
   margin-top: 4px;
 }
 
-.work_time_text {
-  margin-left: 12px;
+.week_day {
+  display: inline-block;
+  min-width: 20px;
+  margin-right: 12px;
 }

@@ -1,0 +1,47 @@
+@use "../../styles/variables";
+
+.btns_box {
+  display: flex;
+}
+
+.buttons_list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 12px;
+  row-gap: 16px;
+}
+
+.add_btn {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  display: flex;
+  align-items: center;
+
+  border: 2px solid transparent;
+  font-size: variables.$tb-primary-text-size;
+  background-color: inherit;
+  transition: variables.$transition;
+
+  @media screen and (min-width: 768px) {
+    margin-left: auto;
+  }
+
+  svg {
+    width: 44px;
+    height: 44px;
+    margin-left: 12px;
+    border-radius: 50%;
+    background-color: variables.$primary-btn-bgcolor;
+    color: variables.$primary-btn-font-color;
+    transition: variables.$transition;
+  }
+
+  &:hover,
+  &:focus {
+    svg {
+      background-color: variables.$accent-color;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+@use "../../styles/variables";
+
+.petcard {
+  background-color: variables.$card-bg;
+  border-radius: 0 0 20px 20px;
+  box-shadow: rgba(49, 21, 4, 0.07) 7px 4px 14px;
+  @media screen and (min-width: 768px) {
+    flex-basis: calc((100% - 32px) / 2);
+  }
+
+  @media screen and (min-width: 1200px) {
+    flex-basis: calc((100% - 96px) / 4);
+  }
+}
+
+.img_box {
+  margin-bottom: 20px;
+}
+
+.meta_box {
+  padding: 0 29px 32px 20px;
+}
+
+.meta_text {
+  span {
+    display: inline-block;
+    min-width: 90px;
+    margin-right: 40px;
+  }
+}
+
+.card_title {
+  margin-bottom: 20px;
+}
+
+.pet_img {
+  width: 100%;
+}
+
+.btn_box {
+  margin-top: 20px;
+
+  & button {
+    width: 100%;
+  }
+}

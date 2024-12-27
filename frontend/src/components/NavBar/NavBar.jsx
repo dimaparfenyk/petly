@@ -1,14 +1,17 @@
 import { useState } from "react";
+import { useLocation } from "react-router";
+
 import { RxHamburgerMenu } from "react-icons/rx";
 import Button from "../Button";
 import css from "./_NavBar.module.scss";
 
 const NavBar = () => {
-  const [activeButton, setActiveButton] = useState("registration");
+  const { pathname } = useLocation();
 
-  const handleButtonClick = (name) => {
-    setActiveButton(name);
-  };
+  const [activeButton, setActiveButton] = useState("registration");
+  const [activePage, setActivePage] = useState(
+    () => pathname.replace("/", "") || "/"
+  );
 
   return (
     <nav className={css.nav}>
@@ -16,17 +19,32 @@ const NavBar = () => {
         pe<span>t</span>ly
       </a>
       <ul className={css.nav_list}>
-        <li className={css.nav_item}>
+        <li
+          className={`${css.nav_item} ${
+            activePage === "news" ? css.active : ""
+          }`}
+          onClick={() => setActivePage("news")}
+        >
           <a className={css.nav_link} href="/news">
             News
           </a>
         </li>
-        <li className={css.nav_item}>
+        <li
+          className={`${css.nav_item} ${
+            activePage === "pets" ? css.active : ""
+          }`}
+          onClick={() => setActivePage("pets")}
+        >
           <a className={css.nav_link} href="/pets">
             Find Pet
           </a>
         </li>
-        <li className={css.nav_item}>
+        <li
+          className={`${css.nav_item} ${
+            activePage === "sponsors" ? css.active : ""
+          }`}
+          onClick={() => setActivePage("sponsors")}
+        >
           <a className={css.nav_link} href="/sponsors">
             Our Friends
           </a>
@@ -36,15 +54,13 @@ const NavBar = () => {
       <div className={css.nav_auth}>
         <Button
           text={"Login"}
-          name="login"
           isActive={activeButton === "login"}
-          onClick={() => handleButtonClick("login")}
+          onClick={() => setActiveButton("login")}
         />
         <Button
           text={"Registration"}
-          name="registration"
           isActive={activeButton === "registration"}
-          onClick={() => handleButtonClick("registration")}
+          onClick={() => setActiveButton("registration")}
         />
       </div>
       <button type="button" className={css.burger_btn}>
