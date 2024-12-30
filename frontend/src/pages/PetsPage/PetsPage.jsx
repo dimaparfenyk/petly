@@ -9,7 +9,6 @@ import PetsList from "../../components/PetsList";
 const PetsPage = () => {
   return (
     <>
-      {/* <Section> */}
       <Container>
         <Wrapper>
           <PageTitle text={"Find your favorite pet"} />
@@ -17,7 +16,7 @@ const PetsPage = () => {
           <FilterButtons />
         </Wrapper>
       </Container>
-      {/* </Section> */}
+
       <Section>
         <Container>
           <Wrapper>

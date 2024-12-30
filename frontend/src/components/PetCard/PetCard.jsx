@@ -1,7 +1,8 @@
-import Button from "../Button";
+import { Link } from "react-router-dom";
+// import Button from "../Button";
 import css from "./_PetCard.module.scss";
 
-const PetCard = () => {
+const PetCard = ({ _id }) => {
   return (
     <li className={css.petcard}>
       <article>
@@ -20,7 +21,9 @@ const PetCard = () => {
             <span>Price:</span> 50$
           </div>
           <div className={css.btn_box}>
-            <Button text={"Learn More"} />
+            <Link to={`${_id}`} className={css.pet_details_link}>
+              Learn More
+            </Link>
           </div>
         </div>
       </article>

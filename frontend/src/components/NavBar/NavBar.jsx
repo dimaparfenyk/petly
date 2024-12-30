@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useLocation } from "react-router";
+import { NavLink, useLocation } from "react-router";
 
 import { RxHamburgerMenu } from "react-icons/rx";
+import { RiAccountCircleFill } from "react-icons/ri";
 import Button from "../Button";
 import css from "./_NavBar.module.scss";
 
@@ -62,6 +63,10 @@ const NavBar = () => {
           isActive={activeButton === "registration"}
           onClick={() => setActiveButton("registration")}
         />
+        <NavLink to={"profile"} className={css.account_link}>
+          <RiAccountCircleFill />
+          Account
+        </NavLink>
       </div>
       <button type="button" className={css.burger_btn}>
         <RxHamburgerMenu className={css.burger} />

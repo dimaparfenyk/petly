@@ -39,8 +39,24 @@
 
 .btn_box {
   margin-top: 20px;
+}
 
-  & button {
-    width: 100%;
+.pet_details_link {
+  width: 100%;
+  padding: 8px 0;
+  border-radius: 40px;
+  border: 2px solid variables.$primary-btn-bgcolor;
+  text-align: center;
+  color: variables.$secondary-btn-font-color;
+  font-size: variables.$btn-font-size;
+  font-weight: 400;
+
+  transition: variables.$transition;
+
+  &:hover,
+  &:focus {
+    border: 2px solid variables.$accent-color;
+
+    color: variables.$accent-color;
   }
 }
