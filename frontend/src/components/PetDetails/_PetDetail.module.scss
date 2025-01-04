@@ -1,0 +1,65 @@
+@use "../../styles/variables";
+
+.pet_details {
+  position: relative;
+  min-width: 280px;
+  padding: 60px 20px 40px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.pet_meta {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.pet_img_box {
+  margin: 0 auto 16px auto;
+  border-radius: 0px 0px 40px 40px;
+  overflow: hidden;
+}
+
+.card_title {
+  margin-bottom: 16px;
+  font-size: variables.$mb-subtitle-text-size;
+}
+
+.pet_meta_info {
+  margin-bottom: 28px;
+}
+
+.meta_block:not(:last-child) {
+  margin-bottom: 8px;
+}
+.meta_text {
+  display: inline-block;
+}
+.meta_text:first-child {
+  margin-right: 40px;
+  min-width: 68px;
+  font-weight: 600;
+}
+
+.comments_text {
+  span {
+    font-weight: 600;
+  }
+}
+
+.btn_box {
+  & button {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      margin-left: 8px;
+    }
+  }
+  button + button {
+    margin-top: 12px;
+  }
+}

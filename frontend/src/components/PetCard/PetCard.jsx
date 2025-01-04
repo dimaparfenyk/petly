@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
-// import Button from "../Button";
 import css from "./_PetCard.module.scss";
+import Button from "../Button/Button";
+import { IoHeartCircleOutline } from "react-icons/io5";
 
-const PetCard = ({ _id }) => {
+const PetCard = ({ _petId, onClick }) => {
+  console.log(_petId);
   return (
     <li className={css.petcard}>
       <article>
@@ -21,12 +22,13 @@ const PetCard = ({ _id }) => {
             <span>Price:</span> 50$
           </div>
           <div className={css.btn_box}>
-            <Link to={`${_id}`} className={css.pet_details_link}>
-              Learn More
-            </Link>
+            <Button text={"Learn More"} onClick={onClick} />
           </div>
         </div>
       </article>
+      <button className={css.add_favorite_btn}>
+        <IoHeartCircleOutline />
+      </button>
     </li>
   );
 };

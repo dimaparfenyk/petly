@@ -30,11 +30,11 @@ const SponsorCard = ({ sponsor = {} }) => {
   return (
     <li className={css.sponsor_item}>
       <article className={css.article}>
-        <h2 className={css.card_title}>
+        <h3 className={css.card_title}>
           <a href={url} className={css.card_link}>
             {title}
           </a>
-        </h2>
+        </h3>
         <div className={css.meta_box}>
           <div className={css.meta_img}>
             <img

@@ -7,8 +7,8 @@ const Button = ({ text, type = "button", isActive, onClick, children }) => {
       className={`${css.button} ${isActive ? css.active : ""}`}
       onClick={onClick}
     >
-      {children}
       {text}
+      {children}
     </button>
   );
 };

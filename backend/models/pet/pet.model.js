@@ -31,7 +31,7 @@ const petSchema = new Schema(
     breed: { type: String },
     price: { type: Number },
     image: { type: String },
-    description: { type: String },
+    description: { type: String, maxLength: 100 },
     owner: {
       type: Schema.Types.ObjectId,
       ref: "user",
