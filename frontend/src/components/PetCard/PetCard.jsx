@@ -1,6 +1,7 @@
 import css from "./_PetCard.module.scss";
 import Button from "../Button/Button";
-import { IoHeartCircleOutline } from "react-icons/io5";
+import { FaRegHeart } from "react-icons/fa6";
+// import { FaHeart } from "react-icons/fa6";
 
 const PetCard = ({ _petId, onClick }) => {
   console.log(_petId);
@@ -27,7 +28,8 @@ const PetCard = ({ _petId, onClick }) => {
         </div>
       </article>
       <button className={css.add_favorite_btn}>
-        <IoHeartCircleOutline />
+        <FaRegHeart />
+        {/* <FaHeart /> */}
       </button>
     </li>
   );

@@ -9,7 +9,7 @@
 
   &:hover .filter,
   &:focus .filter {
-    border: 1px solid variables.$accent-color;
+    border: 2px solid variables.$primary-btn-bgcolor;
   }
 }
 .filter {
@@ -20,7 +20,7 @@
   border-radius: 40px;
   border: none;
   font-size: 16px;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
 
   transition: variables.$transition;
 
