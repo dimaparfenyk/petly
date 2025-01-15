@@ -6,6 +6,8 @@ import SponsorsPage from "./pages/SponsorsPage";
 import SharedLayout from "./components/Layout";
 import PetDetails from "./components/PetDetails";
 import ProfilePage from "./pages/ProfilePage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
 
         <Route path="sponsors" element={<SponsorsPage />} />
 
+        <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<RegisterPage />} />
         <Route path="profile" element={<ProfilePage />} />
       </Route>
     </Routes>

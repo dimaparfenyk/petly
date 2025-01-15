@@ -1,0 +1,46 @@
+@use "../../styles/_variables.scss";
+
+.wrapper {
+  width: 100%;
+  padding: 60px 80px 40px;
+  background-color: #fff;
+
+  @media screen and (min-width: 768px) {
+    border-radius: 40px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.filter {
+  min-width: 280px;
+  height: 40px;
+  padding: 9px 12px;
+
+  border-radius: 40px;
+  border: none;
+  font-size: 16px;
+  border: 2px solid variables.$primary-btn-bgcolor;
+  transition: variables.$transition;
+
+  &:hover,
+  &:focus {
+    border: 2px solid variables.$accent-color;
+  }
+
+  @media screen and (min-width: 768px) {
+    min-width: 608px;
+    padding: 9px 12px 9px 20px;
+  }
+}

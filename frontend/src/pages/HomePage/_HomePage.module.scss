@@ -3,20 +3,21 @@
 .hero_section {
   width: 100%;
   height: calc(100vh - 80px);
-  height: 100vh;
   padding-top: 64px;
 
   background-image: url("../../../public/images/mb-hero-bg-img.png");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: right;
+  background-position: bottom center;
 
   @media screen and (min-width: 768px) {
+    background-position: right bottom;
     padding-top: 92px;
     background-image: url("../../../public/images/tb-hero-bg-img.png");
   }
 
-  @media screen and (min-width: 991px) {
+  @media screen and (min-width: 1280px) {
+    background-size: contain;
     background-image: url("../../../public/images/dt-hero-bg-img.png");
   }
 }

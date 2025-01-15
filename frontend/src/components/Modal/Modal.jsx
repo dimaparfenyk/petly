@@ -1,36 +1,20 @@
 import { useEffect, useRef } from "react";
 import { IoMdClose } from "react-icons/io";
 import css from "./_Modal.module.scss";
+import useCloseModal from "../../hooks/useCloseModal";
 
 const Modal = ({ onClose, children }) => {
   const backdropRef = useRef(null);
+  const handleCloseModal = useCloseModal(backdropRef, onClose);
 
   useEffect(() => {
-    function handleClickOutside(e) {
-      if (backdropRef.current && e.target === backdropRef.current) {
-        onClose();
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleCloseModal);
+    document.addEventListener("mousedown", handleCloseModal);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleCloseModal);
+      document.removeEventListener("mousedown", handleCloseModal);
     };
-  }, [onClose]);
-
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [onClose]);
+  }, [handleCloseModal]);
 
   return (
     <div className={css.backdrop} ref={backdropRef}>

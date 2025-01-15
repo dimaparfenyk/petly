@@ -10,9 +10,8 @@ const SponsorCard = ({ sponsor = {} }) => {
     sponsor;
 
   const curDay = moment().weekday();
-  const markup = (propsData, defaultStr = "_ _ _ _ _ _ _ _ _ _ _ _") => {
-    return propsData ? propsData : defaultStr;
-  };
+  const markup = (propsData, defaultStr = "_ _ _ _ _ _ _ _ _ _") =>
+    propsData ? propsData : defaultStr;
 
   const getWorkDayText = () => {
     if (!workDays || !workDays[curDay]) return "__ : __";
@@ -31,7 +30,7 @@ const SponsorCard = ({ sponsor = {} }) => {
     <li className={css.sponsor_item}>
       <article className={css.article}>
         <h3 className={css.card_title}>
-          <a href={url} className={css.card_link}>
+          <a href={url} className={css.card_link} target="_blank">
             {title}
           </a>
         </h3>

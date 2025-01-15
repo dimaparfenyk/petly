@@ -53,16 +53,21 @@ const NavBar = () => {
       </ul>
 
       <div className={css.nav_auth}>
-        <Button
-          text={"Login"}
-          isActive={activeButton === "login"}
-          onClick={() => setActiveButton("login")}
-        />
-        <Button
-          text={"Registration"}
-          isActive={activeButton === "registration"}
-          onClick={() => setActiveButton("registration")}
-        />
+        <NavLink to={"login"}>
+          <Button
+            text={"Login"}
+            isActive={activeButton === "login"}
+            onClick={() => setActiveButton("login")}
+          />
+        </NavLink>
+        <NavLink to={"register"}>
+          <Button
+            text={"Registration"}
+            isActive={activeButton === "registration"}
+            onClick={() => setActiveButton("registration")}
+          />
+        </NavLink>
+
         <NavLink to={"profile"} className={css.account_link}>
           <RiAccountCircleFill />
           Account
