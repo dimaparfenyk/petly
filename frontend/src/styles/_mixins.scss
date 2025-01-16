@@ -3,6 +3,7 @@
 @mixin primaryButton($bg, $fontcolor, $hover-color) {
   display: flex;
   align-items: center;
+  justify-content: center;
   min-width: 7rem;
   height: 3rem;
   padding: 10px 28px;
@@ -14,6 +15,7 @@
   font-size: 1.25rem;
   font-weight: 500;
   letter-spacing: 0.8px;
+  text-transform: capitalize;
   transition: variables.$transition;
 
   &:hover,

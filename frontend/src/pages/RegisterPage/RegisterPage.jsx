@@ -6,7 +6,7 @@ const RegisterPage = () => {
   return (
     <section className={css.section}>
       <Container>
-        <AuthModal title={"Registration"}></AuthModal>
+        <AuthModal />
       </Container>
     </section>
   );

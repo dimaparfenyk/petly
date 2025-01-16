@@ -6,7 +6,7 @@ const LoginPage = () => {
   return (
     <section className={css.section}>
       <Container>
-        <AuthModal title={"Login"}></AuthModal>
+        <AuthModal />
       </Container>
     </section>
   );

@@ -2,11 +2,17 @@
 
 .wrapper {
   width: 100%;
-  padding: 60px 80px 40px;
-  background-color: #fff;
 
   @media screen and (min-width: 768px) {
+    width: 608px;
+    padding: 60px 80px 40px;
     border-radius: 40px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.11) 7px 4px 14px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 618px;
   }
 }
 
@@ -14,16 +20,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 
   button {
     width: 100%;
-    display: flex;
-    justify-content: center;
   }
 }
 
-.filter {
+.form_title {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.box {
+  margin-bottom: 40px;
+}
+
+.auth_field {
+  width: 100%;
   min-width: 280px;
   height: 40px;
   padding: 9px 12px;
@@ -40,7 +53,27 @@
   }
 
   @media screen and (min-width: 768px) {
-    min-width: 608px;
     padding: 9px 12px 9px 20px;
   }
+}
+
+.auth_field + .auth_field {
+  margin-top: 16px;
+}
+
+.form_title,
+.redirect_link {
+  text-transform: capitalize;
+}
+
+.text {
+  display: inline-flex;
+  margin-top: 40px;
+  color: #111111;
+}
+
+.redirect_link {
+  margin-left: 2px;
+  color: #3091eb;
+  text-decoration: underline;
 }
