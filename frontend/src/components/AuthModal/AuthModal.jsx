@@ -8,27 +8,34 @@ const AuthModal = () => {
   const [isFirstRegStep, setIsFirstRegStep] = useState(
     () => pathname === "/register"
   );
-  const isFirstRegStepOrLogin = isFirstRegStep || pathname === "/login";
-  const redirectAuthLink = pathname === "/register" ? "/login" : "/register";
-  const titleText = pathname.slice(1);
-  const text = pathname === "/register" ? "Already" : "Don't";
+
+  const isRegisterPath = pathname === "/register";
+  const redirectAuthLink = isRegisterPath ? "/login" : "/register";
+  const titleText = isRegisterPath ? "registration" : pathname.slice(1);
+  const text = isRegisterPath ? "Already" : "Don't";
 
   return (
     <div className={css.wrapper}>
       <form className={css.form}>
         <h2 className={css.form_title}>{titleText}</h2>
         <div className={css.box}>
-          {isFirstRegStepOrLogin && (
+          {!isRegisterPath && (
             <>
               <input placeholder="Email" className={css.auth_field} />
               <input placeholder="Password" className={css.auth_field} />
             </>
           )}
           {isFirstRegStep && (
-            <input placeholder="Confirm password" className={css.auth_field} />
+            <>
+              <input placeholder="Email" className={css.auth_field} />
+              <input placeholder="Password" className={css.auth_field} />
+              <input
+                placeholder="Confirm password"
+                className={css.auth_field}
+              />
+            </>
           )}
-
-          {!isFirstRegStepOrLogin && (
+          {!isFirstRegStep && isRegisterPath && (
             <>
               <input placeholder="Name" className={css.auth_field} />
               <input placeholder="City, region" className={css.auth_field} />
@@ -50,7 +57,7 @@ const AuthModal = () => {
           <Button type="submit" text={titleText} isActive={true} />
         )}
 
-        {pathname === "/login" && (
+        {!isRegisterPath && (
           <Button type="submit" text={titleText} isActive={true} />
         )}
 

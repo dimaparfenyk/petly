@@ -10,7 +10,7 @@
 .nav_list {
   display: none;
 
-  @media screen and (min-width: 991px) {
+  @media screen and (min-width: 1200px) {
     display: flex;
     margin-left: 5rem;
     letter-spacing: 0.8px;
@@ -64,13 +64,24 @@
   @media screen and (min-width: 768px) {
     display: flex;
   }
-
-  button + button {
-    margin-left: 1.25rem;
-  }
 }
 
 .account_link {
+  @include mixins.primaryButton(
+    variables.$secondary-btn-bgcolor,
+    variables.$dark-btn-font-color,
+    variables.$accent-color
+  );
+
+  border: 2px solid variables.$primary-btn-bgcolor;
+
+  svg {
+    margin-right: 12px;
+    color: variables.$secondary-btn-font-color;
+  }
+}
+
+.account_link.active {
   @include mixins.primaryButton(
     variables.$primary-btn-bgcolor,
     variables.$primary-btn-font-color,
@@ -78,8 +89,12 @@
   );
 
   svg {
-    margin-right: 12px;
+    color: inherit;
   }
+}
+
+.account_link + .account_link {
+  margin-left: 1.25rem;
 }
 
 .burger_btn {
@@ -91,7 +106,7 @@
   @media screen and (min-width: 768px) {
     margin-left: 20px;
   }
-  @media screen and (min-width: 991px) {
+  @media screen and (min-width: 1200px) {
     display: none;
   }
 

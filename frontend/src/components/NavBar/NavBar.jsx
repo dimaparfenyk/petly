@@ -1,77 +1,75 @@
-import { useState } from "react";
 import { NavLink, useLocation } from "react-router";
-
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RiAccountCircleFill } from "react-icons/ri";
-import Button from "../Button";
 import css from "./_NavBar.module.scss";
 
 const NavBar = () => {
   const { pathname } = useLocation();
 
-  const [activeButton, setActiveButton] = useState("registration");
-  const [activePage, setActivePage] = useState(
-    () => pathname.replace("/", "") || "/"
-  );
-
   return (
     <nav className={css.nav}>
-      <a href="/" className={css.logo}>
+      <NavLink to="/" className={css.logo}>
         pe<span>t</span>ly
-      </a>
+      </NavLink>
       <ul className={css.nav_list}>
         <li
           className={`${css.nav_item} ${
-            activePage === "news" ? css.active : ""
+            pathname === "/news" ? css.active : ""
           }`}
-          onClick={() => setActivePage("news")}
         >
-          <a className={css.nav_link} href="/news">
+          <NavLink className={css.nav_link} to="/news">
             News
-          </a>
+          </NavLink>
         </li>
         <li
           className={`${css.nav_item} ${
-            activePage === "pets" ? css.active : ""
+            pathname === "/pets" ? css.active : ""
           }`}
-          onClick={() => setActivePage("pets")}
         >
-          <a className={css.nav_link} href="/pets">
+          <NavLink className={css.nav_link} to="/pets">
             Find Pet
-          </a>
+          </NavLink>
         </li>
         <li
           className={`${css.nav_item} ${
-            activePage === "sponsors" ? css.active : ""
+            pathname === "/sponsors" ? css.active : ""
           }`}
-          onClick={() => setActivePage("sponsors")}
         >
-          <a className={css.nav_link} href="/sponsors">
+          <NavLink className={css.nav_link} to="/sponsors">
             Our Friends
-          </a>
+          </NavLink>
         </li>
       </ul>
 
       <div className={css.nav_auth}>
-        <NavLink to={"login"}>
-          <Button
-            text={"Login"}
-            isActive={activeButton === "login"}
-            onClick={() => setActiveButton("login")}
-          />
+        <NavLink
+          to={"login"}
+          className={`${css.account_link} ${
+            pathname === "/login" ? css.active : ""
+          }`}
+        >
+          Login
         </NavLink>
-        <NavLink to={"register"}>
-          <Button
-            text={"Registration"}
-            isActive={activeButton === "registration"}
-            onClick={() => setActiveButton("registration")}
-          />
+        <NavLink
+          to={"register"}
+          className={`${css.account_link} ${
+            pathname === "/register" ? css.active : ""
+          }`}
+        >
+          Registration
         </NavLink>
 
-        <NavLink to={"profile"} className={css.account_link}>
+        {/* {pathname === "/profile" && ( */}
+        <NavLink
+          to="profile"
+          className={`${css.account_link} ${
+            pathname === "/profile" ? css.active : ""
+          }`}
+        >
           <RiAccountCircleFill />
           Account
         </NavLink>
+        {/* )} */}
       </div>
       <button type="button" className={css.burger_btn}>
         <RxHamburgerMenu className={css.burger} />

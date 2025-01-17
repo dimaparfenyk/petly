@@ -8,23 +8,17 @@ import PetsList from "../../components/PetsList";
 
 const PetsPage = () => {
   return (
-    <>
+    <Section>
       <Container>
         <Wrapper>
           <PageTitle text={"Find your favorite pet"} />
           <Filter />
           <FilterButtons />
         </Wrapper>
-      </Container>
 
-      <Section>
-        <Container>
-          <Wrapper>
-            <PetsList />
-          </Wrapper>
-        </Container>
-      </Section>
-    </>
+        <PetsList />
+      </Container>
+    </Section>
   );
 };
 
