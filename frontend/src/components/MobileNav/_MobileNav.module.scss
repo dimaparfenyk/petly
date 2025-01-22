@@ -1,0 +1,76 @@
+@use "../../styles/variables";
+@use "../../styles/mixins";
+
+.mobile_nav {
+  position: fixed;
+  top: 72px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-top: 40px;
+  z-index: 100;
+  background-color: variables.$primary-bg;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 88px;
+  }
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth_box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.account_link:not(:last-child) {
+  margin-right: 12px;
+}
+
+.nav_item {
+  margin: 0 auto;
+  font-size: 1.25rem;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: variables.$transition;
+
+  &:hover,
+  &:focus {
+    color: variables.$secondary-btn-font-color;
+    border-bottom: 2px solid variables.$primary-btn-bgcolor;
+  }
+}
+
+.nav_item:not(:last-child) {
+  margin-bottom: 40px;
+}
+
+.account_link {
+  @include mixins.primaryButton(
+    variables.$primary-btn-bgcolor,
+    variables.$primary-btn-font-color,
+    variables.$accent-color
+  );
+
+  &:hover,
+  &:focus {
+    svg {
+      color: variables.$primary-btn-font-color;
+    }
+  }
+
+  svg {
+    margin-right: 12px;
+    color: variables.$secondary-btn-font-color;
+    transition: variables.$transition;
+  }
+}

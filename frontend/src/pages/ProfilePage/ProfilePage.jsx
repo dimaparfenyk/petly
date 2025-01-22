@@ -1,15 +1,17 @@
 import Container from "../../components/Container";
-import PageTitle from "../../components/PageTittle";
 import Section from "../../components/Section";
-import Wrapper from "../../components/Wrapper";
+import UserCard from "../../components/UserCard";
+import UserPetList from "../../components/UserPetList";
+import css from "./_ProfilePage.module.scss";
 
 const ProfilePage = () => {
   return (
     <Section>
       <Container>
-        <Wrapper>
-          <PageTitle text={"My information:"} />
-        </Wrapper>
+        <div className={css.profile_wrapper}>
+          <UserCard />
+          <UserPetList />
+        </div>
       </Container>
     </Section>
   );

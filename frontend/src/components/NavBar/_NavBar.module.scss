@@ -75,9 +75,17 @@
 
   border: 2px solid variables.$primary-btn-bgcolor;
 
+  &:hover,
+  &:focus {
+    svg {
+      color: variables.$primary-btn-font-color;
+    }
+  }
+
   svg {
     margin-right: 12px;
     color: variables.$secondary-btn-font-color;
+    transition: variables.$transition;
   }
 }
 
@@ -109,9 +117,15 @@
   @media screen and (min-width: 1200px) {
     display: none;
   }
+}
 
-  .burger {
-    width: 30px;
-    height: 20px;
+.burger {
+  width: 30px;
+  height: 20px;
+  transition: variables.$transition;
+
+  &:hover,
+  &:focus {
+    color: variables.$accent-color;
   }
 }

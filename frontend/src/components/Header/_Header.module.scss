@@ -1,7 +1,12 @@
-@use "../../styles/fonts";
+@use "../../styles/variables";
 
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
   width: 100%;
   padding: 1rem 0;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  background-color: variables.$primary-bg;
 }

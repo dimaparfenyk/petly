@@ -3,13 +3,16 @@ import { FaRegHeart } from "react-icons/fa";
 import css from "./_PetDetail.module.scss";
 
 const PetDetails = ({ petId }) => {
-  console.log(petId);
   return (
     <div className={css.pet_details}>
       <div className={css.pet_meta}>
         <div className={css.inner_wrapper}>
           <div className={css.pet_img_box}>
-            <img className={css.pet_img} src="/pets/dog.png" alt="pet" />
+            <img
+              className={css.pet_img}
+              src="/pets/dog.png"
+              alt={`pet${petId}`}
+            />
             <div className={css.label_box}>sell</div>
           </div>
           <div className={css.pet_meta_info}>

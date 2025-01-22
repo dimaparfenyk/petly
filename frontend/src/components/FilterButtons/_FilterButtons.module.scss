@@ -17,7 +17,7 @@
   position: fixed;
   top: 50%;
   right: 20px;
-  z-index: 10;
+  z-index: 1;
 
   display: flex;
   flex-direction: column;
@@ -41,6 +41,11 @@
     transition: variables.$transition;
   }
 
+  &:hover,
+  &:focus {
+    background-color: variables.$accent-color;
+  }
+
   @media screen and (min-width: 768px) {
     position: static;
     flex-direction: row;
@@ -49,6 +54,7 @@
     min-width: 132px;
     font-size: variables.$tb-primary-text-size;
     border-radius: 0;
+    z-index: 0;
     background-color: inherit;
     color: variables.$primary-dark-text-color;
 
@@ -58,14 +64,14 @@
       margin-left: 12px;
       border-radius: 50%;
       background-color: variables.$primary-btn-bgcolor;
-      color: variables.$primary-btn-font-color;
     }
-  }
 
-  &:hover,
-  &:focus {
-    svg {
-      background-color: variables.$accent-color;
+    &:hover,
+    &:focus {
+      background-color: inherit;
+      svg {
+        background-color: variables.$accent-color;
+      }
     }
   }
 }
