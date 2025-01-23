@@ -3,7 +3,7 @@ import { IoIosAdd } from "react-icons/io";
 import Button from "../Button/Button";
 import css from "./_FilterButtons.module.scss";
 
-const FilterButtons = () => {
+const FilterButtons = ({ toggleModal }) => {
   const buttons = [
     "Sell",
     "Lost/Found",
@@ -26,7 +26,11 @@ const FilterButtons = () => {
           </li>
         ))}
       </ul>
-      <button type="button" className={css.add_btn}>
+      <button
+        type="button"
+        className={css.add_btn}
+        onClick={() => toggleModal()}
+      >
         Add Pet
         <IoIosAdd />
       </button>

@@ -7,6 +7,7 @@ const isValidId = (req, res, next) => {
   if (!isValidObjectId(id)) {
     return next(HttpError(400, `${id} is't valid id`));
   }
+
   next();
 };
 

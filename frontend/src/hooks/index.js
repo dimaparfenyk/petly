@@ -1,3 +1,4 @@
 import useCloseModal from "./useCloseModal";
+import useFilter from "./useFilter";
 
-export default useCloseModal;
+export default { useCloseModal, useFilter };

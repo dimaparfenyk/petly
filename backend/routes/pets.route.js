@@ -1,6 +1,7 @@
 const express = require("express");
 const {
   getAllPets,
+  getPetByOwner,
   getPetById,
   createPet,
   updatePet,
@@ -16,8 +17,13 @@ const { schemas } = require("../models/pet");
 
 const petsRouter = express.Router();
 
-petsRouter.get("/", authenticate, getAllPets);
+// если необходимо чтоб запрос делал авторизированный пользователь - добавь мидлвару "authenticate",
+petsRouter.get("/", getAllPets);
+
+// petsRouter.get("/:id", authenticate, isValidId, getPetByOwner);
+
 petsRouter.get("/:id", authenticate, isValidId, getPetById);
+
 petsRouter.post(
   "/",
   authenticate,
@@ -25,6 +31,7 @@ petsRouter.post(
   validateBody(schemas.addSchema),
   createPet
 );
+
 petsRouter.put(
   "/:id",
   authenticate,

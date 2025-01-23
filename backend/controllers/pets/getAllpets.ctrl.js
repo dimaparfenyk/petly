@@ -3,8 +3,9 @@ const { Pet } = require("../../models/pet");
 
 const getAllPets = async (req, res) => {
   const { _id: owner } = req.user;
+  // console.log(owner);
 
-  const data = await Pet.find();
+  const data = await Pet.find({ owner });
   res.status(200).json(data);
 };
 

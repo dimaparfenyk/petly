@@ -21,7 +21,7 @@ const Modal = ({ onClose, children }) => {
       <div className={css.modal}>
         {children}
 
-        <button onClick={onClose} className={css.close_btn}>
+        <button onClick={() => onClose()} className={css.close_btn}>
           <IoMdClose />
         </button>
       </div>
