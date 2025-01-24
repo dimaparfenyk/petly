@@ -3,15 +3,7 @@ const { model, Schema } = require("mongoose");
 const { handleMongooseError, getData } = require("../../helpers");
 
 const dateRegexp = /^\d{2}-\d{2}-\d{4}$/;
-const specieList = [
-  "dog",
-  "cat",
-  "rabbit",
-  "reptile",
-  "rodent",
-  "bird",
-  "exotic",
-];
+
 const dogList = getData("../db/data/dogBreeds.json");
 const catList = getData("../db/data/catBreeds.json");
 
@@ -19,10 +11,7 @@ const petSchema = new Schema(
   {
     name: { type: String, required: [true, "Name is required"] },
     birth: { type: String, required: true, match: dateRegexp },
-    specie: {
-      type: String,
-      enum: specieList,
-    },
+    title: { type: String, required: true },
     sex: {
       type: String,
       required: [true, "Sex is required"],
@@ -31,6 +20,8 @@ const petSchema = new Schema(
     breed: { type: String },
     price: { type: Number },
     image: { type: String },
+    location: { type: String, required: true },
+    status: { type: String, required: true, default: "sell" },
     description: { type: String, maxLength: 100 },
     owner: {
       type: Schema.Types.ObjectId,
@@ -52,7 +43,6 @@ const addSchema = Joi.object({
   name: Joi.string().required(),
   birth: Joi.string().pattern(dateRegexp),
   sex: Joi.string().valid("male", "female").required(),
-  specie: Joi.string().valid(...specieList),
   breed: Joi.string().required(),
   price: Joi.number(),
   description: Joi.string(),

@@ -3,7 +3,6 @@ const { HttpError, ctrlWrapper } = require("../../helpers");
 
 const getPetById = async (req, res) => {
   const { id } = req.params;
-  console.log(id);
 
   const data = await Pet.findById(id);
   if (!data) {

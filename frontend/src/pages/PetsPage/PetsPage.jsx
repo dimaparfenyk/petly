@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
+import api from "../../api/pets";
 
 import PageTitle from "../../components/PageTittle";
 import Container from "../../components/Container";
@@ -14,8 +15,13 @@ import PetDetails from "../../components/PetDetails";
 const portalEl = document.getElementById("modal-root");
 
 const PetsPage = () => {
+  const [pets, setPets] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [currentId, setCurrentId] = useState(null);
+
+  useEffect(() => {
+    api.fetchPets().then((res) => setPets(res));
+  }, []);
 
   const toggleModal = (id) => {
     !showModal ? setCurrentId(id) : setCurrentId(null);
@@ -31,7 +37,7 @@ const PetsPage = () => {
           <FilterButtons toggleModal={toggleModal} />
         </Wrapper>
 
-        <PetsList toggleModal={toggleModal} />
+        <PetsList toggleModal={toggleModal} pets={pets} />
 
         {showModal &&
           createPortal(

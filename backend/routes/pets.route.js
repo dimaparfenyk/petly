@@ -22,7 +22,8 @@ petsRouter.get("/", getAllPets);
 
 // petsRouter.get("/:id", authenticate, isValidId, getPetByOwner);
 
-petsRouter.get("/:id", authenticate, isValidId, getPetById);
+// petsRouter.get("/:id", authenticate, isValidId, getPetById);
+petsRouter.get("/:id", isValidId, getPetById);
 
 petsRouter.post(
   "/",
