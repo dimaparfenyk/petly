@@ -1,0 +1,23 @@
+@use "../../styles/variables";
+
+.wrapper {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.03rem;
+  margin: 0 auto;
+}
+
+.button {
+  border: none;
+  border-bottom: 1px solid variables.$secondary-btn-font-color;
+  background-color: inherit;
+  color: variables.$secondary-btn-font-color;
+  transition: variables.$transition;
+
+  &:hover,
+  &:focus {
+    color: variables.$accent-color;
+    border-bottom: 1px solid variables.$accent-color;
+  }
+}

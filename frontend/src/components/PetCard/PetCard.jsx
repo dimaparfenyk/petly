@@ -3,7 +3,7 @@ import Button from "../Button/Button";
 import { FaRegHeart } from "react-icons/fa6";
 
 const PetCard = ({ pet, onClick }) => {
-  const { petImgUrl, status, title, breed, location, price } = pet;
+  const { petImgUrl, status, title, breed, price, owner = {} } = pet;
 
   return (
     <li className={css.petcard}>
@@ -18,7 +18,7 @@ const PetCard = ({ pet, onClick }) => {
             <span>Breed:</span> {breed}
           </div>
           <div className={css.meta_text}>
-            <span>Place:</span> {location}
+            <span>Place:</span> {owner.city}
           </div>
           <div className={css.meta_text}>
             <span>Price:</span> {price}₴

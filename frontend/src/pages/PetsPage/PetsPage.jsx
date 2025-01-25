@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import api from "../../api/pets";
+import useFilter from "../../hooks/useFilter";
 
 import PageTitle from "../../components/PageTittle";
 import Container from "../../components/Container";
@@ -11,6 +12,8 @@ import FilterButtons from "../../components/FilterButtons";
 import PetsList from "../../components/PetsList";
 import Modal from "../../components/Modal";
 import PetDetails from "../../components/PetDetails";
+import NoContentBlock from "../../components/NoContentBlock";
+import Spinner from "../../components/Spinner";
 
 const portalEl = document.getElementById("modal-root");
 
@@ -18,9 +21,14 @@ const PetsPage = () => {
   const [pets, setPets] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [currentId, setCurrentId] = useState(null);
+  const [filterValue, handleFilterChange] = useFilter("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.fetchPets().then((res) => setPets(res));
+    api
+      .fetchPets()
+      .then((res) => setPets(res))
+      .finally(setLoading(false));
   }, []);
 
   const toggleModal = (id) => {
@@ -28,16 +36,23 @@ const PetsPage = () => {
     setShowModal((prev) => !prev);
   };
 
+  const filteredByBreedPets = pets.filter(({ breed }) =>
+    breed.includes(filterValue)
+  );
+
   return (
     <Section>
-      <Container>
+      <Container className={"grid_container"}>
         <Wrapper>
           <PageTitle text={"Find your favorite pet"} />
-          <Filter />
+          <Filter onChange={handleFilterChange} />
           <FilterButtons toggleModal={toggleModal} />
         </Wrapper>
-
-        <PetsList toggleModal={toggleModal} pets={pets} />
+        <Spinner loading={loading} />
+        {!loading && (
+          <PetsList toggleModal={toggleModal} pets={filteredByBreedPets} />
+        )}
+        {pets.length === 0 && <NoContentBlock toggleModal={toggleModal} />}
 
         {showModal &&
           createPortal(

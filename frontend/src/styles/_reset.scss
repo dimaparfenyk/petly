@@ -12,6 +12,12 @@ body {
   background-color: variables.$primary-bg;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 ul,
 ol {
   list-style: none;

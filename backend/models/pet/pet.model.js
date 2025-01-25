@@ -20,11 +20,11 @@ const petSchema = new Schema(
     breed: { type: String },
     price: { type: Number },
     image: { type: String },
-    location: { type: String, required: true },
     status: { type: String, required: true, default: "sell" },
-    description: { type: String, maxLength: 100 },
+    comments: { type: String, maxLength: 100 },
     owner: {
-      type: Schema.Types.ObjectId,
+      type: Object,
+      // type: Schema.Types.ObjectId,
       ref: "user",
       required: true,
     },
@@ -45,7 +45,8 @@ const addSchema = Joi.object({
   sex: Joi.string().valid("male", "female").required(),
   breed: Joi.string().required(),
   price: Joi.number(),
-  description: Joi.string(),
+  title: Joi.string().required(),
+  comments: Joi.string(),
 });
 
 const schemas = { addSchema };
