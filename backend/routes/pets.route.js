@@ -25,6 +25,7 @@ petsRouter.get("/", getAllPets);
 // petsRouter.get("/:id", authenticate, isValidId, getPetById);
 petsRouter.get("/:id", isValidId, getPetById);
 
+// add midleware  authenticate,
 petsRouter.post(
   "/",
   authenticate,

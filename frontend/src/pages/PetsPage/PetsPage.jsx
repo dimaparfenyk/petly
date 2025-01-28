@@ -14,6 +14,7 @@ import Modal from "../../components/Modal";
 import PetDetails from "../../components/PetDetails";
 import NoContentBlock from "../../components/NoContentBlock";
 import Spinner from "../../components/Spinner";
+import AddPetForm from "../../components/AddPetForm";
 
 const portalEl = document.getElementById("modal-root");
 
@@ -25,10 +26,10 @@ const PetsPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api
-      .fetchPets()
-      .then((res) => setPets(res))
-      .finally(setLoading(false));
+    api.fetchPets().then((res) => {
+      setPets(res);
+      setLoading(false);
+    });
   }, []);
 
   const toggleModal = (id) => {
@@ -52,16 +53,14 @@ const PetsPage = () => {
         {!loading && (
           <PetsList toggleModal={toggleModal} pets={filteredByBreedPets} />
         )}
-        {pets.length === 0 && <NoContentBlock toggleModal={toggleModal} />}
+        {!loading && pets.length === 0 && (
+          <NoContentBlock toggleModal={toggleModal} />
+        )}
 
         {showModal &&
           createPortal(
             <Modal onClose={toggleModal}>
-              {currentId ? (
-                <PetDetails petId={currentId} />
-              ) : (
-                <div>Add pet content</div>
-              )}
+              {currentId ? <PetDetails petId={currentId} /> : <AddPetForm />}
             </Modal>,
             portalEl
           )}

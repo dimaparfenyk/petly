@@ -2,7 +2,7 @@ import css from "./_PetCard.module.scss";
 import Button from "../Button/Button";
 import { FaRegHeart } from "react-icons/fa6";
 
-const PetCard = ({ pet, onClick }) => {
+const PetCard = ({ pet = {}, onClick }) => {
   const { petImgUrl, status, title, breed, price, owner = {} } = pet;
 
   return (

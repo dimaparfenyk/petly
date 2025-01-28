@@ -14,7 +14,7 @@ const Spinner = ({ loading }) => {
       size={44}
       aria-label="Loading Spinner"
       data-testid="loader"
-      speedMultiplier="0.75"
+      speedMultiplier="1"
     />
   );
 };

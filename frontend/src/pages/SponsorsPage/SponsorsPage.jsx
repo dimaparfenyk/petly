@@ -17,10 +17,10 @@ const SponsorsPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api
-      .fetchSponsors()
-      .then((res) => setSponsors(res))
-      .finally(setLoading(false));
+    api.fetchSponsors().then((res) => {
+      setSponsors(res);
+      setLoading(false);
+    });
   }, []);
 
   const filterdSponsors = sponsors.filter(({ title }) =>

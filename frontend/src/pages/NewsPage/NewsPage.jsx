@@ -17,10 +17,10 @@ const NewsPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api
-      .fetchNews()
-      .then((res) => setNews(res))
-      .finally(setLoading(false));
+    api.fetchNews().then((res) => {
+      setNews(res);
+      setLoading(false);
+    });
   }, []);
 
   const filteredNews = news.filter(({ title }) =>

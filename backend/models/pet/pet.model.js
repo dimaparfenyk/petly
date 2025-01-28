@@ -46,6 +46,7 @@ const addSchema = Joi.object({
   breed: Joi.string().required(),
   price: Joi.number(),
   title: Joi.string().required(),
+  petImgUrl: Joi.string().optional(),
   comments: Joi.string(),
 });
 
