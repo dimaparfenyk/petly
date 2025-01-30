@@ -1,9 +1,11 @@
 const express = require("express");
 const {
   getAllPets,
+  getPetsByCategory,
   getPetByOwner,
   getPetById,
   createPet,
+  toggleFavoritePets,
   updatePet,
   removePet,
 } = require("../controllers/pets");
@@ -17,15 +19,13 @@ const { schemas } = require("../models/pet");
 
 const petsRouter = express.Router();
 
-// если необходимо чтоб запрос делал авторизированный пользователь - добавь мидлвару "authenticate",
-petsRouter.get("/", getAllPets);
+petsRouter.get("/", authenticate, getAllPets);
 
-// petsRouter.get("/:id", authenticate, isValidId, getPetByOwner);
+petsRouter.get("/:category", getPetsByCategory);
+petsRouter.get("/:category/:id", isValidId, getPetById);
 
-// petsRouter.get("/:id", authenticate, isValidId, getPetById);
-petsRouter.get("/:id", isValidId, getPetById);
+petsRouter.get("/:id", authenticate, isValidId, getPetByOwner);
 
-// add midleware  authenticate,
 petsRouter.post(
   "/",
   authenticate,
@@ -35,11 +35,11 @@ petsRouter.post(
 );
 
 petsRouter.put(
-  "/:id",
+  "/favorite/:id",
   authenticate,
   isValidId,
-  validateBody(schemas.addSchema),
-  updatePet
+  // validateBody(schemas.addSchema),
+  toggleFavoritePets
 );
 
 petsRouter.delete("/:id", authenticate, isValidId, removePet);

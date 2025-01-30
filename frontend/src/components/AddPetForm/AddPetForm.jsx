@@ -9,9 +9,9 @@ const AddPetForm = () => {
   const [image, setImage] = useState(null);
 
   return (
-    <div>
-      <h2>Add Pet</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur</p>
+    <div className={css.wrapper}>
+      <h2 className={css.subtitle}>Add Pet</h2>
+      <p className={css.text}>Lorem ipsum dolor sit amet, consectetur</p>
       <div>
         <Button text={"lost/found"} />
         <Button text={"in good hands"} />

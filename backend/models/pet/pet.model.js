@@ -20,7 +20,12 @@ const petSchema = new Schema(
     breed: { type: String },
     price: { type: Number },
     image: { type: String },
-    status: { type: String, required: true, default: "sell" },
+    status: {
+      type: String,
+      required: true,
+      default: "sell",
+      enum: ["lost/found", "sell", "in good hands"],
+    },
     comments: { type: String, maxLength: 100 },
     owner: {
       type: Object,

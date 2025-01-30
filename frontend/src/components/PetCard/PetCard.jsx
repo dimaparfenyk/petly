@@ -9,7 +9,7 @@ const PetCard = ({ pet = {}, onClick }) => {
     <li className={css.petcard}>
       <article className={css.article}>
         <div className={css.img_box}>
-          <img src={petImgUrl} alt={`pet image`} className={css.pet_img} />
+          <img src={petImgUrl} alt="pet image" className={css.pet_img} />
           <div className={css.label_box}>{status}</div>
         </div>
         <div className={css.meta_box}>

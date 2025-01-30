@@ -8,6 +8,8 @@ import css from "./_NavBar.module.scss";
 const NavBar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const { pathname } = useLocation();
+  const petsCategoryUrl = pathname.split("/")[2];
+  const isPetsPage = pathname.includes(petsCategoryUrl);
 
   return (
     <>
@@ -25,12 +27,8 @@ const NavBar = () => {
               News
             </NavLink>
           </li>
-          <li
-            className={`${css.nav_item} ${
-              pathname === "/pets" ? css.active : ""
-            }`}
-          >
-            <NavLink className={css.nav_link} to="/pets">
+          <li className={`${css.nav_item} ${isPetsPage ? css.active : ""}`}>
+            <NavLink className={css.nav_link} to={"/pets/sell"}>
               Find Pet
             </NavLink>
           </li>

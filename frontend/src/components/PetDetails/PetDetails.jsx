@@ -4,12 +4,12 @@ import Button from "../Button";
 import { FaRegHeart } from "react-icons/fa";
 import css from "./_PetDetail.module.scss";
 
-const PetDetails = ({ petId }) => {
+const PetDetails = ({ category, petId }) => {
   const [pet, setPet] = useState({});
 
   useEffect(() => {
-    api.getPetById(petId).then((res) => setPet(res.data));
-  }, [petId]);
+    api.getPetById(category, petId).then((res) => setPet(res.data));
+  }, [category, petId]);
 
   const {
     petImgUrl,

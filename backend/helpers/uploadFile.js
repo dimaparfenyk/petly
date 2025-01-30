@@ -6,8 +6,9 @@ const uploadFile = async (req, resultDir, dirname) => {
   const filename = `${req.user._id}_${originalname}`;
   const resultUpload = path.join(resultDir, filename);
   await fs.rename(tempUpload, resultUpload);
-  const fileUrl = path.join(dirname, filename);
-  return fileUrl;
+  // const fileUrl = path.join(dirname, filename);
+  // return fileUrl;
+  return filename;
 };
 
 module.exports = uploadFile;

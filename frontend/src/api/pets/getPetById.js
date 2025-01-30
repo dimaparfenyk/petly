@@ -1,6 +1,7 @@
-const getPetById = async (id) => {
+const getPetById = async (category, id) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/pets/${id}`);
+    const res = await fetch(`http://localhost:3000/api/pets/${category}/${id}`);
+
     return await res.json();
   } catch (error) {
     console.log(error.message);

@@ -41,6 +41,7 @@ const userSchema = new Schema(
       type: String,
       default: null,
     },
+    favorites: { type: Array, ref: "pet" },
   },
   { versionKey: false, timestamps: true }
 );

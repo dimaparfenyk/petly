@@ -4,10 +4,10 @@ import NewsPage from "./pages/NewsPage";
 import PetsPage from "./pages/PetsPage";
 import SponsorsPage from "./pages/SponsorsPage";
 import SharedLayout from "./components/Layout";
-import PetDetails from "./components/PetDetails";
 import ProfilePage from "./pages/ProfilePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import PetsList from "./components/PetsList";
 
 function App() {
   return (
@@ -15,8 +15,9 @@ function App() {
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />
 
-        <Route path="pets" element={<PetsPage />} />
-        <Route path="pets/:petId" element={<PetDetails />} />
+        <Route path="pets" element={<PetsPage />}>
+          <Route path=":category" element={<PetsList />} />
+        </Route>
 
         <Route path="news" element={<NewsPage />} />
 
