@@ -43,6 +43,16 @@ select {
   font: inherit;
 }
 
+input,
+textarea {
+  outline: none;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
 img {
   display: block;
   width: 100%;

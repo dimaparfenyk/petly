@@ -39,7 +39,7 @@ const MobileNav = ({ pathname, handleOpenNav }) => {
         <li className={css.nav_item}>
           <NavLink
             className={css.nav_link}
-            to="/pets"
+            to="/pets/sell"
             onClick={() => handleOpenNav((prev) => !prev)}
           >
             Find Pet

@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
 import { createPortal } from "react-dom";
 import useFilter from "../../hooks/useFilter";
 
@@ -10,8 +10,7 @@ import Wrapper from "../../components/Wrapper";
 import Filter from "../../components/Filter";
 import FilterButtons from "../../components/FilterButtons";
 
-import NoContentBlock from "../../components/NoContentBlock";
-import Spinner from "../../components/Spinner";
+// import NoContentBlock from "../../components/NoContentBlock";
 import AddPetForm from "../../components/AddPetForm";
 import Modal from "../../components/Modal";
 const portalEl = document.getElementById("modal-root");
@@ -20,14 +19,7 @@ const PetsPage = () => {
   // const [category, setCategory] = useState("sell");
   const [showModal, setShowModal] = useState(false);
   const [filterValue, handleFilterChange] = useFilter("");
-  const [loading, setLoading] = useState(true);
-
-  // useEffect(() => {
-  //   api.fetchPets().then((res) => {
-  //     setPets(res);
-  //     setLoading(false);
-  //   });
-  // }, []);
+  // const [loading, setLoading] = useState(true);
 
   // const filteredByBreedPets = pets.filter(({ breed }) =>
   //   breed.includes(filterValue)
