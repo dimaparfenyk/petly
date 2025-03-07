@@ -1,16 +1,44 @@
 @use "../../styles/variables";
 
-.btns_box {
+.nav {
   display: flex;
   align-items: start;
 }
 
-.buttons_list {
+.nav_list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   column-gap: 12px;
   row-gap: 16px;
+}
+
+.nav_link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 7rem;
+  height: 3rem;
+  padding: 10px 28px;
+  border-radius: 40px;
+  border: 2px solid variables.$primary-btn-bgcolor;
+  color: variables.$dark-btn-font-color;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-transform: capitalize;
+  transition: variables.$transition;
+
+  &:hover,
+  &:focus {
+    background-color: variables.$primary-btn-bgcolor;
+    color: variables.$primary-btn-font-color;
+  }
+}
+
+.nav_link.active {
+  background-color: variables.$accent-color;
+  color: variables.$primary-btn-font-color;
 }
 
 .add_btn {

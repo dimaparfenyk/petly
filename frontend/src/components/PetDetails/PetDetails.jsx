@@ -3,13 +3,16 @@ import api from "../../api/pets";
 import Button from "../Button";
 import { FaRegHeart } from "react-icons/fa";
 import css from "./_PetDetail.module.scss";
+import { useSelector } from "react-redux";
+import { selectStatusFilter } from "../../redux/filters/selectors";
 
-const PetDetails = ({ category, petId }) => {
+const PetDetails = ({ petId }) => {
   const [pet, setPet] = useState({});
+  const petStatus = useSelector(selectStatusFilter);
 
   useEffect(() => {
-    api.getPetById(category, petId).then((res) => setPet(res.data));
-  }, [category, petId]);
+    api.getPetById(petStatus, petId).then((res) => setPet(res.data));
+  }, [petId, petStatus]);
 
   const {
     petImgUrl,

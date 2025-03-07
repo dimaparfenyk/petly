@@ -56,7 +56,16 @@
   margin-right: auto;
   box-sizing: border-box;
   border-radius: 20px;
+  border: 2px solid transparent;
   background-color: rgb(253, 247, 242);
+  font-size: 32px;
+  transition: variables.$transition;
+
+  &:hover,
+  &:focus {
+    border: 2px solid variables.$accent-color;
+    color: variables.$accent-color;
+  }
 }
 
 .fieldset {

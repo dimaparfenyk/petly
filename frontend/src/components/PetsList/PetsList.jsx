@@ -1,40 +1,49 @@
 import { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
+
 import { createPortal } from "react-dom";
 import api from "../../api/pets";
 import PetCard from "../PetCard";
+import NoContentBlock from "../../components/NoContentBlock";
 import Modal from "../../components/Modal";
 import PetDetails from "../../components/PetDetails";
 import Spinner from "../../components/Spinner";
 
 import css from "./_PetsList.module.scss";
+import AddPetForm from "../AddPetForm";
+import { useSelector } from "react-redux";
+import { selectStatusFilter } from "../../redux/filters/selectors";
+import statusFilters from "../../redux/constants";
 
 const portalEl = document.getElementById("modal-root");
 
 const PetsList = () => {
-  const { pathname } = useLocation();
-  const { category } = useParams();
+  const status = useSelector(selectStatusFilter);
   const [pets, setPets] = useState([]);
+  const [filterValue] = useOutletContext();
   const [showModal, setShowModal] = useState(false);
   const [curId, setCurId] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  console.log(pathname);
-  console.log(pathname.split("/")[2]);
   useEffect(() => {
-    if (pathname.split("/")[2] === "own") {
+    if (status === statusFilters.own) {
       api.getPetsByOwner().then((res) => {
         setPets(res);
         setLoading(false);
       });
+      return;
     }
-    api.fetchPetsByCategory(category).then((res) => {
+    api.fetchPetsByCategory(status).then((res) => {
       setPets(res);
       setLoading(false);
     });
-  }, [category]);
+  }, [status]);
 
   const toggleModal = () => setShowModal((prev) => !prev);
+
+  const filteredByBreedPets = pets.filter(({ breed }) =>
+    breed.includes(filterValue)
+  );
 
   return (
     <>
@@ -42,7 +51,7 @@ const PetsList = () => {
         <Spinner loading={loading} />
       ) : (
         <ul className={css.pets_list}>
-          {pets.map((pet) => (
+          {filteredByBreedPets.map((pet) => (
             <PetCard
               key={pet._id}
               pet={pet}
@@ -54,10 +63,19 @@ const PetsList = () => {
           ))}
         </ul>
       )}
+
+      {!loading && filteredByBreedPets.length === 0 && (
+        <NoContentBlock toggleModal={toggleModal} />
+      )}
+
       {showModal &&
         createPortal(
           <Modal onClose={toggleModal}>
-            <PetDetails category={category} petId={curId} />
+            {curId ? (
+              <PetDetails petId={curId} />
+            ) : (
+              <AddPetForm onClose={toggleModal} />
+            )}
           </Modal>,
           portalEl
         )}
