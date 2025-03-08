@@ -19,12 +19,12 @@ const { schemas } = require("../models/pet");
 
 const petsRouter = express.Router();
 
-petsRouter.get("/", authenticate, getAllPets);
+petsRouter.get("/", getAllPets);
 
 petsRouter.get("/:category", getPetsByCategory);
 petsRouter.get("/:category/:id", isValidId, getPetById);
 
-petsRouter.get("/:id", authenticate, isValidId, getPetByOwner);
+petsRouter.get("/own", authenticate, getPetByOwner);
 
 petsRouter.post(
   "/",

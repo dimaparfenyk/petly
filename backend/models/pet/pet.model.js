@@ -28,9 +28,8 @@ const petSchema = new Schema(
     },
     comments: { type: String, maxLength: 100 },
     owner: {
-      type: Object,
-      // type: Schema.Types.ObjectId,
-      ref: "user",
+      type: Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
     petImgUrl: {

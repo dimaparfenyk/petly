@@ -26,23 +26,30 @@ const PetsList = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (status === statusFilters.own) {
-      api.getPetsByOwner().then((res) => {
-        setPets(res);
-        setLoading(false);
-      });
-      return;
-    }
-    api.fetchPetsByCategory(status).then((res) => {
+    setLoading(true);
+
+    const fetchData = async () => {
+      let res;
+      if (status === statusFilters.own) {
+        res = await api.getPetsByOwner();
+      } else {
+        res = await api.fetchPets();
+      }
+
       setPets(res);
       setLoading(false);
-    });
+    };
+
+    fetchData();
   }, [status]);
+
+  console.log(pets);
 
   const toggleModal = () => setShowModal((prev) => !prev);
 
-  const filteredByBreedPets = pets.filter(({ breed }) =>
-    breed.includes(filterValue)
+  const filteredPets = pets.filter(
+    ({ status: petStatus, breed }) =>
+      petStatus === status && breed.includes(filterValue)
   );
 
   return (
@@ -51,7 +58,7 @@ const PetsList = () => {
         <Spinner loading={loading} />
       ) : (
         <ul className={css.pets_list}>
-          {filteredByBreedPets.map((pet) => (
+          {filteredPets.map((pet) => (
             <PetCard
               key={pet._id}
               pet={pet}
@@ -64,7 +71,7 @@ const PetsList = () => {
         </ul>
       )}
 
-      {!loading && filteredByBreedPets.length === 0 && (
+      {!loading && filteredPets.length === 0 && (
         <NoContentBlock toggleModal={toggleModal} />
       )}
 

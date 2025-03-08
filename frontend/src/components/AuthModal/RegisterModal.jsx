@@ -1,22 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink, useLocation } from "react-router";
+import { NavLink } from "react-router";
 import { Formik, Field, Form } from "formik";
 import Button from "../Button";
-import css from "./_AuthModa.module.scss";
+import css from "./_RegisterModal.module.scss";
 import { register } from "../../redux/auth/operations";
 
-const AuthModal = () => {
+const RegisterModal = () => {
   const dispatch = useDispatch();
-  const { pathname } = useLocation();
-  const [isFirstRegStep, setIsFirstRegStep] = useState(
-    () => pathname === "/register"
-  );
-
-  const isRegisterPath = pathname === "/register";
-  const redirectAuthLink = isRegisterPath ? "/login" : "/register";
-  const titleText = isRegisterPath ? "registration" : pathname.slice(1);
-  const text = isRegisterPath ? "Already" : "Don't";
+  const [isFirstRegStep, setIsFirstRegStep] = useState(true);
 
   const initialValues = {
     email: "denis@gmail.com",
@@ -44,22 +36,8 @@ const AuthModal = () => {
     <div className={css.wrapper}>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <Form className={css.form}>
-          <h2 className={css.form_title}>{titleText}</h2>
+          <h2 className={css.form_title}>Registration</h2>
           <div className={css.box}>
-            {!isRegisterPath && (
-              <>
-                <Field
-                  placeholder="Email"
-                  name="email"
-                  className={css.auth_field}
-                />
-                <Field
-                  placeholder="Password"
-                  name="password"
-                  className={css.auth_field}
-                />
-              </>
-            )}
             {isFirstRegStep && (
               <>
                 <Field
@@ -77,9 +55,15 @@ const AuthModal = () => {
                   name="password"
                   className={css.auth_field}
                 />
+                <Button
+                  type="button"
+                  text={"Next"}
+                  isActive={true}
+                  onClick={() => setIsFirstRegStep(false)}
+                />
               </>
             )}
-            {!isFirstRegStep && isRegisterPath && (
+            {!isFirstRegStep && (
               <>
                 <Field
                   placeholder="Name"
@@ -96,31 +80,15 @@ const AuthModal = () => {
                   name="phone"
                   className={css.auth_field}
                 />
+                <Button type="submit" text={"Register"} isActive={true} />
               </>
             )}
           </div>
 
-          {isFirstRegStep && (
-            <Button
-              type="button"
-              text={"Next"}
-              isActive={true}
-              onClick={() => setIsFirstRegStep(false)}
-            />
-          )}
-
-          {!isFirstRegStep && pathname === "/register" && (
-            <Button type="submit" text={titleText} isActive={true} />
-          )}
-
-          {!isRegisterPath && (
-            <Button type="submit" text={titleText} isActive={true} />
-          )}
-
           <p className={css.text}>
-            {text} have an account?
-            <NavLink to={redirectAuthLink} className={css.redirect_link}>
-              {redirectAuthLink.slice(1)}
+            Already have an account?
+            <NavLink to={"/login"} className={css.redirect_link}>
+              Login
             </NavLink>
           </p>
         </Form>
@@ -129,4 +97,4 @@ const AuthModal = () => {
   );
 };
 
-export default AuthModal;
+export default RegisterModal;

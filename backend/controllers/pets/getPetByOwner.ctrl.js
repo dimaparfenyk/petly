@@ -2,10 +2,9 @@ const { Pet } = require("../../models/pet");
 const { HttpError, ctrlWrapper } = require("../../helpers");
 
 const getPetByOwner = async (req, res) => {
-  const { id } = req.params;
-  console.log(id);
+  const { _id } = req.user;
 
-  const data = await Pet.find({ owner: id });
+  const data = await Pet.find({ owner: _id });
   if (!data) {
     throw HttpError(404, "Not found");
   }

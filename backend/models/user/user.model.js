@@ -31,7 +31,7 @@ const userSchema = new Schema(
       unique: true,
     },
     birthday: {
-      type: String,
+      type: Date,
       match: dateRegexp,
     },
     avatarURL: {
@@ -41,7 +41,7 @@ const userSchema = new Schema(
       type: String,
       default: null,
     },
-    favorites: { type: Array, ref: "pet" },
+    favorites: { type: Array, ref: "Pet" },
   },
   { versionKey: false, timestamps: true }
 );
