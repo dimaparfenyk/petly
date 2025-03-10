@@ -3,7 +3,6 @@ const { HttpError, ctrlWrapper } = require("../../helpers");
 
 const getPetById = async (req, res) => {
   const { category, id } = req.params;
-  console.log(`Запрос на питомца с категорией ${category} и ID ${id}`);
   const data = await Pet.findOne({ _id: id, status: category }).populate(
     "owner",
     "email phone city"

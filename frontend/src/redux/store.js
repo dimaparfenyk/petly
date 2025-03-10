@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+<<<<<<< HEAD
 import storage from "redux-persist/lib/storage";
 import {
   persistStore,
@@ -36,3 +37,14 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+=======
+import { setupListeners } from "@reduxjs/toolkit/query";
+import { filtersReducer } from "./filters/filtersSlice";
+import { authReducer } from "./auth/slice";
+
+export const store = configureStore({
+  reducer: { auth: authReducer, filters: filtersReducer },
+});
+
+setupListeners(store.dispatch);
+>>>>>>> 77a771230dd04676a1739f02f850a47d4e4737ec

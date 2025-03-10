@@ -21,7 +21,6 @@ const authenticate = async (req, res, next) => {
     }
 
     req.user = user;
-    console.log("Authenticated user:", req.user); // Логируем пользователя
     next();
   } catch {
     next(HttpError(401));

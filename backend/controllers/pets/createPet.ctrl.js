@@ -6,8 +6,6 @@ const petsImgDir = path.join(__dirname, "../../../frontend/public/pets");
 
 const createPet = async (req, res) => {
   const { _id } = req.user;
-  // const { _id, city, email, phone, favorites } = req.user;
-  // const owner = { _id, city, email, phone, favorites };
 
   const petImgUrl = req.file
     ? await uploadFile(req, petsImgDir, "pets")
