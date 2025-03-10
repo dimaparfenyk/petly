@@ -1,0 +1,47 @@
+@use "../../styles/variables";
+
+.list_header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+
+  @media screen and (min-width: 1200px) {
+    margin-bottom: 14px;
+  }
+}
+
+.subtitle {
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.add_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  padding: 8px;
+  border: none;
+
+  font-size: 1.25rem;
+  background-color: inherit;
+  color: variables.$dark-btn-font-color;
+
+  &:hover,
+  &:focus {
+    svg {
+      background-color: variables.$accent-color;
+    }
+  }
+
+  svg {
+    width: 32px;
+    height: 32px;
+    margin-left: 16px;
+    border-radius: 50%;
+
+    background-color: variables.$primary-btn-bgcolor;
+    color: variables.$primary-btn-font-color;
+    transition: variables.$transition;
+  }
+}

@@ -1,0 +1,30 @@
+@use "./_variables.scss";
+
+@mixin primaryButton($bg, $fontcolor, $hover-color) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 7rem;
+  height: 3rem;
+  padding: 10px 28px;
+  border-radius: 40px;
+
+  background-color: $bg;
+  color: $fontcolor;
+
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-transform: capitalize;
+  transition: variables.$transition;
+
+  &:hover,
+  &:focus {
+    background-color: $hover-color;
+    color: variables.$primary-btn-font-color;
+  }
+}
+
+// a.active {
+//   background-color: variables.$accent-color;
+// }

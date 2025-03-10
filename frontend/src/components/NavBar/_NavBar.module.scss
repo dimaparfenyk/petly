@@ -1,0 +1,131 @@
+@use "../../styles/variables";
+@use "../../styles/mixins";
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav_list {
+  display: none;
+
+  @media screen and (min-width: 1200px) {
+    display: flex;
+    margin-left: 5rem;
+    letter-spacing: 0.8px;
+  }
+
+  & .nav_item {
+    font-size: 1.25rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  & .nav_item:not(:first-child) {
+    margin-left: 5rem;
+  }
+}
+
+.nav_item.active {
+  color: variables.$secondary-btn-font-color;
+  border-bottom: 1px solid variables.$primary-btn-bgcolor;
+}
+
+.nav_link {
+  padding-top: 1rem;
+  transition: variables.$transition;
+
+  &:hover,
+  &:focus {
+    color: variables.$accent-color;
+  }
+}
+
+.logo {
+  font-family: Popons sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 2.25px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 2rem;
+  }
+
+  span {
+    color: variables.$accent-color;
+  }
+}
+
+.nav_auth {
+  display: none;
+  margin-left: auto;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.account_link {
+  @include mixins.primaryButton(
+    variables.$secondary-btn-bgcolor,
+    variables.$dark-btn-font-color,
+    variables.$accent-color
+  );
+
+  border: 2px solid variables.$primary-btn-bgcolor;
+
+  &:hover,
+  &:focus {
+    svg {
+      color: variables.$primary-btn-font-color;
+    }
+  }
+
+  svg {
+    margin-right: 12px;
+    color: variables.$secondary-btn-font-color;
+    transition: variables.$transition;
+  }
+}
+
+.account_link.active {
+  @include mixins.primaryButton(
+    variables.$primary-btn-bgcolor,
+    variables.$primary-btn-font-color,
+    variables.$accent-color
+  );
+
+  svg {
+    color: inherit;
+  }
+}
+
+.account_link + .account_link {
+  margin-left: 1.25rem;
+}
+
+.burger_btn {
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
+  border: none;
+  background-color: inherit;
+  @media screen and (min-width: 768px) {
+    margin-left: 20px;
+  }
+  @media screen and (min-width: 1200px) {
+    display: none;
+  }
+}
+
+.burger {
+  width: 30px;
+  height: 20px;
+  transition: variables.$transition;
+
+  &:hover,
+  &:focus {
+    color: variables.$accent-color;
+  }
+}

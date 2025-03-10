@@ -1,0 +1,20 @@
+@use "../../styles/variables";
+@use "../../styles/mixins";
+
+.button {
+  @include mixins.primaryButton(
+    variables.$secondary-btn-bgcolor,
+    variables.$secondary-btn-font-color,
+    variables.$accent-color
+  );
+  border: 2px solid variables.$primary-btn-bgcolor;
+}
+
+.button.active {
+  @include mixins.primaryButton(
+    variables.$primary-btn-bgcolor,
+    variables.$primary-btn-font-color,
+    variables.$accent-color
+  );
+  border: 2px solid transparent;
+}

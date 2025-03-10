@@ -1,0 +1,27 @@
+.days_list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  padding: 12px;
+  background-color: #fff;
+  border: 1px solid #f59256;
+  border-radius: 8px;
+  box-shadow: rgba(49, 21, 4, 0.07) 7px 4px 14px;
+}
+
+.day_item {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.day_item + .day_item {
+  margin-top: 4px;
+}
+
+.week_day {
+  display: inline-block;
+  min-width: 20px;
+  margin-right: 12px;
+}

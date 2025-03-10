@@ -1,0 +1,71 @@
+@use "./variables";
+@use "./fonts";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  // position: fixed;
+  // width: 100%;
+  font-family: "Manrope", "Poppins", "Inter", "Arial", sans-serif;
+  background-color: variables.$primary-bg;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+input,
+textarea {
+  outline: none;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  font-style: normal;
+  color: inherit;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+}

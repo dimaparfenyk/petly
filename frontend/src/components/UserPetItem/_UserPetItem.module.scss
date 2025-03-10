@@ -1,0 +1,74 @@
+@use "../../styles//variables";
+
+.pet_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 20px 40px;
+  border-radius: 20px;
+  background-color: variables.$card-bg;
+  box-shadow: rgba(49, 21, 4, 0.07) 7px 4px 14px;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+.img_box {
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0;
+    margin-right: 32px;
+  }
+}
+
+.meta_box {
+  width: 100%;
+}
+
+.meta_text {
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  span {
+    margin-right: 4px;
+    font-weight: 700;
+  }
+}
+
+.meta_text:first-child {
+  display: flex;
+  align-items: center;
+}
+
+.meta_text:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+.remove_btn {
+  margin-left: auto;
+
+  border: none;
+  background-color: inherit;
+  color: #111111;
+  opacity: 60%;
+  transition: variables.$transition;
+
+  &:hover,
+  &:focus {
+    color: variables.$accent-color;
+    opacity: 100%;
+  }
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.pet_avatar {
+  border-radius: 20px;
+}

@@ -1,0 +1,142 @@
+@use "../../styles/variables";
+
+.pet_details {
+  position: absolute;
+  width: 100%;
+  padding: 60px 20px 40px;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px 32px;
+  }
+}
+
+.pet_meta {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 32px;
+  }
+}
+
+.inner_wrapper {
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+.pet_img_box {
+  position: relative;
+  margin-bottom: 16px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 288px;
+    margin-bottom: 0;
+    margin-right: 20px;
+  }
+}
+
+.pet_img {
+  height: 240px;
+  object-fit: cover;
+  border-radius: 0px 0px 40px 40px;
+  @media screen and (min-width: 768px) {
+    height: 328px;
+  }
+}
+
+.label_box {
+  position: absolute;
+  top: 20px;
+  width: 158px;
+  padding: 6px 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 0 8px 8px 0;
+  background-color: #fff;
+  opacity: 60%;
+  color: variables.$primary-dark-text-color;
+  letter-spacing: 0.5px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.card_title {
+  margin-bottom: 16px;
+  font-size: variables.$mb-subtitle-text-size;
+  font-weight: 700;
+  letter-spacing: -0.25px;
+  @media screen and (min-width: 768px) {
+    max-width: 300px;
+  }
+}
+
+.meta_block {
+  font-size: 14px;
+  @media screen and (min-width: 768px) {
+    font-size: variables.$mb-primary-text-size;
+  }
+}
+
+.meta_block:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.meta_text {
+  display: inline-block;
+  margin-right: 40px;
+  min-width: 68px;
+  font-weight: 600;
+}
+
+.comments_text {
+  font-size: 14px;
+  margin-top: 28px;
+  @media screen and (min-width: 768px) {
+    font-size: variables.$mb-primary-text-size;
+  }
+  span {
+    font-weight: 600;
+  }
+}
+
+.btn_box {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    margin-top: auto;
+    margin-left: auto;
+  }
+
+  & button {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media screen and (min-width: 768px) {
+      width: 160px;
+      margin: 0;
+    }
+
+    svg {
+      margin-left: 8px;
+    }
+  }
+  button + button {
+    margin-top: 12px;
+
+    @media screen and (min-width: 768px) {
+      margin-top: 0;
+      margin-left: 12px;
+    }
+  }
+}

@@ -1,0 +1,240 @@
+@use "../../styles//variables";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 18px 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+}
+
+.subtitle,
+.text {
+  margin: 0 auto 20px;
+}
+
+.text {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.38;
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    width: 448px;
+    margin-bottom: 28px;
+    font-size: 20px;
+  }
+}
+
+.label {
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.44;
+}
+
+.label_required {
+  &::after {
+    content: "*";
+    color: variables.$secondary-btn-font-color;
+  }
+}
+
+.image_label {
+  width: 116px;
+  height: 116px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: auto;
+  box-sizing: border-box;
+  border-radius: 20px;
+  border: 2px solid transparent;
+  background-color: rgb(253, 247, 242);
+  font-size: 32px;
+  transition: variables.$transition;
+
+  &:hover,
+  &:focus {
+    border: 2px solid variables.$accent-color;
+    color: variables.$accent-color;
+  }
+}
+
+.fieldset {
+  border: none;
+  margin-bottom: 28px;
+}
+
+.image_box {
+  width: 116px;
+  height: 116px;
+  margin-bottom: 28px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.avatar {
+  border-radius: 20px;
+}
+
+.sex_img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 20px;
+}
+
+.male_label {
+  background-image: "../sex-male.png";
+}
+
+.img_field {
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+}
+
+.status_group {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 12px;
+  column-gap: 8px;
+  margin-bottom: 32px;
+}
+
+.legend {
+  margin-bottom: 28px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.44;
+
+  &::after {
+    content: "*";
+    color: variables.$secondary-btn-font-color;
+  }
+}
+
+.sex_box {
+  display: flex;
+  column-gap: 40px;
+
+  @media screen and (min-width: 768px) {
+    column-gap: 80px;
+  }
+}
+
+.sex_label {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.44;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: variables.$secondary-btn-font-color;
+  }
+}
+
+.petStatus_radio,
+.sex_field {
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}
+
+.sex_field:checked + .radio_btn_label {
+  color: variables.$accent-color;
+}
+
+.petStatus_radio:checked + .pet_status {
+  background-color: variables.$primary-btn-bgcolor;
+  color: variables.$primary-btn-font-color;
+  &:hover,
+  &:focus {
+    background-color: variables.$accent-color;
+  }
+}
+
+.pet_status {
+  padding: 8px 24px;
+  border: 2px solid variables.$primary-btn-bgcolor;
+  border-radius: 40px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.36;
+  cursor: pointer;
+  transition: variables.$transition;
+
+  &:hover,
+  &:focus {
+    background-color: variables.$accent-color;
+    color: variables.$primary-btn-font-color;
+    border: 2px solid variables.$accent-color;
+  }
+}
+
+.form_field {
+  margin-bottom: 16px;
+  padding: 11px 20px 11px 14px;
+  background-color: #fdf7f2;
+  border: 2px solid variables.$primary-btn-bgcolor;
+  border-radius: 40px;
+  &:focus,
+  &:hover,
+  &:active {
+    border: 2px solid variables.$accent-color;
+  }
+}
+
+.date_field {
+  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  &::-webkit-calendar-picker-indicator {
+    position: absolute;
+    background-color: red;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+}
+
+.btn_box {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    column-gap: 20px;
+  }
+
+  button {
+    width: 100%;
+  }
+  button:not(:last-child) {
+    margin-bottom: 12px;
+  }
+}
+
+.last_field {
+  margin-bottom: 40px;
+}
+
+.textarea {
+  margin-bottom: 40px;
+  resize: none;
+  overflow: hidden;
+}
