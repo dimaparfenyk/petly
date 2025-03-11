@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   fetchAllPets,
   fetchPetsByOwner,
-  fetchPetsByFavorite,
+  // fetchPetsByFavorite,
+  toggleFavoritePet,
 } from "./operations";
 
 const petsSlice = createSlice({
@@ -25,20 +26,22 @@ const petsSlice = createSlice({
         state.error = action.payload;
         state.isLoading = false;
       })
+      .addCase(fetchPetsByOwner.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(fetchPetsByOwner.fulfilled, (state, action) => {
         state.items = action.payload;
         state.isLoading = false;
       })
-      .addCase(fetchPetsByFavorite.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(fetchPetsByFavorite.fulfilled, (state, action) => {
-        state.items = action.payload;
-        state.isLoading = false;
-      })
-      .addCase(fetchPetsByFavorite.rejected, (state, action) => {
+      .addCase(fetchPetsByOwner.rejected, (state, action) => {
         state.error = action.payload;
         state.isLoading = false;
+      })
+      .addCase(toggleFavoritePet.fulfilled, (state, action) => {
+        state.favorites = action.payload;
+      })
+      .addCase(toggleFavoritePet.rejected, (state, action) => {
+        state.error = action.payload;
       });
   },
 });

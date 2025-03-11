@@ -4,8 +4,10 @@ const {
   getPetsByCategory,
   getPetByOwner,
   getPetById,
+  getFavoritePets,
   createPet,
   toggleFavoritePets,
+
   updatePet,
   removePet,
 } = require("../controllers/pets");
@@ -22,6 +24,8 @@ const petsRouter = express.Router();
 petsRouter.get("/", getAllPets);
 
 petsRouter.get("/own", authenticate, getPetByOwner);
+
+petsRouter.get("/favorite", authenticate, getFavoritePets);
 
 petsRouter.get("/:category", getPetsByCategory);
 

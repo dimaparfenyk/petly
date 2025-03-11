@@ -7,7 +7,7 @@ const getPetById = async (req, res) => {
     "owner",
     "email phone city"
   );
-  console.log("Полученные данные:", data);
+
   if (!data) {
     throw HttpError(404, "Not found");
   }

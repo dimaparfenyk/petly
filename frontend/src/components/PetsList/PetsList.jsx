@@ -7,9 +7,13 @@ import { selectToken } from "../../redux/auth/selectors";
 import {
   fetchAllPets,
   fetchPetsByOwner,
-  fetchPetsByFavorite,
+  fetchFavoritePets,
 } from "../../redux/pets/operations";
-import { selectAllPets, selectFavoritePets } from "../../redux/pets/selectors";
+import {
+  selectAllPets,
+  // selectFavoritePets,
+  selectIsLoading,
+} from "../../redux/pets/selectors";
 import statusFilters from "../../redux/constants";
 
 import PetCard from "../PetCard";
@@ -26,56 +30,44 @@ const PetsList = () => {
   const dispatch = useDispatch();
   const status = useSelector(selectStatusFilter);
   const token = useSelector(selectToken);
-  const pets = useSelector(
-    status === statusFilters.favorite ? selectFavoritePets : selectAllPets
-  );
+  const isLoading = useSelector(selectIsLoading);
+  const pets = useSelector(selectAllPets);
   const [filterValue] = useOutletContext();
   const [showModal, setShowModal] = useState(false);
   const [curId, setCurId] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const isPrivateStatus =
+    status === statusFilters.own || status === statusFilters.favorite;
+  console.log(pets);
+  useEffect(() => {
+    if (!isPrivateStatus) {
+      dispatch(fetchAllPets());
+    }
+  }, [dispatch, isPrivateStatus]);
 
   useEffect(() => {
-    setLoading(true);
+    if (isPrivateStatus) {
+      dispatch(fetchPetsByOwner(token));
+    }
+  }, [dispatch, isPrivateStatus, token]);
 
-    const fetchData = async () => {
-      if (
-        !token &&
-        (status === statusFilters.own || status === statusFilters.favorite)
-      ) {
-        return;
-      }
-
-      switch (status) {
-        case statusFilters.own:
-          dispatch(fetchPetsByOwner(token));
-          break;
-        case statusFilters.favorite:
-          dispatch(fetchPetsByFavorite(token));
-          break;
-        default:
-          dispatch(fetchAllPets());
-      }
-
-      setLoading(false);
-    };
-
-    fetchData();
-  }, [dispatch, status, token]);
-  console.log(pets);
   const toggleModal = () => setShowModal((prev) => !prev);
 
-  const filteredPets = pets.filter(
-    ({ status: petStatus, breed }) =>
-      petStatus === status && breed.includes(filterValue)
-  );
+  const getFilteredPets = () => {
+    if (isPrivateStatus) return pets;
+    return pets.filter(
+      ({ status: petStatus, breed }) =>
+        petStatus === status && breed.includes(filterValue)
+    );
+  };
+  const filteredPets = getFilteredPets();
+
+  if (isLoading) return <Spinner loading={isLoading} />;
 
   return (
     <>
-      {loading ? (
-        <Spinner loading={loading} />
-      ) : (
+      {!isLoading && (
         <ul className={css.pets_list}>
-          {pets.map((pet) => (
+          {filteredPets.map((pet) => (
             <PetCard
               key={pet._id}
               pet={pet}
@@ -88,7 +80,7 @@ const PetsList = () => {
         </ul>
       )}
 
-      {!loading && filteredPets.length === 0 && (
+      {!isLoading && filteredPets.length === 0 && (
         <NoContentBlock toggleModal={toggleModal} />
       )}
 

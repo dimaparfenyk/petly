@@ -1,7 +1,7 @@
 const statusFilters = Object.freeze({
   sell: "sell",
-  for_free: "for_free",
-  lost_found: "lost_found",
+  for_free: "in good hands",
+  lost_found: "lost/found",
   favorite: "favorite",
   own: "own",
 });

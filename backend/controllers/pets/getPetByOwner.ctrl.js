@@ -4,11 +4,13 @@ const { HttpError, ctrlWrapper } = require("../../helpers");
 const getPetByOwner = async (req, res) => {
   const { _id } = req.user;
 
-  const data = await Pet.find({ owner: _id });
+  const data = await Pet.find({ owner: _id }).populate(
+    "owner",
+    "email phone city"
+  );
 
-  if (!data) {
-    throw HttpError(404, "Not found");
-  }
+  if (!data) throw HttpError(404, "Not found");
+
   res.status(200).json(data);
 };
 

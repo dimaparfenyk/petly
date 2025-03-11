@@ -9,7 +9,12 @@ import statusFilters from "../../redux/constants";
 
 const AddPetForm = ({ onClose }) => {
   const filter = useSelector(selectStatusFilter);
-  const [status, setStatus] = useState(filter);
+  const [status, setStatus] = useState(() => {
+    if (filter === statusFilters.favorite || filter === statusFilters.own) {
+      return statusFilters.sell;
+    }
+    return filter;
+  });
   const [isFirstForm, setIsFirstForm] = useState(true);
   const [image, setImage] = useState(null);
 

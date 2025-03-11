@@ -7,7 +7,7 @@ const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-const fetchPetsData = async (endpoint, token, thunkAPI) => {
+const fetchPetsData = async (endpoint = "", token = null, thunkAPI) => {
   try {
     setAuthHeader(token);
     const res = await axios.get(`${BASE_URL}/${endpoint}`);
@@ -19,9 +19,23 @@ const fetchPetsData = async (endpoint, token, thunkAPI) => {
 
 export const fetchAllPets = createAsyncThunk(
   "pets/fetchAllPets",
-  async (_, thunkAPI) => {
+  async (_, thunkAPI) => fetchPetsData(_, _, thunkAPI)
+  // async (_, thunkAPI) => {
+  //   try {
+  //     const res = await axios.get(BASE_URL);
+  //     return res.data;
+  //   } catch (error) {
+  //     return thunkAPI.rejectWithValue(error.message);
+  //   }
+  // }
+);
+
+export const fetchPetsByOwner = createAsyncThunk(
+  "pets/fetchPetsByOwner",
+  async (token, thunkAPI) => {
     try {
-      const res = await axios.get(BASE_URL);
+      setAuthHeader(token);
+      const res = await axios.get(`${BASE_URL}/own`);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -29,12 +43,20 @@ export const fetchAllPets = createAsyncThunk(
   }
 );
 
-export const fetchPetsByOwner = createAsyncThunk(
-  "pets/fetchPetsByOwner",
-  async (token, thunkAPI) => fetchPetsData("own", token, thunkAPI)
+export const fetchFavoritePets = createAsyncThunk(
+  "pets/favoriteFetchPets",
+  async (token, thunkAPI) => fetchPetsData("/favorite", token, thunkAPI)
 );
 
-export const fetchPetsByFavorite = createAsyncThunk(
-  "pets/fetchPetsByFavorite",
-  async (token, thunkAPI) => fetchPetsData("favorites", token, thunkAPI)
+export const toggleFavoritePet = createAsyncThunk(
+  "favorites/toggle",
+  async ({ token, petId }, thunkAPI) => {
+    try {
+      setAuthHeader(token);
+      const res = await axios.put(`${BASE_URL}/${petId}/favorite`);
+      return res.data.favorites;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
 );

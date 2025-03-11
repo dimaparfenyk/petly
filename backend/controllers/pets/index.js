@@ -1,6 +1,7 @@
-const { toggleFavoritePets } = require("./addToFavoritePets");
+const { toggleFavoritePets } = require("./addToFavoritePets.ctrl");
 const { createPet } = require("./createPet.ctrl");
 const { getAllPets } = require("./getAllpets.ctrl");
+const { getFavoritePets } = require("./getFavoritePets.ctrl");
 const { getPetById } = require("./getPetById.ctrl");
 const { getPetByOwner } = require("./getPetByOwner.ctrl");
 const { getPetsByCategory } = require("./getPetsByCategory");
@@ -12,6 +13,7 @@ module.exports = {
   getPetsByCategory,
   getPetByOwner,
   getPetById,
+  getFavoritePets,
   createPet,
   updatePet,
   toggleFavoritePets,

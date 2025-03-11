@@ -58,8 +58,11 @@ const FilterButtons = ({ toggleModal }) => {
         <li className={css.nav_item}>
           <NavLink
             to="/pets/favorite"
-            className={({ isActive }) =>
-              isActive ? `${css.nav_link} ${css.active}` : css.nav_link
+            onClick={() => handleFilterChange(statusFilters.favorite)}
+            className={
+              filter === statusFilters.favorite
+                ? `${css.nav_link} ${css.active}`
+                : css.nav_link
             }
           >
             Favorite ads
