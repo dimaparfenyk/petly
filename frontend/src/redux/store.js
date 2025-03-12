@@ -14,17 +14,22 @@ import { filtersReducer } from "./filters/filtersSlice";
 import { authReducer } from "./auth/slice";
 import { petsReducer } from "./pets/slice";
 
-const persistConfig = {
+const authPersistConfig = {
   key: "auth",
   storage,
   whitelist: ["token"],
 };
 
+const filtersPersistConfig = {
+  key: "filters",
+  storage,
+};
+
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(persistConfig, authReducer),
+    auth: persistReducer(authPersistConfig, authReducer),
     pets: petsReducer,
-    filters: filtersReducer,
+    filters: persistReducer(filtersPersistConfig, filtersReducer),
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

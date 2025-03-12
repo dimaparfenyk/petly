@@ -16,30 +16,30 @@ const toggleFavoritePets = async (req, res) => {
     throw HttpError(404, "User not found");
   }
 
-  let updatedUser;
+  let updatedPet;
+  let isFavorite;
 
-  if (user.favorites.includes(petId)) {
-    updatedUser = await User.findByIdAndUpdate(
-      userId,
-      { $pull: { favorites: petId } },
-      { new: true, select: "favorites" }
+  if (pet.favoritedBy.includes(userId)) {
+    updatedPet = await Pet.findByIdAndUpdate(
+      petId,
+      { $pull: { favoritedBy: userId } },
+      { new: true }
     );
-
-    return res.status(200).json({
-      message: "Pet removed from favorites",
-      favorites: updatedUser.favorites,
-    });
+    isFavorite = false;
+  } else {
+    updatedPet = await Pet.findByIdAndUpdate(
+      petId,
+      { $addToSet: { favoritedBy: userId } },
+      { new: true }
+    );
+    isFavorite = true;
   }
 
-  updatedUser = await User.findByIdAndUpdate(
-    userId,
-    { $addToSet: { favorites: petId } },
-    { new: true, select: "favorites" }
-  );
-
-  res.status(200).json({
-    message: "Pet added to favorites",
-    favorites: updatedUser.favorites,
+  return res.status(200).json({
+    message: isFavorite
+      ? "Pet added to favorites"
+      : "Pet removed from favorites",
+    pet: updatedPet,
   });
 };
 

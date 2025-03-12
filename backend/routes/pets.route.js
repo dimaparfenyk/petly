@@ -40,7 +40,7 @@ petsRouter.post(
 );
 
 petsRouter.put(
-  "/:id/favorite",
+  "/favorite/:id",
   authenticate,
   isValidId,
   // validateBody(schemas.addSchema),

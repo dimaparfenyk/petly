@@ -1,20 +1,17 @@
-const { User } = require("../../models/user");
+const { Pet } = require("../../models/pet");
 const { HttpError, ctrlWrapper } = require("../../helpers");
 
 const getFavoritePets = async (req, res) => {
-  const { _id } = req.user;
+  const { _id: userId } = req.user;
 
-  const user = await User.findById(_id).populate("favorites");
-
-  if (!user) {
-    throw HttpError(404, "User not found");
+  if (!userId) {
+    throw HttpError(400, "User is not authenticated");
   }
 
-  const favoritePets = user.favorites;
-
-  if (!favoritePets || favoritePets.length === 0) {
-    return res.status(404).json({ message: "No favorite pets found" });
-  }
+  const favoritePets = await Pet.find({ favoritedBy: userId }).populate(
+    "owner",
+    "email phone city"
+  );
 
   res.status(200).json(favoritePets);
 };

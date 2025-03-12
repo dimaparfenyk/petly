@@ -1,4 +1,4 @@
-const { toggleFavoritePets } = require("./addToFavoritePets.ctrl");
+const { toggleFavoritePets } = require("./toggleFavoritePets.ctrl");
 const { createPet } = require("./createPet.ctrl");
 const { getAllPets } = require("./getAllpets.ctrl");
 const { getFavoritePets } = require("./getFavoritePets.ctrl");

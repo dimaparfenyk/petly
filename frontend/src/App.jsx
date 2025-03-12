@@ -8,8 +8,17 @@ import ProfilePage from "./pages/ProfilePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import PetsList from "./components/PetsList";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { refreshUser } from "./redux/auth/operations";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>

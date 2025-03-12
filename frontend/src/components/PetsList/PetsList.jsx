@@ -9,11 +9,7 @@ import {
   fetchPetsByOwner,
   fetchFavoritePets,
 } from "../../redux/pets/operations";
-import {
-  selectAllPets,
-  // selectFavoritePets,
-  selectIsLoading,
-} from "../../redux/pets/selectors";
+import { selectAllPets, selectIsLoading } from "../../redux/pets/selectors";
 import statusFilters from "../../redux/constants";
 
 import PetCard from "../PetCard";
@@ -32,28 +28,30 @@ const PetsList = () => {
   const token = useSelector(selectToken);
   const isLoading = useSelector(selectIsLoading);
   const pets = useSelector(selectAllPets);
+  const favoritePets = useSelector((state) => state.pets.favorites);
   const [filterValue] = useOutletContext();
   const [showModal, setShowModal] = useState(false);
   const [curId, setCurId] = useState(null);
-  const isPrivateStatus =
-    status === statusFilters.own || status === statusFilters.favorite;
-  console.log(pets);
-  useEffect(() => {
-    if (!isPrivateStatus) {
-      dispatch(fetchAllPets());
-    }
-  }, [dispatch, isPrivateStatus]);
 
   useEffect(() => {
-    if (isPrivateStatus) {
-      dispatch(fetchPetsByOwner(token));
+    switch (status) {
+      case statusFilters.own:
+        dispatch(fetchPetsByOwner(token));
+        return;
+      case statusFilters.favorite:
+        dispatch(fetchFavoritePets(token));
+        return;
+      default:
+        dispatch(fetchAllPets());
+        return;
     }
-  }, [dispatch, isPrivateStatus, token]);
+  }, [dispatch, status, token]);
 
   const toggleModal = () => setShowModal((prev) => !prev);
 
   const getFilteredPets = () => {
-    if (isPrivateStatus) return pets;
+    if (status === statusFilters.own) return pets;
+    if (status === statusFilters.favorite) return favoritePets;
     return pets.filter(
       ({ status: petStatus, breed }) =>
         petStatus === status && breed.includes(filterValue)

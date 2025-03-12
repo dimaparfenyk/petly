@@ -6,9 +6,11 @@ import { NavLink } from "react-router-dom";
 
 import { IoIosAdd } from "react-icons/io";
 import css from "./_FilterButtons.module.scss";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 const FilterButtons = ({ toggleModal }) => {
   const filter = useSelector(selectStatusFilter);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
 
   const handleFilterChange = (filter) => dispatch(setStatusFilters(filter));
@@ -55,32 +57,36 @@ const FilterButtons = ({ toggleModal }) => {
             In good hands
           </NavLink>
         </li>
-        <li className={css.nav_item}>
-          <NavLink
-            to="/pets/favorite"
-            onClick={() => handleFilterChange(statusFilters.favorite)}
-            className={
-              filter === statusFilters.favorite
-                ? `${css.nav_link} ${css.active}`
-                : css.nav_link
-            }
-          >
-            Favorite ads
-          </NavLink>
-        </li>
-        <li className={css.nav_item}>
-          <NavLink
-            to="/pets/own"
-            className={
-              filter === statusFilters.own
-                ? `${css.nav_link} ${css.active}`
-                : css.nav_link
-            }
-            onClick={() => handleFilterChange(statusFilters.own)}
-          >
-            My ads
-          </NavLink>
-        </li>
+        {isLoggedIn && (
+          <>
+            <li className={css.nav_item}>
+              <NavLink
+                to="/pets/favorite"
+                onClick={() => handleFilterChange(statusFilters.favorite)}
+                className={
+                  filter === statusFilters.favorite
+                    ? `${css.nav_link} ${css.active}`
+                    : css.nav_link
+                }
+              >
+                Favorite ads
+              </NavLink>
+            </li>
+            <li className={css.nav_item}>
+              <NavLink
+                to="/pets/own"
+                className={
+                  filter === statusFilters.own
+                    ? `${css.nav_link} ${css.active}`
+                    : css.nav_link
+                }
+                onClick={() => handleFilterChange(statusFilters.own)}
+              >
+                My ads
+              </NavLink>
+            </li>
+          </>
+        )}
       </ul>
       <button
         type="button"

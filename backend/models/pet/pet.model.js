@@ -26,13 +26,13 @@ const petSchema = new Schema(
       default: "sell",
       enum: ["lost/found", "sell", "in good hands"],
     },
-    favorite: { type: Boolean, default: false },
     comments: { type: String, maxLength: 100 },
     owner: {
       type: Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
+    favoritedBy: [{ type: Schema.Types.ObjectId, ref: "User" }],
     petImgUrl: {
       type: String,
     },

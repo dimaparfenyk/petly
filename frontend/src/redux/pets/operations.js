@@ -19,15 +19,14 @@ const fetchPetsData = async (endpoint = "", token = null, thunkAPI) => {
 
 export const fetchAllPets = createAsyncThunk(
   "pets/fetchAllPets",
-  async (_, thunkAPI) => fetchPetsData(_, _, thunkAPI)
-  // async (_, thunkAPI) => {
-  //   try {
-  //     const res = await axios.get(BASE_URL);
-  //     return res.data;
-  //   } catch (error) {
-  //     return thunkAPI.rejectWithValue(error.message);
-  //   }
-  // }
+  async (_, thunkAPI) => {
+    try {
+      const res = await axios.get(BASE_URL);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
 );
 
 export const fetchPetsByOwner = createAsyncThunk(
@@ -44,7 +43,7 @@ export const fetchPetsByOwner = createAsyncThunk(
 );
 
 export const fetchFavoritePets = createAsyncThunk(
-  "pets/favoriteFetchPets",
+  "pets/fetchFavoritePets",
   async (token, thunkAPI) => fetchPetsData("/favorite", token, thunkAPI)
 );
 
@@ -53,8 +52,9 @@ export const toggleFavoritePet = createAsyncThunk(
   async ({ token, petId }, thunkAPI) => {
     try {
       setAuthHeader(token);
-      const res = await axios.put(`${BASE_URL}/${petId}/favorite`);
-      return res.data.favorites;
+      const res = await axios.put(`${BASE_URL}/favorite/${petId}`);
+      console.log(res.data);
+      return { petId, pet: res.data.pet };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

@@ -1,12 +1,14 @@
-// import { useState } from "react";
 import { MdPhotoCamera } from "react-icons/md";
 import { IoLogOutOutline } from "react-icons/io5";
 import { FaPen } from "react-icons/fa";
 
 import css from "./_UserCard.module.scss";
+import { useDispatch } from "react-redux";
+import { logOut } from "../../redux/auth/operations";
 
 const UserCard = () => {
-  // const [isEdited, setIsEdited] = useState(false);
+  const dispatch = useDispatch();
+
   return (
     <div className={css.user_box}>
       <h3 className={css.card_title}>My information:</h3>
@@ -61,7 +63,11 @@ const UserCard = () => {
             </div>
           </div>
         </div>
-        <button type="button" className={css.logout_btn}>
+        <button
+          type="button"
+          className={css.logout_btn}
+          onClick={() => dispatch(logOut())}
+        >
           <IoLogOutOutline />
           Log Out
         </button>

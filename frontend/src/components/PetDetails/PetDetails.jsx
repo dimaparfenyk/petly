@@ -1,11 +1,16 @@
 import Button from "../Button";
-import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa6";
 import css from "./_PetDetail.module.scss";
-import { useSelector } from "react-redux";
-import { selectCurPet } from "../../redux/pets/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurPet, selectFavoritePets } from "../../redux/pets/selectors";
+import { selectToken } from "../../redux/auth/selectors";
+import { toggleFavoritePet } from "../../redux/pets/operations";
 
 const PetDetails = ({ petId }) => {
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
   const pet = useSelector(selectCurPet(petId));
+  const favorites = useSelector(selectFavoritePets);
 
   const {
     petImgUrl,
@@ -19,6 +24,12 @@ const PetDetails = ({ petId }) => {
     price,
     comments,
   } = pet;
+
+  const handleFavoriteToggle = () => {
+    dispatch(toggleFavoritePet({ token, petId }));
+  };
+
+  const isFavorite = favorites.some((favPet) => favPet._id === petId);
 
   return (
     pet && (
@@ -72,8 +83,12 @@ const PetDetails = ({ petId }) => {
           </div>
         </div>
         <div className={css.btn_box}>
-          <Button text={"Add to"}>
-            <FaRegHeart />
+          <Button
+            isActive
+            text={isFavorite ? "Remove from" : "Add to"}
+            onClick={() => handleFavoriteToggle()}
+          >
+            <FaHeart />
           </Button>
           <Button text={"Contact"} />
         </div>

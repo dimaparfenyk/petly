@@ -2,17 +2,22 @@ import { useDispatch, useSelector } from "react-redux";
 import css from "./_PetCard.module.scss";
 import Button from "../Button/Button";
 import { FaRegHeart } from "react-icons/fa6";
+import { FaHeart } from "react-icons/fa";
 import { selectToken } from "../../redux/auth/selectors";
 import { toggleFavoritePet } from "../../redux/pets/operations";
+import { selectFavoritePets } from "../../redux/pets/selectors";
 
 const PetCard = ({ pet = {}, onClick }) => {
   const { petImgUrl, status, title, breed, price, owner = {} } = pet;
-  const token = useSelector(selectToken);
   const dispatch = useDispatch();
+  const favorites = useSelector(selectFavoritePets);
+  const token = useSelector(selectToken);
 
   const handleFavoriteToggle = () => {
     dispatch(toggleFavoritePet({ token, petId: pet._id }));
   };
+
+  const isFavorite = favorites.some((favPet) => favPet._id === pet._id);
 
   return (
     <li className={css.petcard}>
@@ -38,7 +43,7 @@ const PetCard = ({ pet = {}, onClick }) => {
         </div>
       </article>
       <button className={css.add_favorite_btn} onClick={handleFavoriteToggle}>
-        <FaRegHeart />
+        {isFavorite ? <FaHeart /> : <FaRegHeart />}
       </button>
     </li>
   );

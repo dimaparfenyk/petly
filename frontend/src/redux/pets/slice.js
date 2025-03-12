@@ -1,47 +1,62 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   fetchAllPets,
+  fetchFavoritePets,
   fetchPetsByOwner,
   // fetchPetsByFavorite,
   toggleFavoritePet,
 } from "./operations";
 
+const handlePending = (state) => {
+  state.isLoading = true;
+};
+
+const handleRejected = (state, action) => {
+  state.error = action.payload;
+  state.isLoading = false;
+};
+
 const petsSlice = createSlice({
   name: "pets",
   initialState: {
     items: [],
+    favorites: [],
     isLoading: false,
     error: null,
   },
+
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAllPets.pending, (state) => {
-        state.isLoading = true;
-      })
+      // fetching all pets
+      .addCase(fetchAllPets.pending, handlePending)
       .addCase(fetchAllPets.fulfilled, (state, action) => {
         state.items = action.payload;
         state.isLoading = false;
       })
-      .addCase(fetchAllPets.rejected, (state, action) => {
-        state.error = action.payload;
-        state.isLoading = false;
-      })
-      .addCase(fetchPetsByOwner.pending, (state) => {
-        state.isLoading = true;
-      })
+      .addCase(fetchAllPets.rejected, handleRejected)
+      // fetching pets by owner
+      .addCase(fetchPetsByOwner.pending, handlePending)
       .addCase(fetchPetsByOwner.fulfilled, (state, action) => {
         state.items = action.payload;
         state.isLoading = false;
       })
-      .addCase(fetchPetsByOwner.rejected, (state, action) => {
-        state.error = action.payload;
-        state.isLoading = false;
-      })
+      .addCase(fetchPetsByOwner.rejected, handleRejected)
+      // toggle favorite pets
       .addCase(toggleFavoritePet.fulfilled, (state, action) => {
-        state.favorites = action.payload;
+        const petId = action.payload.petId;
+        // toggle pets in favorites
+        if (state.favorites.some((pet) => pet._id === petId)) {
+          state.favorites = state.favorites.filter((pet) => pet._id !== petId);
+        } else {
+          state.favorites.push(action.payload.pet);
+        }
       })
       .addCase(toggleFavoritePet.rejected, (state, action) => {
         state.error = action.payload;
+      })
+      // fetch favorite pets
+      .addCase(fetchFavoritePets.fulfilled, (state, action) => {
+        state.favorites = action.payload;
       });
   },
 });
