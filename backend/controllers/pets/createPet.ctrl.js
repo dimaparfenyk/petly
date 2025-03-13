@@ -9,7 +9,7 @@ const createPet = async (req, res) => {
 
   const petImgUrl = req.file
     ? await uploadFile(req, petsImgDir, "pets")
-    : path.join("pets", "pet-avatar.png");
+    : "pets/pet-avatar.png";
 
   const result = await Pet.create({ ...req.body, owner: _id, petImgUrl });
   res.status(201).json({ message: "Pet's data successfully created", result });
