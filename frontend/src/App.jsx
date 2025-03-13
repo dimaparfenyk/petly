@@ -1,18 +1,20 @@
 import { Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import NewsPage from "./pages/NewsPage";
-import PetsPage from "./pages/PetsPage";
-import SponsorsPage from "./pages/SponsorsPage";
-import SharedLayout from "./components/Layout";
-import ProfilePage from "./pages/ProfilePage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import PetsList from "./components/PetsList";
+import { useEffect, lazy } from "react";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 import { refreshUser } from "./redux/auth/operations";
 
-function App() {
+import SharedLayout from "./components/Layout";
+import PetsListContainer from "./components/PetListContainer";
+
+const HomePage = lazy(() => import("./pages/HomePage"));
+const NewsPage = lazy(() => import("./pages/NewsPage"));
+const PetsPage = lazy(() => import("./pages/PetsPage"));
+const SponsorsPage = lazy(() => import("./pages/SponsorsPage"));
+const ProfilePage = lazy(() => import("./pages/ProfilePage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+
+const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,7 +27,7 @@ function App() {
         <Route index element={<HomePage />} />
 
         <Route path="pets" element={<PetsPage />}>
-          <Route path=":category" element={<PetsList />} />
+          <Route path=":category" element={<PetsListContainer />} />
         </Route>
 
         <Route path="news" element={<NewsPage />} />
@@ -38,6 +40,6 @@ function App() {
       </Route>
     </Routes>
   );
-}
+};
 
 export default App;

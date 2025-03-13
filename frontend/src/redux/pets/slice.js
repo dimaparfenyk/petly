@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  addPet,
   fetchAllPets,
   fetchFavoritePets,
   fetchPetsByOwner,
-  // fetchPetsByFavorite,
   toggleFavoritePet,
 } from "./operations";
 
@@ -57,6 +57,12 @@ const petsSlice = createSlice({
       // fetch favorite pets
       .addCase(fetchFavoritePets.fulfilled, (state, action) => {
         state.favorites = action.payload;
+      })
+      .addCase(addPet.fulfilled, (state, action) => {
+        state.items.push(action.payload.result);
+      })
+      .addCase(addPet.rejected, (state, action) => {
+        state.error = action.payload;
       });
   },
 });

@@ -47,13 +47,25 @@ export const fetchFavoritePets = createAsyncThunk(
   async (token, thunkAPI) => fetchPetsData("/favorite", token, thunkAPI)
 );
 
+export const addPet = createAsyncThunk(
+  "pets/addPet",
+  async (data, thunkAPI) => {
+    try {
+      const res = await axios.post(BASE_URL, data);
+      console.log(res.data.result);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const toggleFavoritePet = createAsyncThunk(
   "favorites/toggle",
   async ({ token, petId }, thunkAPI) => {
     try {
       setAuthHeader(token);
       const res = await axios.put(`${BASE_URL}/favorite/${petId}`);
-      console.log(res.data);
       return { petId, pet: res.data.pet };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

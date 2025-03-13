@@ -53,6 +53,7 @@ const addSchema = Joi.object({
   title: Joi.string().required(),
   petImgUrl: Joi.string().optional(),
   comments: Joi.string(),
+  status: Joi.string().valid("lost/found", "sell", "in good hands").required(),
 });
 
 const schemas = { addSchema };
