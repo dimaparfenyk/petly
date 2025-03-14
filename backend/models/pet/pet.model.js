@@ -9,9 +9,9 @@ const catList = getData("../db/data/catBreeds.json");
 
 const petSchema = new Schema(
   {
-    name: { type: String, required: [true, "Name is required"] },
-    birth: { type: String, required: true, match: dateRegexp },
-    title: { type: String, required: true },
+    name: { type: String },
+    birth: { type: String, match: dateRegexp },
+    title: { type: String },
     sex: {
       type: String,
       required: [true, "Sex is required"],
@@ -45,10 +45,10 @@ petSchema.post("save", handleMongooseError);
 const Pet = model("Pet", petSchema);
 
 const addSchema = Joi.object({
-  name: Joi.string().required(),
+  name: Joi.string(),
   birth: Joi.string().pattern(dateRegexp),
-  sex: Joi.string().valid("male", "female").required(),
-  breed: Joi.string().required(),
+  sex: Joi.string().valid("male", "female"),
+  breed: Joi.string(),
   price: Joi.number(),
   title: Joi.string().required(),
   petImgUrl: Joi.string().optional(),

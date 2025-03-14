@@ -3,12 +3,13 @@ import { FaHeart } from "react-icons/fa6";
 import css from "./_PetDetail.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurPet, selectFavoritePets } from "../../redux/pets/selectors";
-import { selectToken } from "../../redux/auth/selectors";
+import { selectToken, selectUser } from "../../redux/auth/selectors";
 import { toggleFavoritePet } from "../../redux/pets/operations";
 
 const PetDetails = ({ petId }) => {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
+  const { city, phone, email } = useSelector(selectUser);
   const pet = useSelector(selectCurPet(petId));
   const favorites = useSelector(selectFavoritePets);
 
@@ -56,7 +57,7 @@ const PetDetails = ({ petId }) => {
               </div>
               <div className={css.meta_block}>
                 <p className={css.meta_text}>Place:</p>
-                {owner.city}
+                {owner.city ? owner.city : city}
               </div>
               <div className={css.meta_block}>
                 <p className={css.meta_text}>The sex:</p>
@@ -64,11 +65,11 @@ const PetDetails = ({ petId }) => {
               </div>
               <div className={css.meta_block}>
                 <p className={css.meta_text}>Email:</p>
-                {owner.email}
+                {owner.email ? owner.email : email}
               </div>
               <div className={css.meta_block}>
                 <p className={css.meta_text}>Phone:</p>
-                {owner.phone}
+                {owner.phone ? owner.phone : phone}
               </div>
               <div className={css.meta_block}>
                 <p className={css.meta_text}>Sell:</p>

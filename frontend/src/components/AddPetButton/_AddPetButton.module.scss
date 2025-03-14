@@ -1,0 +1,65 @@
+@use "../../styles//variables";
+
+.add_btn {
+  position: fixed;
+  top: 70%;
+  right: 20px;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 16px 18px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  //   opacity: 80%;
+
+  font-size: 0.75rem;
+  background-color: variables.$primary-btn-bgcolor;
+  color: variables.$primary-btn-font-color;
+
+  transition: variables.$transition;
+
+  svg {
+    width: 32px;
+    height: 32px;
+    color: variables.$primary-btn-font-color;
+    transition: variables.$transition;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: variables.$accent-color;
+  }
+
+  @media screen and (min-width: 768px) {
+    position: static;
+    flex-direction: row;
+    padding: 0;
+    margin-left: auto;
+    min-width: 132px;
+    font-size: variables.$tb-primary-text-size;
+    border-radius: 0;
+    z-index: 0;
+    background-color: inherit;
+    color: variables.$primary-dark-text-color;
+
+    svg {
+      width: 44px;
+      height: 44px;
+      margin-left: 12px;
+      border-radius: 50%;
+      background-color: variables.$primary-btn-bgcolor;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: inherit;
+      svg {
+        background-color: variables.$accent-color;
+      }
+    }
+  }
+}

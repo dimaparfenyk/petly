@@ -24,7 +24,14 @@ const register = async (req, res) => {
     password: hashPassword,
     avatarURL,
   });
-  res.status(201).json({ email: newUser.email, name: newUser.name });
+  res
+    .status(201)
+    .json({
+      email: newUser.email,
+      name: newUser.name,
+      phone: newUser.phone,
+      city: newUser.city,
+    });
 };
 
 module.exports = register;

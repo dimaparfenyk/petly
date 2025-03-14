@@ -11,6 +11,8 @@ import FilterButtons from "../../components/FilterButtons";
 
 import AddPetForm from "../../components/AddPetForm";
 import Modal from "../../components/Modal";
+import AddPetButton from "../../components/AddPetButton";
+
 const portalEl = document.getElementById("modal-root");
 
 const PetsPage = () => {
@@ -26,6 +28,7 @@ const PetsPage = () => {
           <PageTitle text={"Find your favorite pet"} />
           <Filter onChange={handleFilterChange} />
           <FilterButtons toggleModal={toggleModal} />
+          <AddPetButton handleAddPet={toggleModal} />
         </Wrapper>
 
         <Outlet context={[filterValue]} />

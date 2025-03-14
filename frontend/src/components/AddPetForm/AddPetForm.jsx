@@ -12,28 +12,9 @@ import { addPet } from "../../redux/pets/operations";
 const AddPetForm = ({ onClose }) => {
   const dispatch = useDispatch();
   const filter = useSelector(selectStatusFilter);
-  const isMissingFilter =
-    filter === statusFilters.favorite || filter === statusFilters.own;
-  const [status] = useState(() =>
-    isMissingFilter ? statusFilters.sell : filter
-  );
   const [isFirstForm, setIsFirstForm] = useState(true);
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
-
-  const handleFilterChange = (filter) => dispatch(setStatusFilters(filter));
-
-  const initialValues = {
-    title: "title",
-    name: "Bonny",
-    birth: "",
-    breed: "spaniel",
-    price: "1000",
-    petImgUrl: "",
-    comments: "comments",
-    sex: "male",
-    status,
-  };
 
   const handleSubmit = async (values, actions) => {
     const body = new FormData();
@@ -53,6 +34,8 @@ const AddPetForm = ({ onClose }) => {
     onClose();
   };
 
+  const handleFilterChange = (filter) => dispatch(setStatusFilters(filter));
+
   return (
     <div className={css.wrapper}>
       <h2 className={css.subtitle}>Add Pet</h2>
@@ -60,13 +43,22 @@ const AddPetForm = ({ onClose }) => {
         Lorem ipsum dolor sit amet, consectetur. Lorem ipsum dolor sit amet,
         consectetur.
       </p>
-
       <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
+        initialValues={{
+          title: "",
+          name: "",
+          birth: "",
+          breed: "",
+          price: "",
+          petImgUrl: "",
+          comments: "",
+          sex: "male",
+          status: filter,
+        }}
         enableReinitialize={true}
+        onSubmit={handleSubmit}
       >
-        {(formik) => (
+        {({ setFieldValue }) => (
           <Form method="post" className={css.form}>
             {isFirstForm ? (
               <>
@@ -212,7 +204,7 @@ const AddPetForm = ({ onClose }) => {
                   </div>
                 </fieldset>
 
-                {status === statusFilters.sell && (
+                {filter === statusFilters.sell && (
                   <>
                     <label
                       htmlFor="price"
@@ -248,7 +240,7 @@ const AddPetForm = ({ onClose }) => {
                           if (files) {
                             setImage(files[0]);
                             setImagePreview(URL.createObjectURL(files[0]));
-                            formik.setFieldValue("petImgUrl", files[0]);
+                            setFieldValue("petImgUrl", files[0]);
                           }
                         }}
                       />
