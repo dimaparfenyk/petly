@@ -23,16 +23,13 @@
 
   button {
     width: 100%;
+    margin-top: 40px;
   }
 }
 
 .form_title {
   margin-bottom: 40px;
   text-align: center;
-}
-
-.box {
-  margin-bottom: 40px;
 }
 
 .auth_field {
@@ -59,21 +56,4 @@
 
 .auth_field + .auth_field {
   margin-top: 16px;
-}
-
-.form_title,
-.redirect_link {
-  text-transform: capitalize;
-}
-
-.text {
-  display: inline-flex;
-  margin-top: 40px;
-  color: #111111;
-}
-
-.redirect_link {
-  margin-left: 2px;
-  color: #3091eb;
-  text-decoration: underline;
 }

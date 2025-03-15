@@ -2,7 +2,6 @@ const Joi = require("joi");
 const { model, Schema } = require("mongoose");
 const { handleMongooseError } = require("../../helpers");
 
-const dateRegexp = /^\d{2}-\d{2}-\d{4}$/;
 const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const phoneRegexp = /^(\+\d{1,3}[- ]?)?\(?\d{1,4}\)?[- ]?\d{1,4}[- ]?\d{1,9}$/;
 
@@ -30,10 +29,6 @@ const userSchema = new Schema(
       match: phoneRegexp,
       unique: true,
     },
-    birthday: {
-      type: Date,
-      match: dateRegexp,
-    },
     avatarURL: {
       type: String,
     },
@@ -56,7 +51,6 @@ const registerUserSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp).required(),
   city: Joi.string().required(),
   phone: Joi.string().required(),
-  birthday: Joi.string().pattern(dateRegexp),
   avatarURL: Joi.string(),
   token: Joi.string(),
 });

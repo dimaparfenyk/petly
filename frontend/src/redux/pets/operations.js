@@ -52,7 +52,6 @@ export const addPet = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const res = await axios.post(BASE_URL, data);
-      console.log(res.data);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -13,25 +13,17 @@ const register = async (req, res) => {
 
   const hashPassword = await bcrypt.hash(password, 10);
 
-  const avatarURL = path.join(
-    __dirname,
-    "../../",
-    "public/user/avatar_def.png"
-  );
-
   const newUser = await User.create({
     ...req.body,
     password: hashPassword,
-    avatarURL,
+    avatarURL: "/user/avatar-placeholder.png",
   });
-  res
-    .status(201)
-    .json({
-      email: newUser.email,
-      name: newUser.name,
-      phone: newUser.phone,
-      city: newUser.city,
-    });
+  res.status(201).json({
+    email: newUser.email,
+    name: newUser.name,
+    phone: newUser.phone,
+    city: newUser.city,
+  });
 };
 
 module.exports = register;

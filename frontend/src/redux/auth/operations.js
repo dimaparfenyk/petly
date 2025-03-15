@@ -65,3 +65,26 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+export const changeAvatar = createAsyncThunk(
+  "auth/changeAvatar",
+  async (file, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue("Unable to fetch user");
+    }
+    try {
+      setAuthHeader(persistedToken);
+      const res = await axios.patch("/avatars", file, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log(res.data);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

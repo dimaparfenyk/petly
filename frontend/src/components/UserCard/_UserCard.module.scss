@@ -35,6 +35,7 @@
 }
 
 .card {
+  margin-bottom: 40px;
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: row-reverse;
@@ -45,7 +46,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 40px;
   }
 }
 
@@ -65,11 +65,19 @@
 }
 
 .avatar {
-  margin-bottom: 12px;
-
   max-width: 224px;
+  margin-bottom: 12px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.avatar_input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 
 .edit_photo_btn {
@@ -98,10 +106,8 @@
 
 .meta_box {
   width: 100%;
-  margin-bottom: 42px;
   @media screen and (min-width: 768px) {
     width: 50%;
-    margin-bottom: 0;
   }
   @media screen and (min-width: 1200px) {
     width: 100%;
@@ -162,7 +168,6 @@
   justify-content: center;
   margin-left: auto;
   padding: 4px;
-
   border: none;
   background-color: inherit;
 

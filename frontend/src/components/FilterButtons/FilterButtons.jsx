@@ -5,11 +5,11 @@ import statusFilters from "../../redux/constants";
 import { NavLink } from "react-router-dom";
 
 import css from "./_FilterButtons.module.scss";
-import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import useAuth from "../../hooks/useAuth";
 
 const FilterButtons = () => {
   const filter = useSelector(selectStatusFilter);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { isLoggedIn } = useAuth();
   const dispatch = useDispatch();
 
   const handleFilterChange = (filter) => dispatch(setStatusFilters(filter));

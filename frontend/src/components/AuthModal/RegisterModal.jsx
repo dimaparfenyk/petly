@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router";
 import { Formik, Field, Form } from "formik";
 import Button from "../Button";
 import css from "./_RegisterModal.module.scss";
 import { register } from "../../redux/auth/operations";
+import AuthRedirectLink from "../AuthRedirectLink/AuthRedirectLink";
 
 const RegisterModal = () => {
   const dispatch = useDispatch();
@@ -37,60 +37,53 @@ const RegisterModal = () => {
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <Form className={css.form}>
           <h2 className={css.form_title}>Registration</h2>
-          <div className={css.box}>
-            {isFirstRegStep && (
-              <>
-                <Field
-                  placeholder="Email"
-                  name="email"
-                  className={css.auth_field}
-                />
-                <Field
-                  placeholder="Password"
-                  name="password"
-                  className={css.auth_field}
-                />
-                <Field
-                  placeholder="Confirm password"
-                  name="password"
-                  className={css.auth_field}
-                />
-                <Button
-                  type="button"
-                  text={"Next"}
-                  isActive={true}
-                  onClick={() => setIsFirstRegStep(false)}
-                />
-              </>
-            )}
-            {!isFirstRegStep && (
-              <>
-                <Field
-                  placeholder="Name"
-                  name="name"
-                  className={css.auth_field}
-                />
-                <Field
-                  placeholder="City, region"
-                  name="city"
-                  className={css.auth_field}
-                />
-                <Field
-                  placeholder="Mobile phone"
-                  name="phone"
-                  className={css.auth_field}
-                />
-                <Button type="submit" text={"Register"} isActive={true} />
-              </>
-            )}
-          </div>
 
-          <p className={css.text}>
-            Already have an account?
-            <NavLink to={"/login"} className={css.redirect_link}>
-              Login
-            </NavLink>
-          </p>
+          {isFirstRegStep && (
+            <>
+              <Field
+                placeholder="Email"
+                name="email"
+                className={css.auth_field}
+              />
+              <Field
+                placeholder="Password"
+                name="password"
+                className={css.auth_field}
+              />
+              <Field
+                placeholder="Confirm password"
+                name="password"
+                className={css.auth_field}
+              />
+              <Button
+                type="button"
+                text={"Next"}
+                isActive
+                onClick={() => setIsFirstRegStep(false)}
+              />
+            </>
+          )}
+          {!isFirstRegStep && (
+            <>
+              <Field
+                placeholder="Name"
+                name="name"
+                className={css.auth_field}
+              />
+              <Field
+                placeholder="City, region"
+                name="city"
+                className={css.auth_field}
+              />
+              <Field
+                placeholder="Mobile phone"
+                name="phone"
+                className={css.auth_field}
+              />
+              <Button type="submit" text={"Register"} isActive />
+            </>
+          )}
+          <AuthRedirectLink text={["Already have an account?", "Login"]} />
         </Form>
       </Formik>
     </div>

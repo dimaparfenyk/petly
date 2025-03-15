@@ -46,7 +46,7 @@ const PetsList = () => {
           ))}
         </ul>
       ) : (
-        <NoContentBlock toggleModal={toggleModal} />
+        <NoContentBlock />
       )}
 
       {showModal && <ModalManager curId={curId} toggleModal={toggleModal} />}

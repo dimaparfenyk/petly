@@ -4,15 +4,14 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { RiAccountCircleFill } from "react-icons/ri";
 import MobileNav from "../MobileNav";
 import css from "./_NavBar.module.scss";
-import { useSelector } from "react-redux";
-import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import useAuth from "../../hooks/useAuth";
 
 const NavBar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const { pathname } = useLocation();
   const petsCategoryUrl = pathname.split("/")[2];
   const isPetsPage = pathname.includes(petsCategoryUrl);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { isLoggedIn } = useAuth();
 
   return (
     <>
