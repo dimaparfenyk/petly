@@ -50,136 +50,28 @@
 }
 
 .img_box {
+  width: 224px;
+  height: 224px;
+
   margin-bottom: 36px;
   border-radius: 50%;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
-    margin-left: 32px;
   }
 
   @media screen and (min-width: 1200px) {
     margin-bottom: 36px;
-    margin-left: 0;
   }
 }
 
 .avatar {
-  max-width: 224px;
+  width: 100%;
+  height: 100%;
   margin-bottom: 12px;
   margin-left: auto;
   margin-right: auto;
-}
 
-.avatar_input {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-}
-
-.edit_photo_btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: auto;
-  border: none;
-  background-color: inherit;
-
-  svg {
-    width: 20px;
-    height: 20px;
-    margin-right: 4px;
-    color: variables.$secondary-btn-font-color;
-    transition: variables.$transition;
-  }
-
-  &:hover,
-  &:focus {
-    svg {
-      color: variables.$accent-color;
-    }
-  }
-}
-
-.meta_box {
-  width: 100%;
-  @media screen and (min-width: 768px) {
-    width: 50%;
-  }
-  @media screen and (min-width: 1200px) {
-    width: 100%;
-  }
-}
-
-.meta_block {
-  display: flex;
-
-  &:not(:last-child) {
-    margin-bottom: 12px;
-
-    @media screen and (min-width: 768px) {
-      margin-bottom: 8px;
-    }
-    @media screen and (min-width: 1200px) {
-      margin-bottom: 16px;
-    }
-  }
-}
-
-.edit_meta_btn {
-  width: 20px;
-  height: 20px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px;
-  margin-left: auto;
-
+  object-fit: cover;
   border-radius: 50%;
-  border: none;
-  background-color: variables.$primary-bg;
-
-  svg {
-    color: variables.$secondary-btn-font-color;
-  }
-}
-
-.meta_text {
-  display: inline-block;
-  margin-right: 16px;
-  min-width: 68px;
-  font-weight: 600;
-  line-height: 22px;
-  letter-spacing: 0.04em;
-
-  @media screen and (min-width: 768px) {
-    min-width: 80px;
-    margin-right: 32px;
-  }
-}
-
-.logout_btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: auto;
-  padding: 4px;
-  border: none;
-  background-color: inherit;
-
-  svg {
-    width: 18px;
-    height: 18px;
-    margin-right: 8px;
-    color: variables.$secondary-btn-font-color;
-  }
-
-  @media screen and (min-width: 768px) {
-    margin-left: 0;
-    justify-content: start;
-  }
 }

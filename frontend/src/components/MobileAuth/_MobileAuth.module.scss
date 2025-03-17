@@ -1,0 +1,37 @@
+@use "../../styles/variables";
+@use "../../styles/mixins";
+
+.auth_box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.account_link {
+  @include mixins.primaryButton(
+    variables.$primary-btn-bgcolor,
+    variables.$primary-btn-font-color,
+    variables.$accent-color
+  );
+
+  &:hover,
+  &:focus {
+    svg {
+      color: variables.$primary-btn-font-color;
+    }
+  }
+
+  svg {
+    margin-right: 12px;
+    color: variables.$secondary-btn-font-color;
+    transition: variables.$transition;
+  }
+}
+
+.account_link:not(:last-child) {
+  margin-right: 12px;
+}

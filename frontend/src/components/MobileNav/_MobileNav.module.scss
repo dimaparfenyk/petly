@@ -21,20 +21,6 @@
   flex-direction: column;
 }
 
-.auth_box {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 60px;
-
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
-}
-
-.account_link:not(:last-child) {
-  margin-right: 12px;
-}
-
 .nav_item {
   margin: 0 auto;
   font-size: 1.25rem;

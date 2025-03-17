@@ -30,7 +30,6 @@ export const login = createAsyncThunk(
       const res = await axios.post("/login", credentials);
       if (!res.data) return;
       const { token, user } = res.data;
-      localStorage.setItem("token", token);
       setAuthHeader(token);
       return { token, user };
     } catch (error) {
@@ -69,20 +68,25 @@ export const refreshUser = createAsyncThunk(
 export const changeAvatar = createAsyncThunk(
   "auth/changeAvatar",
   async (file, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-    if (!persistedToken) {
-      return thunkAPI.rejectWithValue("Unable to fetch user");
-    }
     try {
-      setAuthHeader(persistedToken);
       const res = await axios.patch("/avatars", file, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(res.data);
       return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  "auth/updateUser",
+  async ({ property, value }, thunkAPI) => {
+    try {
+      await axios.patch("/user", { [property]: value });
+      return { property, value };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

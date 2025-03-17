@@ -1,7 +1,7 @@
 const path = require("path");
 const fs = require("fs/promises");
 
-const uploadFile = async (req, resultDir, dirname) => {
+const uploadFile = async (req, resultDir) => {
   const { path: tempUpload, originalname } = req.file;
   const filename = `${req.user._id}_${originalname}`;
   const resultUpload = path.join(resultDir, filename);

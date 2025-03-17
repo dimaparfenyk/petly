@@ -5,6 +5,7 @@ import {
   logOut,
   refreshUser,
   changeAvatar,
+  updateUser,
 } from "./operations";
 
 const initialState = {
@@ -41,6 +42,12 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, (state) => {
         state.isRefreshing = false;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.user = {
+          ...state.user,
+          [action.payload.property]: action.payload.value,
+        };
       })
       .addCase(changeAvatar.fulfilled, (state, action) => {
         state.user.avatarURL = action.payload.avatarURL;

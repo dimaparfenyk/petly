@@ -60,6 +60,13 @@ const loginUserSchema = Joi.object({
   password: Joi.string().min(6).required(),
 });
 
-const schemas = { registerUserSchema, loginUserSchema };
+const updateUserSchema = Joi.object({
+  name: Joi.string(),
+  email: Joi.string().pattern(emailRegexp),
+  city: Joi.string(),
+  phone: Joi.string(),
+});
+
+const schemas = { registerUserSchema, loginUserSchema, updateUserSchema };
 
 module.exports = { User, schemas };

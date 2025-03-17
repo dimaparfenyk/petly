@@ -12,12 +12,12 @@ const PetItem = ({ pet = {}, onClick }) => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavoritePets);
   const { token, user } = useAuth();
-  // console.log(petImgUrl);
+
   const handleFavoriteToggle = () => {
     dispatch(toggleFavoritePet({ token, petId: pet._id }));
   };
 
-  const isFavorite = favorites.some((favPet) => favPet._id === pet._id);
+  const isFavoritePet = favorites.some((favPet) => favPet._id === pet._id);
 
   return (
     <li className={css.petcard}>
@@ -43,7 +43,7 @@ const PetItem = ({ pet = {}, onClick }) => {
         </div>
       </article>
       <button className={css.add_favorite_btn} onClick={handleFavoriteToggle}>
-        {isFavorite ? <FaHeart /> : <FaRegHeart />}
+        {isFavoritePet ? <FaHeart /> : <FaRegHeart />}
       </button>
     </li>
   );

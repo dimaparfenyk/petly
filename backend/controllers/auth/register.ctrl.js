@@ -19,8 +19,8 @@ const register = async (req, res) => {
     avatarURL: "/user/avatar-placeholder.png",
   });
   res.status(201).json({
-    email: newUser.email,
     name: newUser.name,
+    email: newUser.email,
     phone: newUser.phone,
     city: newUser.city,
   });

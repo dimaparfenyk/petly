@@ -1,0 +1,23 @@
+@use "../../styles/_variables.scss";
+
+.logout_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  padding: 4px;
+  border: none;
+  background-color: inherit;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    color: variables.$secondary-btn-font-color;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-left: 0;
+    justify-content: start;
+  }
+}
