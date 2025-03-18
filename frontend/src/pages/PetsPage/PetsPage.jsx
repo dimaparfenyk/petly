@@ -24,7 +24,7 @@ const PetsPage = () => {
   return (
     <Section>
       <Container className={"grid_container"}>
-        <Wrapper>
+        <Wrapper newClass="pets_nav_box">
           <PageTitle text={"Find your favorite pet"} />
           <Filter onChange={handleFilterChange} />
           <FilterButtons toggleModal={toggleModal} />

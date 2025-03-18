@@ -11,6 +11,9 @@
   align-items: center;
   column-gap: 12px;
   row-gap: 16px;
+  @media screen and (min-width: 768px) {
+    padding-right: 164px;
+  }
 }
 
 .nav_link {

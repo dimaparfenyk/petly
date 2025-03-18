@@ -2,6 +2,7 @@ const Joi = require("joi");
 const { model, Schema } = require("mongoose");
 const { handleMongooseError } = require("../../helpers");
 
+const dateRegexp = /^\d{2}-\d{2}-\d{4}$/;
 const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const phoneRegexp = /^(\+\d{1,3}[- ]?)?\(?\d{1,4}\)?[- ]?\d{1,4}[- ]?\d{1,9}$/;
 
@@ -36,7 +37,7 @@ const userSchema = new Schema(
       type: String,
       default: null,
     },
-    favorites: [{ type: Schema.ObjectId, ref: "Pet" }],
+    myPets: { type: Array },
   },
   { versionKey: false, timestamps: true }
 );
@@ -60,13 +61,26 @@ const loginUserSchema = Joi.object({
   password: Joi.string().min(6).required(),
 });
 
+const userPetSchema = Joi.object({
+  name: Joi.string().required(),
+  birth: Joi.string().pattern(dateRegexp).required(),
+  breed: Joi.string().required(),
+  petImgUrl: Joi.string().optional(),
+  comments: Joi.string().allow("").optional(),
+});
+
 const updateUserSchema = Joi.object({
   name: Joi.string(),
   email: Joi.string().pattern(emailRegexp),
   city: Joi.string(),
   phone: Joi.string(),
+  myPets: Joi.array().items(userPetSchema).optional(),
 });
 
-const schemas = { registerUserSchema, loginUserSchema, updateUserSchema };
+const schemas = {
+  registerUserSchema,
+  loginUserSchema,
+  updateUserSchema,
+};
 
 module.exports = { User, schemas };

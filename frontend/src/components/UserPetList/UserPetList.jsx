@@ -1,15 +1,12 @@
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import { selectUserPets } from "../../redux/auth/selectors";
 import { IoIosAdd } from "react-icons/io";
 import UserPetItem from "../UserPetItem";
 import css from "./_UserPetList.module.scss";
 
-const UserPetList = () => {
-  const [pets, setPets] = useState([1, 2]);
-
-  const handleAddPet = () => {
-    setPets((prev) => [...prev, 3]);
-    console.log(pets);
-  };
+const UserPetList = ({ handleAddPet }) => {
+  const pets = useSelector(selectUserPets);
+  console.log(pets);
 
   return (
     <div className={css.list_box}>
@@ -22,8 +19,8 @@ const UserPetList = () => {
       </div>
 
       <ul>
-        {pets.map((pet) => {
-          return <UserPetItem key={pet} pet={pet} />;
+        {pets.map((pet, index) => {
+          return <UserPetItem key={index} pet={pet} />;
         })}
       </ul>
     </div>

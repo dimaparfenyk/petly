@@ -25,8 +25,8 @@ const UserAvatarForm = ({ changePreviewImg }) => {
   }, [dispatch, image]);
 
   return (
-    <form>
-      <label>
+    <form className={css.form}>
+      <label className={css.avatar_label}>
         <div className={css.edit_photo_btn}>
           <MdPhotoCamera />
           Edit photo

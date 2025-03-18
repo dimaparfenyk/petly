@@ -1,4 +1,3 @@
-const { ctrlWrapper } = require("../../helpers");
 const { User } = require("../../models/user");
 
 const updateUser = async (req, res) => {

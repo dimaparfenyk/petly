@@ -8,7 +8,7 @@ const UserPetItem = ({ pet }) => {
       <div className={css.img_box}>
         <img
           src="./pets/pet-dog.png"
-          alt={`pet${pet}`}
+          alt={`pet${pet.name}`}
           className={css.pet_avatar}
         />
       </div>

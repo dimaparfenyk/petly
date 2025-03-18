@@ -32,38 +32,43 @@ const UserMetaItem = ({ meta }) => {
     <li className={css.meta_block}>
       {shouldBeEdited ? (
         <>
-          <label className={css.meta_text} htmlFor={property}>
-            {property} :
+          <label className={css.meta_label} htmlFor={property}>
+            {property}:
           </label>
-          <input
-            id={property}
-            className={css.input_field}
-            placeholder={"Edit ..."}
-            name={property}
-            defaultValue={metaValue}
-            onChange={(e) => setValue(e.target.value.trim())}
-          />
-          <button
-            type="submit"
-            className={clsx(css.edit_meta_btn, {
-              [css.is_edited]: isValueChanged,
-            })}
-            onClick={handleEditField}
-          >
-            <FaCheck />
-          </button>
+          <div className={css.meta_edit_box}>
+            <input
+              id={property}
+              className={css.input_field}
+              placeholder={"Edit ..."}
+              name={property}
+              value={value}
+              onChange={(e) => setValue(e.target.value.trim())}
+            />
+            <button
+              type="submit"
+              className={clsx(css.edit_meta_btn, {
+                [css.is_edited]: isValueChanged,
+              })}
+              onClick={handleEditField}
+            >
+              <FaCheck />
+            </button>
+          </div>
         </>
       ) : (
         <>
-          <p className={css.meta_text}>{property} :</p>
-          {metaValue}
-          <button
-            type="button"
-            className={css.edit_meta_btn}
+          <p className={css.meta_label}>{property}:</p>
+          <div
+            className={css.meta_edit_box}
             onClick={() => setShouldBeEdited((prev) => !prev)}
           >
-            <FaPen />
-          </button>
+            <span className={css.meta_value} name={property}>
+              {metaValue}
+            </span>
+            <button type="button" className={css.edit_meta_btn}>
+              <FaPen />
+            </button>
+          </div>
         </>
       )}
     </li>

@@ -6,7 +6,7 @@ const {
   logout,
   updateAvatar,
   updateUser,
-} = require("../controllers/auth");
+} = require("../controllers/user");
 const { validateBody, authenticate, upload } = require("../middlewars");
 const { schemas } = require("../models/user");
 
@@ -26,6 +26,13 @@ authRouter.post("/logout", authenticate, logout);
 
 authRouter.patch(
   "/user",
+  authenticate,
+  validateBody(schemas.updateUserSchema),
+  updateUser
+);
+
+authRouter.post(
+  "/user/pets",
   authenticate,
   validateBody(schemas.updateUserSchema),
   updateUser
