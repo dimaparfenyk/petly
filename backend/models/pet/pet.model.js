@@ -47,7 +47,7 @@ const Pet = model("Pet", petSchema);
 const addSchema = Joi.object({
   name: Joi.string(),
   birth: Joi.string().pattern(dateRegexp),
-  sex: Joi.string().valid("male", "female"),
+  sex: Joi.string().valid("male", "female").required(),
   breed: Joi.string(),
   price: Joi.number(),
   title: Joi.string().required(),

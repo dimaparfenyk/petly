@@ -5,7 +5,7 @@ const {
   getCurrent,
   logout,
   updateAvatar,
-  updateUser,
+  getUserDetails,
 } = require("../controllers/user");
 const { validateBody, authenticate, upload } = require("../middlewars");
 const { schemas } = require("../models/user");
@@ -24,19 +24,14 @@ authRouter.get("/current", authenticate, getCurrent);
 
 authRouter.post("/logout", authenticate, logout);
 
-authRouter.patch(
-  "/user",
-  authenticate,
-  validateBody(schemas.updateUserSchema),
-  updateUser
-);
+// authRouter.patch(
+//   "/user",
+//   authenticate,
+//   validateBody(schemas.updateUserSchema),
+//   updateUser
+// );
 
-authRouter.post(
-  "/user/pets",
-  authenticate,
-  validateBody(schemas.updateUserSchema),
-  updateUser
-);
+authRouter.get("/user", authenticate, getUserDetails);
 
 authRouter.patch(
   "/avatars",

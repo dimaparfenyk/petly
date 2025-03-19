@@ -24,9 +24,9 @@ const login = async (req, res) => {
   };
 
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "29d" });
-  const loginUser = await User.findByIdAndUpdate(user._id, { token });
+  await User.findByIdAndUpdate(user._id, { token });
 
-  res.json({ token, user: loginUser });
+  res.json({ token });
 };
 
 module.exports = login;

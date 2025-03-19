@@ -37,7 +37,7 @@ const userSchema = new Schema(
       type: String,
       default: null,
     },
-    myPets: { type: Array },
+    myPets: [{ type: Schema.Types.ObjectId, ref: "Userpet" }],
   },
   { versionKey: false, timestamps: true }
 );
@@ -61,20 +61,11 @@ const loginUserSchema = Joi.object({
   password: Joi.string().min(6).required(),
 });
 
-const userPetSchema = Joi.object({
-  name: Joi.string().required(),
-  birth: Joi.string().pattern(dateRegexp).required(),
-  breed: Joi.string().required(),
-  petImgUrl: Joi.string().optional(),
-  comments: Joi.string().allow("").optional(),
-});
-
 const updateUserSchema = Joi.object({
   name: Joi.string(),
   email: Joi.string().pattern(emailRegexp),
   city: Joi.string(),
   phone: Joi.string(),
-  myPets: Joi.array().items(userPetSchema).optional(),
 });
 
 const schemas = {

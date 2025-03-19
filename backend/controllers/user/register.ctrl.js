@@ -1,4 +1,3 @@
-const path = require("path");
 const bcrypt = require("bcrypt");
 const { HttpError } = require("../../helpers");
 const { User } = require("../../models/user");
@@ -13,16 +12,15 @@ const register = async (req, res) => {
 
   const hashPassword = await bcrypt.hash(password, 10);
 
-  const newUser = await User.create({
+  const { name: userName, email: userEmail } = await User.create({
     ...req.body,
     password: hashPassword,
     avatarURL: "/user/avatar-placeholder.png",
   });
+
   res.status(201).json({
-    name: newUser.name,
-    email: newUser.email,
-    phone: newUser.phone,
-    city: newUser.city,
+    name: userName,
+    email: userEmail,
   });
 };
 

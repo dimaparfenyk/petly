@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { selectUserPets } from "../../redux/auth/selectors";
 import { IoIosAdd } from "react-icons/io";
-import UserPetItem from "../UserPetItem";
+// import UserPetItem from "../UserPetItem";
 import css from "./_UserPetList.module.scss";
 
 const UserPetList = ({ handleAddPet }) => {
@@ -19,9 +19,9 @@ const UserPetList = ({ handleAddPet }) => {
       </div>
 
       <ul>
-        {pets.map((pet, index) => {
-          return <UserPetItem key={index} pet={pet} />;
-        })}
+        {/* {pets.map((pet, index) => {
+            return <UserPetItem key={index} pet={pet} />;
+          })} */}
       </ul>
     </div>
   );

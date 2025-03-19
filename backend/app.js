@@ -7,6 +7,7 @@ const {
   newsRouter,
   sponsorsRouter,
   authRouter,
+  userRouter,
 } = require("./routes");
 
 const app = express();
@@ -18,6 +19,7 @@ app.use(express.static(path.join(__dirname, "../../frontend", "public")));
 
 app.use("/api/auth", authRouter);
 app.use("/api/pets", petsRouter);
+app.use("/api/user", userRouter);
 app.use("/api/news", newsRouter);
 app.use("/api/sponsors", sponsorsRouter);
 

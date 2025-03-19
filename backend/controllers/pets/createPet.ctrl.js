@@ -8,14 +8,17 @@ const createPet = async (req, res) => {
   const { _id, city } = req.user;
 
   const petImgUrl = req.file
-    ? await uploadFile(req, petsImgDir, "pets")
+    ? await uploadFile(req, petsImgDir)
     : "pet-avatar.png";
 
-  const result = await Pet.create({
-    ...req.body,
-    owner: { _id, city },
-    petImgUrl,
-  });
+  const result = await Pet.create(
+    {
+      ...req.body,
+      owner: { _id, city },
+      petImgUrl,
+    },
+    { new: true }
+  );
   res.status(201).json({ message: "Pet's data successfully created", result });
 };
 
