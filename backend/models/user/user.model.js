@@ -61,7 +61,7 @@ const loginUserSchema = Joi.object({
   password: Joi.string().min(6).required(),
 });
 
-const updateUserSchema = Joi.object({
+const updUserSchema = Joi.object({
   name: Joi.string(),
   email: Joi.string().pattern(emailRegexp),
   city: Joi.string(),
@@ -71,7 +71,7 @@ const updateUserSchema = Joi.object({
 const schemas = {
   registerUserSchema,
   loginUserSchema,
-  updateUserSchema,
+  updUserSchema,
 };
 
 module.exports = { User, schemas };

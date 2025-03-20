@@ -4,32 +4,31 @@ const {
   login,
   getCurrent,
   logout,
+  updateUser,
   updateAvatar,
   getUserDetails,
 } = require("../controllers/user");
 const { validateBody, authenticate, upload } = require("../middlewars");
 const { schemas } = require("../models/user");
 
+const { registerUserSchema, loginUserSchema, updUserSchema } = schemas;
+
 const authRouter = express.Router();
 
-authRouter.post(
-  "/register",
-  validateBody(schemas.registerUserSchema),
-  register
-);
+authRouter.post("/register", validateBody(registerUserSchema), register);
 
-authRouter.post("/login", validateBody(schemas.loginUserSchema), login);
+authRouter.post("/login", validateBody(loginUserSchema), login);
 
 authRouter.get("/current", authenticate, getCurrent);
 
 authRouter.post("/logout", authenticate, logout);
 
-// authRouter.patch(
-//   "/user",
-//   authenticate,
-//   validateBody(schemas.updateUserSchema),
-//   updateUser
-// );
+authRouter.patch(
+  "/user",
+  authenticate,
+  validateBody(updUserSchema),
+  updateUser
+);
 
 authRouter.get("/user", authenticate, getUserDetails);
 

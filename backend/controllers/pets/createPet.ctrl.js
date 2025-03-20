@@ -5,21 +5,23 @@ const { ctrlWrapper, uploadFile } = require("../../helpers");
 const petsImgDir = path.join(__dirname, "../../../frontend/public/pets");
 
 const createPet = async (req, res) => {
-  const { _id, city } = req.user;
+  const { _id } = req.user;
 
   const petImgUrl = req.file
     ? await uploadFile(req, petsImgDir)
     : "pet-avatar.png";
 
-  const result = await Pet.create(
-    {
-      ...req.body,
-      owner: { _id, city },
-      petImgUrl,
-    },
-    { new: true }
-  );
-  res.status(201).json({ message: "Pet's data successfully created", result });
+  const pet = new Pet({
+    ...req.body,
+    owner: _id,
+    petImgUrl,
+  });
+
+  await pet.save();
+
+  res
+    .status(201)
+    .json({ message: "Pet's data successfully created", result: pet });
 };
 
 module.exports = { createPet: ctrlWrapper(createPet) };

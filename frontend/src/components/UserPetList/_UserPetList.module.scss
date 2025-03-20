@@ -1,5 +1,9 @@
 @use "../../styles/variables";
 
+.list_box {
+  width: 100%;
+}
+
 .list_header {
   display: flex;
   align-items: center;

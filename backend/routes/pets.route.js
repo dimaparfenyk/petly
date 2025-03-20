@@ -17,7 +17,10 @@ const {
   authenticate,
   upload,
 } = require("../middlewars");
+
 const { schemas } = require("../models/pet");
+
+// const { addSchema } = schemas;
 
 const petsRouter = express.Router();
 
@@ -35,7 +38,7 @@ petsRouter.post(
   "/",
   authenticate,
   upload.single("petImgUrl"),
-  validateBody(schemas.addSchema),
+  // validateBody(schemas.addSchema),
   createPet
 );
 

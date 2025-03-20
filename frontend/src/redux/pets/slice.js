@@ -59,9 +59,11 @@ const petsSlice = createSlice({
         state.favorites = action.payload;
       })
       .addCase(addPet.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.items.push(action.payload.result);
       })
       .addCase(addPet.rejected, (state, action) => {
+        console.log(action.payload);
         state.error = action.payload;
       });
   },

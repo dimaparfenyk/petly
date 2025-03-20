@@ -1,9 +1,15 @@
 const express = require("express");
-const { addUserPet } = require("../controllers/userPets/addUserPets");
+const {
+  addUserPet,
+  deleteUserPet,
+  getUserHomePets,
+} = require("../controllers/userPets");
 const { authenticate, upload, validateBody } = require("../middlewars");
 const { schemas } = require("../models/userPet");
 
 const userRouter = express.Router();
+
+userRouter.get("/homepets", authenticate, getUserHomePets);
 
 userRouter.post(
   "/homepets",
@@ -12,5 +18,7 @@ userRouter.post(
   validateBody(schemas.addSchema),
   addUserPet
 );
+
+userRouter.delete("/homepets/:id", authenticate, deleteUserPet);
 
 module.exports = userRouter;

@@ -6,6 +6,7 @@ import {
   refreshUser,
   changeAvatar,
   updateUser,
+  getUserDetails,
 } from "./operations";
 
 const initialState = {
@@ -42,6 +43,9 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, (state) => {
         state.isRefreshing = false;
+      })
+      .addCase(getUserDetails.fulfilled, (state, action) => {
+        state.user = action.payload;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.user = {

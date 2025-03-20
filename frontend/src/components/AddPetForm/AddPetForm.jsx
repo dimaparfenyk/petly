@@ -19,9 +19,11 @@ const AddPetForm = ({ onClose }) => {
   const handleSubmit = async (values, actions) => {
     const body = new FormData();
 
+    const formattedBirth = moment(values.birth).format("DD-MM-YYYY");
+
     body.append("title", values.title);
     body.append("name", values.name);
-    body.append("birth", moment(values.birth).format("DD-MM-YYYY"));
+    body.append("birth", formattedBirth);
     body.append("breed", values.breed);
     body.append("price", values.price);
     body.append("comments", values.comments);
