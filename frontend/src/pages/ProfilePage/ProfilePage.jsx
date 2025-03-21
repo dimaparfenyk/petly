@@ -18,6 +18,15 @@ const ProfilePage = () => {
   const [showModal, setShowModal] = useState(false);
   const { user } = useAuth();
 
+  const initialFormValues = {
+    name: "",
+    birth: "",
+    breed: "",
+    petImgUrl: "",
+    comments: "",
+    sex: "male",
+  };
+
   useEffect(() => {
     dispatch(getUserDetails());
   }, [dispatch]);
@@ -36,7 +45,13 @@ const ProfilePage = () => {
         {showModal &&
           createPortal(
             <Modal onClose={toggleModal}>
-              <AddPetForm onClose={toggleModal} />
+              <AddPetForm
+                onClose={toggleModal}
+                addEntity={console.log(
+                  "add user pet operations from redxx to dispatch action"
+                )}
+                initial={initialFormValues}
+              />
             </Modal>,
             portalEl
           )}

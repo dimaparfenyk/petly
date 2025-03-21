@@ -12,12 +12,28 @@ import FilterButtons from "../../components/FilterButtons";
 import AddPetForm from "../../components/AddPetForm";
 import Modal from "../../components/Modal";
 import AddPetButton from "../../components/AddPetButton";
+import { addPet } from "../../redux/pets/operations";
+import { useSelector } from "react-redux";
+import { selectStatusFilter } from "../../redux/filters/selectors";
 
 const portalEl = document.getElementById("modal-root");
 
 const PetsPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [filterValue, handleFilterChange] = useFilter("");
+  const filter = useSelector(selectStatusFilter);
+
+  const initialFormValues = {
+    title: "",
+    name: "",
+    birth: "",
+    breed: "",
+    price: "",
+    petImgUrl: "",
+    comments: "",
+    sex: "male",
+    status: filter,
+  };
 
   const toggleModal = () => setShowModal((prev) => !prev);
 
@@ -36,7 +52,11 @@ const PetsPage = () => {
         {showModal &&
           createPortal(
             <Modal onClose={toggleModal}>
-              <AddPetForm onClose={toggleModal} />
+              <AddPetForm
+                onClose={toggleModal}
+                addEntity={addPet}
+                initial={initialFormValues}
+              />
             </Modal>,
             portalEl
           )}

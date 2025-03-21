@@ -32,11 +32,14 @@ const PetItem = ({ pet = {}, onClick }) => {
             <span>Breed:</span> {breed}
           </div>
           <div className={css.meta_text}>
-            <span>Place:</span> {owner.city ? owner.city : user?.city}
+            <span>Place:</span>
+            {owner.city ?? user.city}
           </div>
-          <div className={css.meta_text}>
-            <span>Price:</span> {price}₴
-          </div>
+          {status === "sell" && (
+            <div className={css.meta_text}>
+              <span>Price:</span> {price}₴
+            </div>
+          )}
           <div className={css.btn_box}>
             <Button text={"Learn More"} onClick={onClick} />
           </div>

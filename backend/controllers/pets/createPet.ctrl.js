@@ -5,7 +5,7 @@ const { ctrlWrapper, uploadFile } = require("../../helpers");
 const petsImgDir = path.join(__dirname, "../../../frontend/public/pets");
 
 const createPet = async (req, res) => {
-  const { _id } = req.user;
+  const { _id, city, phone, email } = req.user;
 
   const petImgUrl = req.file
     ? await uploadFile(req, petsImgDir)
@@ -13,7 +13,7 @@ const createPet = async (req, res) => {
 
   const pet = new Pet({
     ...req.body,
-    owner: _id,
+    owner: { _id, city, phone, email },
     petImgUrl,
   });
 

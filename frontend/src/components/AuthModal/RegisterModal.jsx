@@ -1,14 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+
 import { Formik, Field, Form } from "formik";
 import Button from "../Button";
 import css from "./_RegisterModal.module.scss";
 import { register } from "../../redux/auth/operations";
 import AuthRedirectLink from "../AuthRedirectLink/AuthRedirectLink";
+import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const RegisterModal = () => {
   const dispatch = useDispatch();
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [isFirstRegStep, setIsFirstRegStep] = useState(true);
+  const [isRegistered, setIsRegistered] = useState(false);
+
+  useEffect(() => {
+    if (isRegistered && user.email) {
+      navigate("/login");
+    }
+  }, [isRegistered, user.email, navigate]);
 
   const initialValues = {
     email: "denis@gmail.com",
@@ -26,10 +38,11 @@ const RegisterModal = () => {
     body.append("password", values.password);
     body.append("city", values.city);
     body.append("phone", values.phone);
-    dispatch(register(values));
+
+    await dispatch(register(values)).unwrap();
+    setIsRegistered(true);
 
     actions.resetForm();
-    // onClose();
   };
 
   return (

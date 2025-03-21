@@ -2,9 +2,8 @@
 
 .petcard {
   position: relative;
+  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
   width: 300px;
   min-height: 524px;
 
@@ -19,7 +18,14 @@
 
   @media screen and (min-width: 1200px) {
     flex-basis: calc((100% - 96px) / 4);
+    height: 608px;
   }
+}
+
+.article {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .img_box {
@@ -58,8 +64,8 @@
   overflow: hidden; // Скрытие лишнего текста
   text-overflow: ellipsis; // Добавление многоточия
   display: -webkit-box; // Для поддержки многоточия в WebKit
-  -webkit-line-clamp: 2; // Ограничение текста двумя строками
-  -webkit-box-orient: vertical; // Вертикальная ориентация для WebKit
+  line-clamp: 2; // Ограничение текста двумя строками
+  box-orient: vertical; // Вертикальная ориентация
 }
 
 .pet_img {
@@ -74,6 +80,10 @@
   button {
     width: 100%;
     margin: 0 auto;
+  }
+
+  @media screen and (min-width: 1200px) {
+    margin-top: auto;
   }
 }
 
