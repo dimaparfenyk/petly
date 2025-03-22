@@ -1,11 +1,8 @@
 import { useState } from "react";
 import { Formik, Form } from "formik";
-import moment from "moment";
-
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { selectStatusFilter } from "../../redux/filters/selectors";
-import { addPet } from "../../redux/pets/operations";
+import moment from "moment";
 import RadioButtons from "./RadioButtons";
 import FirstForm from "./FirstForm";
 import SecondForm from "./SecondForm";
@@ -14,7 +11,6 @@ import css from "./_AddPetForm.module.scss";
 const AddPetForm = ({ onClose, addEntity, initial }) => {
   const dispatch = useDispatch();
   const location = useLocation();
-
   const [isFirstForm, setIsFirstForm] = useState(true);
   const [image, setImage] = useState(null);
   const isProfilePage = location.pathname === "/profile";
@@ -30,7 +26,9 @@ const AddPetForm = ({ onClose, addEntity, initial }) => {
       body.append(key, value);
     });
 
-    if (image) body.append("petImgUrl", image);
+    if (image) {
+      body.append("petImgUrl", image);
+    }
 
     dispatch(addEntity(body));
     actions.resetForm();
@@ -53,6 +51,7 @@ const AddPetForm = ({ onClose, addEntity, initial }) => {
                 onClose={onClose}
                 changeForm={setIsFirstForm}
                 isFirstForm={isFirstForm}
+                isProfilePage={isProfilePage}
               >
                 {!isProfilePage && <RadioButtons />}
               </FirstForm>
@@ -61,6 +60,7 @@ const AddPetForm = ({ onClose, addEntity, initial }) => {
                 changeForm={setIsFirstForm}
                 setImage={setImage}
                 setFieldValue={setFieldValue}
+                isProfilePage={isProfilePage}
               />
             )}
           </Form>

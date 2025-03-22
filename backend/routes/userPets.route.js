@@ -15,7 +15,7 @@ userRouter.post(
   "/homepets",
   authenticate,
   upload.single("petImgUrl"),
-  validateBody(schemas.addSchema),
+  // validateBody(schemas.addSchema),
   addUserPet
 );
 

@@ -2,8 +2,9 @@ import { Field } from "formik";
 import css from "./_AddPetForm.module.scss";
 import Button from "../Button";
 
-const FirstForm = ({ children, ...rest }) => {
-  const { changeForm, onClose, isProfilePage } = rest;
+const FirstForm = ({ children, ...restProps }) => {
+  const { changeForm, onClose, isProfilePage } = restProps;
+
   return (
     <>
       {!isProfilePage && (

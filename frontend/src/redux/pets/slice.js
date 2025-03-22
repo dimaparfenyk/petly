@@ -8,6 +8,8 @@ import {
 } from "./operations";
 
 const handlePending = (state) => {
+  state.message = null;
+  state.error = null;
   state.isLoading = true;
 };
 
@@ -23,8 +25,16 @@ const petsSlice = createSlice({
     favorites: [],
     isLoading: false,
     error: null,
+    message: null,
   },
-
+  reducers: {
+    clearMessage: (state) => {
+      state.message = null;
+    },
+    clearError: (state) => {
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       // fetching all pets
@@ -59,14 +69,14 @@ const petsSlice = createSlice({
         state.favorites = action.payload;
       })
       .addCase(addPet.fulfilled, (state, action) => {
-        console.log(action.payload);
+        state.message = "Pet notice successfully created";
         state.items.push(action.payload.result);
       })
-      .addCase(addPet.rejected, (state, action) => {
-        console.log(action.payload);
-        state.error = action.payload;
+      .addCase(addPet.rejected, (state) => {
+        state.error = "Failed to add pet!";
       });
   },
 });
 
+export const { clearMessage, clearError } = petsSlice.actions;
 export const petsReducer = petsSlice.reducer;

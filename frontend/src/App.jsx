@@ -25,7 +25,6 @@ const App = () => {
 
   useEffect(() => {
     if (error) {
-      console.log("я сработал внутри с ошибкой ", error);
       toast.error(error);
     }
   }, [error]);

@@ -6,3 +6,7 @@ export const selectCurPet = (petId) => (state) =>
 export const selectFavoritePets = (state) => state.pets.favorites;
 
 export const selectIsLoading = (state) => state.pets.isLoading;
+
+export const selectMessage = (state) => state.pets.message;
+
+export const selectError = (state) => state.pets.error;

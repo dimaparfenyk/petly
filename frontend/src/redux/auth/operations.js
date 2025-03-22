@@ -71,11 +71,12 @@ export const changeAvatar = createAsyncThunk(
   "auth/changeAvatar",
   async (file, thunkAPI) => {
     try {
-      const res = await axios.patch("/avatars", file, {
+      const res = await axios.patch("/auth/avatars", file, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
+      console.log(res.data);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
