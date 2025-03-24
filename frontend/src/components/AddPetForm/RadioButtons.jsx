@@ -1,13 +1,8 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
 import { Field } from "formik";
-import { selectStatusFilter } from "../../redux/filters/selectors";
 import statusFilters from "../../redux/constants";
 import css from "./_AddPetForm.module.scss";
 
-const RadioButtons = () => {
-  const filter = useSelector(selectStatusFilter);
-  const [checkedBtn, setCheckedBtn] = useState(filter);
+const RadioButtons = ({ setFieldValue, values }) => {
   return (
     <div
       role="group"
@@ -18,9 +13,9 @@ const RadioButtons = () => {
         <Field
           type="radio"
           name="status"
-          value="lost_found"
-          checked={checkedBtn === statusFilters.lost_found}
-          onChange={() => setCheckedBtn(statusFilters.lost_found)}
+          value={statusFilters.lost_found}
+          checked={values.status === statusFilters.lost_found}
+          onChange={() => setFieldValue("status", statusFilters.lost_found)}
           className={css.petStatus_radio}
         />
         <div className={css.pet_status}>Lost/Found</div>
@@ -31,8 +26,8 @@ const RadioButtons = () => {
           type="radio"
           name="status"
           value="in_good_hands"
-          checked={checkedBtn === statusFilters.for_free}
-          onChange={() => setCheckedBtn(statusFilters.for_free)}
+          checked={values.status === statusFilters.for_free}
+          onChange={() => setFieldValue("status", statusFilters.for_free)}
           className={css.petStatus_radio}
         />
         <div className={css.pet_status}>In good hands</div>
@@ -41,9 +36,9 @@ const RadioButtons = () => {
         <Field
           type="radio"
           name="status"
-          value="sell"
-          checked={checkedBtn === statusFilters.sell}
-          onChange={() => setCheckedBtn(statusFilters.sell)}
+          value={statusFilters.sell}
+          checked={values.status === statusFilters.sell}
+          onChange={() => setFieldValue("status", statusFilters.sell)}
           className={css.petStatus_radio}
         />
         <div className={css.pet_status}>Sell</div>

@@ -2,11 +2,12 @@ import { useState } from "react";
 import { Formik, Form } from "formik";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import moment from "moment";
 import RadioButtons from "./RadioButtons";
 import FirstForm from "./FirstForm";
 import SecondForm from "./SecondForm";
 import css from "./_AddPetForm.module.scss";
+import { addPetSchema, handleSubmit } from "../../utilities";
+// import { handleSubmit, addPetSchema } from "../../utilities";
 
 const AddPetForm = ({ onClose, addEntity, initial }) => {
   const dispatch = useDispatch();
@@ -15,25 +16,7 @@ const AddPetForm = ({ onClose, addEntity, initial }) => {
   const [image, setImage] = useState(null);
   const isProfilePage = location.pathname === "/profile";
 
-  const handleSubmit = async (values, actions) => {
-    const body = new FormData();
-    const formattedValues = {
-      ...values,
-      birth: moment(values.birth).format("DD-MM-YYYY"),
-    };
-
-    Object.entries(formattedValues).forEach(([key, value]) => {
-      body.append(key, value);
-    });
-
-    if (image) {
-      body.append("petImgUrl", image);
-    }
-
-    dispatch(addEntity(body));
-    actions.resetForm();
-    onClose();
-  };
+  const submitOptions = { dispatch, addEntity, onClose, image };
 
   return (
     <div className={css.wrapper}>
@@ -42,9 +25,10 @@ const AddPetForm = ({ onClose, addEntity, initial }) => {
       <Formik
         initialValues={initial}
         enableReinitialize={true}
-        onSubmit={handleSubmit}
+        // validationSchema={addPetSchema}
+        onSubmit={handleSubmit(submitOptions)}
       >
-        {({ setFieldValue }) => (
+        {({ setFieldValue, values }) => (
           <Form method="post" className={css.form}>
             {isFirstForm ? (
               <FirstForm
@@ -52,8 +36,11 @@ const AddPetForm = ({ onClose, addEntity, initial }) => {
                 changeForm={setIsFirstForm}
                 isFirstForm={isFirstForm}
                 isProfilePage={isProfilePage}
+                status={values.status}
               >
-                {!isProfilePage && <RadioButtons />}
+                {!isProfilePage && (
+                  <RadioButtons setFieldValue={setFieldValue} values={values} />
+                )}
               </FirstForm>
             ) : (
               <SecondForm
@@ -61,6 +48,7 @@ const AddPetForm = ({ onClose, addEntity, initial }) => {
                 setImage={setImage}
                 setFieldValue={setFieldValue}
                 isProfilePage={isProfilePage}
+                status={values.status}
               />
             )}
           </Form>

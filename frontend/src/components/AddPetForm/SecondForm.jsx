@@ -1,46 +1,42 @@
 import { Field } from "formik";
-import { useSelector } from "react-redux";
-import { selectStatusFilter } from "../../redux/filters/selectors";
-import statusFilters from "../../redux/constants";
 import css from "./_AddPetForm.module.scss";
 import ImageDownloader from "./ImageDownloader";
 import Button from "../Button";
 
 const SecondForm = ({ changeForm, ...restProps }) => {
-  const filter = useSelector(selectStatusFilter);
-  const { setFieldValue, setImage, isProfilePage } = restProps;
-  const isFormFieldVisible = filter == statusFilters.sell && !isProfilePage;
+  const { setFieldValue, setImage, isProfilePage, status } = restProps;
+  const isFormFieldVisible = status === "sell" && !isProfilePage;
 
   return (
     <>
+      <fieldset className={css.fieldset}>
+        <legend className={css.legend}>The sex:</legend>
+        <div className={css.sex_box}>
+          {["male", "female"].map((sex) => (
+            <label key={sex} htmlFor={sex} className={css.sex_label}>
+              <Field
+                id={sex}
+                name="sex"
+                type="radio"
+                value={sex}
+                className={`${css.form_field} ${css.sex_field}`}
+              />
+              <div className={css.radio_btn_label}>
+                <img
+                  src={`/sex-${sex}.png`}
+                  alt={sex}
+                  className={css.sex_img}
+                />
+                <span className={css.sex_label_text}>
+                  {sex.charAt(0).toUpperCase() + sex.slice(1)}
+                </span>
+              </div>
+            </label>
+          ))}
+        </div>
+      </fieldset>
       {isFormFieldVisible && (
         <>
-          <fieldset className={css.fieldset}>
-            <legend className={css.legend}>The sex:</legend>
-            <div className={css.sex_box}>
-              {["male", "female"].map((sex) => (
-                <label key={sex} htmlFor={sex} className={css.sex_label}>
-                  <Field
-                    id={sex}
-                    name="sex"
-                    type="radio"
-                    value={sex}
-                    className={`${css.form_field} ${css.sex_field}`}
-                  />
-                  <div className={css.radio_btn_label}>
-                    <img
-                      src={`/sex-${sex}.png`}
-                      alt={sex}
-                      className={css.sex_img}
-                    />
-                    <span className={css.sex_label_text}>
-                      {sex.charAt(0).toUpperCase() + sex.slice(1)}
-                    </span>
-                  </div>
-                </label>
-              ))}
-            </div>
-          </fieldset>
           <label
             htmlFor="price"
             className={`${css.label} ${css.label_required}`}
@@ -51,13 +47,13 @@ const SecondForm = ({ changeForm, ...restProps }) => {
             id="price"
             name="price"
             placeholder="Type price"
+            type="number"
+            min="0"
             className={css.form_field}
           />
         </>
       )}
-
       <ImageDownloader setFieldValue={setFieldValue} setImage={setImage} />
-
       <label htmlFor="comments" className={css.label}>
         Comments
       </label>

@@ -30,10 +30,7 @@ const PetsPage = () => {
 
   const initialFormValues = {
     title: "",
-    name: "",
-    birth: "",
     breed: "",
-    price: "",
     petImgUrl: "",
     comments: "",
     sex: "male",

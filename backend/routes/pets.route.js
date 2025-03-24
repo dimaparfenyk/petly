@@ -38,7 +38,7 @@ petsRouter.post(
   "/",
   authenticate,
   upload.single("petImgUrl"),
-  // validateBody(schemas.addSchema),
+  validateBody(schemas.addSchema),
   createPet
 );
 

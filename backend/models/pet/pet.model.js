@@ -9,8 +9,19 @@ const catList = getData("../db/data/catBreeds.json");
 
 const petSchema = new Schema(
   {
-    name: { type: String },
-    birth: { type: String, match: dateRegexp },
+    name: {
+      type: String,
+      required: function () {
+        return this.status !== "lost/found";
+      },
+    },
+    birth: {
+      type: String,
+      required: function () {
+        return this.status !== "lost/found";
+      },
+      match: dateRegexp,
+    },
     title: { type: String },
     sex: {
       type: String,
@@ -18,7 +29,12 @@ const petSchema = new Schema(
       enum: ["male", "female"],
     },
     breed: { type: String },
-    price: { type: Number },
+    price: {
+      type: Number,
+      required: function () {
+        return this.status === "sell";
+      },
+    },
     image: { type: String },
     status: {
       type: String,
@@ -35,6 +51,7 @@ const petSchema = new Schema(
     favoritedBy: [{ type: Schema.Types.ObjectId, ref: "User" }],
     petImgUrl: {
       type: String,
+      required: false,
     },
   },
   { versionKey: false, timestamps: true }
@@ -45,13 +62,25 @@ petSchema.post("save", handleMongooseError);
 const Pet = model("Pet", petSchema);
 
 const addSchema = Joi.object({
-  name: Joi.string(),
-  birth: Joi.string().pattern(dateRegexp),
+  name: Joi.when("status", {
+    is: Joi.valid("sell", "in good hands"),
+    then: Joi.string().required(),
+    otherwise: Joi.string().allow("").optional(),
+  }),
+  birth: Joi.when("status", {
+    is: Joi.valid("sell", "in good hands"),
+    then: Joi.string().pattern(dateRegexp).required(),
+    otherwise: Joi.string().pattern(dateRegexp).allow("").optional(),
+  }),
   sex: Joi.string().valid("male", "female").required(),
   breed: Joi.string(),
-  price: Joi.number(),
+  price: Joi.when("status", {
+    is: "sell",
+    then: Joi.number().required(),
+    otherwise: Joi.number().optional().allow(null, ""),
+  }),
   title: Joi.string().required(),
-  petImgUrl: Joi.string().optional(),
+  petImgUrl: Joi.string().allow("").optional(),
   comments: Joi.string(),
   status: Joi.string().valid("lost/found", "sell", "in good hands").required(),
 });
