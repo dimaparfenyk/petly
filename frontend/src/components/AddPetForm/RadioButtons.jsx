@@ -1,8 +1,9 @@
-import { Field } from "formik";
+import { Field, useFormikContext } from "formik";
 import statusFilters from "../../redux/constants";
 import css from "./_AddPetForm.module.scss";
 
-const RadioButtons = ({ setFieldValue, values }) => {
+const RadioButtons = ({ values }) => {
+  const { setFieldValue } = useFormikContext();
   return (
     <div
       role="group"

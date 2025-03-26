@@ -1,9 +1,27 @@
-import { useState } from "react";
-import { Field } from "formik";
+import { useState, useEffect } from "react";
+import { Field, useFormikContext } from "formik";
 import css from "./_AddPetForm.module.scss";
 
-const ImageDownloader = ({ setFieldValue, setImage }) => {
-  const [imagePreview, setImagePreview] = useState(null);
+const ImageDownloader = ({ setImage }) => {
+  const { values, setFieldValue } = useFormikContext();
+  const [imagePreview, setImagePreview] = useState(
+    values.petImgPreview || null
+  );
+  useEffect(() => {
+    if (values.petImgPreview) {
+      setImagePreview(values.petImgPreview);
+    }
+  }, [values.petImgPreview]);
+
+  const handleChange = (e) => {
+    const { files } = e.currentTarget;
+    if (files && files[0]) {
+      const previewUrl = URL.createObjectURL(files[0]);
+      setImagePreview(previewUrl);
+      setImage(files[0]);
+      setFieldValue("petImgPreview", previewUrl);
+    }
+  };
 
   return imagePreview ? (
     <div
@@ -20,14 +38,7 @@ const ImageDownloader = ({ setFieldValue, setImage }) => {
           type="file"
           accept="image/*"
           className={css.img_field}
-          onChange={(e) => {
-            const { files } = e.currentTarget;
-            if (files) {
-              setImage(files[0]);
-              setImagePreview(URL.createObjectURL(files[0]));
-              setFieldValue("petImgUrl", files[0]);
-            }
-          }}
+          onChange={handleChange}
         />
         +
       </label>
@@ -36,3 +47,47 @@ const ImageDownloader = ({ setFieldValue, setImage }) => {
 };
 
 export default ImageDownloader;
+
+// const ImageDownloader = ({ setImage }) => {
+//   const { setFieldValue, values } = useFormikContext();
+//   const [imagePreview, setImagePreview] = useState(null);
+
+//   const handleImageChange = (e) => {
+//     const { files } = e.currentTarget;
+//     if (files && files[0]) {
+//       const previewUrl = URL.createObjectURL(files[0]);
+//       setImagePreview(previewUrl); // обновляем состояние для превью
+//       setFieldValue("petImgUrl", files[0]); // обновляем значение в formik
+//     }
+//   };
+
+//   return (
+//     <Field name="petImgUrl">
+//       {({ field, meta }) => (
+//         <div>
+//           {/* Отображаем картинку, если она есть */}
+//           {/* {imagePreview ? ( */}
+//           <div
+//             className={css.image_box}
+//             style={{ backgroundImage: `url(${imagePreview})` }}
+//           ></div>
+//           ){/* :  */}
+//           (
+//           <input
+//             id="petImgUrl"
+//             name="petImgUrl"
+//             type="file"
+//             accept="image/*"
+//             onChange={handleImageChange}
+//             className={css.img_field}
+//             {...field} // Передаем props из formik
+//           />
+//           ){/* } */}
+//           {meta.touched && meta.error && (
+//             <div className="error">{meta.error}</div>
+//           )}
+//         </div>
+//       )}
+//     </Field>
+//   );
+// };

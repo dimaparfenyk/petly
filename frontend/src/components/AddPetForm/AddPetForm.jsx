@@ -6,8 +6,8 @@ import RadioButtons from "./RadioButtons";
 import FirstForm from "./FirstForm";
 import SecondForm from "./SecondForm";
 import css from "./_AddPetForm.module.scss";
-import { addPetSchema, handleSubmit } from "../../utilities";
-// import { handleSubmit, addPetSchema } from "../../utilities";
+import * as Yup from "yup";
+import { handleSubmit } from "../../utilities";
 
 const AddPetForm = ({ onClose, addEntity, initial }) => {
   const dispatch = useDispatch();
@@ -15,6 +15,35 @@ const AddPetForm = ({ onClose, addEntity, initial }) => {
   const [isFirstForm, setIsFirstForm] = useState(true);
   const [image, setImage] = useState(null);
   const isProfilePage = location.pathname === "/profile";
+
+  const firstStepSchema = Yup.object({
+    title: Yup.string().when({
+      is: () => !isProfilePage,
+      then: Yup.string()
+        .min(3, "Минимум 3 символа")
+        .max(50, "Максимум 50 символов")
+        .required("Введите заголовок"),
+    }),
+
+    breed: Yup.string().required("Введите породу"),
+    name: Yup.string()
+      .trim()
+      .min(2, "Минимум 2 символа")
+      .max(30, "Максимум 30 символов"),
+    birth: Yup.date().nullable().required("Выберите дату рождения"),
+  });
+
+  const secondStepSchema = Yup.object({
+    sex: Yup.string().oneOf(["male", "female"]).required("Выберите пол"),
+    price: Yup.number().when("status", {
+      is: (status) => status === "sell",
+      then: Yup.number()
+        .required("Установите цену")
+        .positive("Цена должна быть положительным числом")
+        .integer("Цена должна быть целым числом"),
+    }),
+    comments: Yup.string().max(300, "Максимум 300 символов"),
+  });
 
   const submitOptions = { dispatch, addEntity, onClose, image };
 
@@ -24,11 +53,11 @@ const AddPetForm = ({ onClose, addEntity, initial }) => {
 
       <Formik
         initialValues={initial}
-        enableReinitialize={true}
-        // validationSchema={addPetSchema}
+        enableReinitialize
         onSubmit={handleSubmit(submitOptions)}
+        validationSchema={isFirstForm ? firstStepSchema : secondStepSchema}
       >
-        {({ setFieldValue, values }) => (
+        {({ values, touched, errors }) => (
           <Form method="post" className={css.form}>
             {isFirstForm ? (
               <FirstForm
@@ -37,19 +66,20 @@ const AddPetForm = ({ onClose, addEntity, initial }) => {
                 isFirstForm={isFirstForm}
                 isProfilePage={isProfilePage}
                 status={values.status}
+                touched={touched}
+                errors={errors}
               >
-                {!isProfilePage && (
-                  <RadioButtons setFieldValue={setFieldValue} values={values} />
-                )}
+                {!isProfilePage && <RadioButtons values={values} />}
               </FirstForm>
             ) : (
               <SecondForm
                 changeForm={setIsFirstForm}
                 setImage={setImage}
-                setFieldValue={setFieldValue}
                 isProfilePage={isProfilePage}
                 status={values.status}
-              />
+                touched={touched}
+                errors={errors}
+              ></SecondForm>
             )}
           </Form>
         )}

@@ -4,7 +4,7 @@ import ImageDownloader from "./ImageDownloader";
 import Button from "../Button";
 
 const SecondForm = ({ changeForm, ...restProps }) => {
-  const { setFieldValue, setImage, isProfilePage, status } = restProps;
+  const { setImage, isProfilePage, status, touched, errors } = restProps;
   const isFormFieldVisible = status === "sell" && !isProfilePage;
 
   return (
@@ -34,6 +34,9 @@ const SecondForm = ({ changeForm, ...restProps }) => {
             </label>
           ))}
         </div>
+        {touched.sex && errors.sex && (
+          <div className={css.error}>{errors.sex}</div>
+        )}
       </fieldset>
       {isFormFieldVisible && (
         <>
@@ -51,9 +54,12 @@ const SecondForm = ({ changeForm, ...restProps }) => {
             min="0"
             className={css.form_field}
           />
+          {touched.price && errors.price && (
+            <div className={css.error}>{errors.price}</div>
+          )}
         </>
       )}
-      <ImageDownloader setFieldValue={setFieldValue} setImage={setImage} />
+      <ImageDownloader setImage={setImage} />
       <label htmlFor="comments" className={css.label}>
         Comments
       </label>
@@ -65,6 +71,9 @@ const SecondForm = ({ changeForm, ...restProps }) => {
         rows="1"
         className={`${css.form_field} ${css.textarea}`}
       />
+      {touched.comments && errors.comments && (
+        <div className={css.error}>{errors.comments}</div>
+      )}
       <div className={css.btn_box}>
         <Button type="button" onClick={() => changeForm(true)}>
           Back

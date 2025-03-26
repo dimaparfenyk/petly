@@ -32,9 +32,12 @@ const PetsPage = () => {
     title: "",
     breed: "",
     petImgUrl: "",
+    name: "",
+    price: "",
     comments: "",
     sex: "male",
     status: filter,
+    birth: "",
   };
 
   useEffect(() => {
