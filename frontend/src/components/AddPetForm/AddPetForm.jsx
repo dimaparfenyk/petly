@@ -17,14 +17,14 @@ const AddPetForm = ({ onClose, addEntity, initial }) => {
   const isProfilePage = location.pathname === "/profile";
 
   const firstStepSchema = Yup.object({
-    title: Yup.string().when({
+    title: Yup.string().when([], {
       is: () => !isProfilePage,
-      then: Yup.string()
-        .min(3, "Минимум 3 символа")
-        .max(50, "Максимум 50 символов")
-        .required("Введите заголовок"),
+      then: (schema) =>
+        schema
+          .min(3, "Минимум 3 символа")
+          .max(50, "Максимум 50 символов")
+          .required("Введите заголовок"),
     }),
-
     breed: Yup.string().required("Введите породу"),
     name: Yup.string()
       .trim()
