@@ -17,7 +17,7 @@ const UserCard = () => {
         <div className={css.card}>
           <div className={css.img_box}>
             <img
-              src={imagePreview || user.avatarURL}
+              src={imagePreview || `pets/${user.avatarURL}`}
               alt="user photo"
               className={css.avatar}
             />

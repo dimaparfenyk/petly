@@ -9,35 +9,37 @@ const SecondForm = ({ changeForm, ...restProps }) => {
 
   return (
     <>
-      <fieldset className={css.fieldset}>
-        <legend className={css.legend}>The sex:</legend>
-        <div className={css.sex_box}>
-          {["male", "female"].map((sex) => (
-            <label key={sex} htmlFor={sex} className={css.sex_label}>
-              <Field
-                id={sex}
-                name="sex"
-                type="radio"
-                value={sex}
-                className={`${css.form_field} ${css.sex_field}`}
-              />
-              <div className={css.radio_btn_label}>
-                <img
-                  src={`/sex-${sex}.png`}
-                  alt={sex}
-                  className={css.sex_img}
+      {!isProfilePage && (
+        <fieldset className={css.fieldset}>
+          <legend className={css.legend}>The sex:</legend>
+          <div className={css.sex_box}>
+            {["male", "female"].map((sex) => (
+              <label key={sex} htmlFor={sex} className={css.sex_label}>
+                <Field
+                  id={sex}
+                  name="sex"
+                  type="radio"
+                  value={sex}
+                  className={`${css.form_field} ${css.sex_field}`}
                 />
-                <span className={css.sex_label_text}>
-                  {sex.charAt(0).toUpperCase() + sex.slice(1)}
-                </span>
-              </div>
-            </label>
-          ))}
-        </div>
-        {touched.sex && errors.sex && (
-          <div className={css.error}>{errors.sex}</div>
-        )}
-      </fieldset>
+                <div className={css.radio_btn_label}>
+                  <img
+                    src={`/sex-${sex}.png`}
+                    alt={sex}
+                    className={css.sex_img}
+                  />
+                  <span className={css.sex_label_text}>
+                    {sex.charAt(0).toUpperCase() + sex.slice(1)}
+                  </span>
+                </div>
+              </label>
+            ))}
+          </div>
+          {touched.sex && errors.sex && (
+            <div className={css.error}>{errors.sex}</div>
+          )}
+        </fieldset>
+      )}
       {isFormFieldVisible && (
         <>
           <label
