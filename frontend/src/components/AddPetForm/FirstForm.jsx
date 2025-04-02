@@ -3,37 +3,29 @@ import css from "./_AddPetForm.module.scss";
 import Button from "../Button";
 
 const FirstForm = ({ children, ...restProps }) => {
-  const { changeForm, onClose, isProfilePage, status, touched, errors } =
-    restProps;
+  const { setStep, onClose, status, touched, errors } = restProps;
 
   return (
     <>
-      {!isProfilePage && (
-        <p className={css.text}>
-          Lorem ipsum dolor sit amet, consectetur. Lorem ipsum dolor sit amet,
-          consectetur.
-        </p>
-      )}
+      <p className={css.text}>
+        Lorem ipsum dolor sit amet, consectetur. Lorem ipsum dolor sit amet,
+        consectetur.
+      </p>
       {children}
-      {!isProfilePage && (
-        <>
-          <label
-            htmlFor="title"
-            className={`${css.label} ${css.label_required}`}
-          >
-            Title of ad
-          </label>
-          <Field
-            id="title"
-            name="title"
-            placeholder="Type title"
-            className={css.form_field}
-          />
-          {touched.title && errors.title && (
-            <div className={css.error}>{errors.title}</div>
-          )}
-        </>
+
+      <label htmlFor="title" className={`${css.label} ${css.label_required}`}>
+        Title of ad
+      </label>
+      <Field
+        id="title"
+        name="title"
+        placeholder="Type title"
+        className={css.form_field}
+      />
+      {touched.title && errors.title && (
+        <div className={css.error}>{errors.title}</div>
       )}
+
       {status !== "lost/found" && (
         <>
           <label htmlFor="name" className={css.label}>
@@ -80,7 +72,7 @@ const FirstForm = ({ children, ...restProps }) => {
         <Button type="button" onClick={() => onClose()}>
           Cancel
         </Button>
-        <Button type="button" onClick={() => changeForm(false)} isActive={true}>
+        <Button type="button" onClick={() => setStep(2)} isActive>
           Next
         </Button>
       </div>

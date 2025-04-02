@@ -46,9 +46,45 @@
   }
 }
 
+.image_label {
+  width: 116px;
+  height: 116px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: auto;
+  box-sizing: border-box;
+  border-radius: 20px;
+  border: 2px solid transparent;
+  background-color: rgb(253, 247, 242);
+  font-size: 32px;
+  transition: variables.$transition;
+
+  &:hover,
+  &:focus {
+    border: 2px solid variables.$accent-color;
+    color: variables.$accent-color;
+  }
+}
+
 .fieldset {
   border: none;
   margin-bottom: 28px;
+}
+
+.image_box {
+  width: 116px;
+  height: 116px;
+  margin-bottom: 28px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.avatar {
+  border-radius: 20px;
 }
 
 .sex_img {
@@ -59,6 +95,12 @@
 
 .male_label {
   background-image: "../sex-male.png";
+}
+
+.img_field {
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
 }
 
 .status_group {

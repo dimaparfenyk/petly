@@ -1,45 +1,44 @@
 import { Field } from "formik";
 import css from "./_AddPetForm.module.scss";
-import ImageDownloader from "./ImageDownloader";
+import ImageDownloader from "../ImageDownLoader/ImageDownloader";
 import Button from "../Button";
 
-const SecondForm = ({ changeForm, ...restProps }) => {
-  const { setImage, isProfilePage, status, touched, errors } = restProps;
-  const isFormFieldVisible = status === "sell" && !isProfilePage;
+const SecondForm = ({ setStep, ...restProps }) => {
+  const { setImage, status, touched, errors } = restProps;
+  const isFormFieldVisible = status === "sell";
 
   return (
     <>
-      {!isProfilePage && (
-        <fieldset className={css.fieldset}>
-          <legend className={css.legend}>The sex:</legend>
-          <div className={css.sex_box}>
-            {["male", "female"].map((sex) => (
-              <label key={sex} htmlFor={sex} className={css.sex_label}>
-                <Field
-                  id={sex}
-                  name="sex"
-                  type="radio"
-                  value={sex}
-                  className={`${css.form_field} ${css.sex_field}`}
+      <fieldset className={css.fieldset}>
+        <legend className={css.legend}>The sex:</legend>
+        <div className={css.sex_box}>
+          {["male", "female"].map((sex) => (
+            <label key={sex} htmlFor={sex} className={css.sex_label}>
+              <Field
+                id={sex}
+                name="sex"
+                type="radio"
+                value={sex}
+                className={`${css.form_field} ${css.sex_field}`}
+              />
+              <div className={css.radio_btn_label}>
+                <img
+                  src={`/sex-${sex}.png`}
+                  alt={sex}
+                  className={css.sex_img}
                 />
-                <div className={css.radio_btn_label}>
-                  <img
-                    src={`/sex-${sex}.png`}
-                    alt={sex}
-                    className={css.sex_img}
-                  />
-                  <span className={css.sex_label_text}>
-                    {sex.charAt(0).toUpperCase() + sex.slice(1)}
-                  </span>
-                </div>
-              </label>
-            ))}
-          </div>
-          {touched.sex && errors.sex && (
-            <div className={css.error}>{errors.sex}</div>
-          )}
-        </fieldset>
-      )}
+                <span className={css.sex_label_text}>
+                  {sex.charAt(0).toUpperCase() + sex.slice(1)}
+                </span>
+              </div>
+            </label>
+          ))}
+        </div>
+        {touched.sex && errors.sex && (
+          <div className={css.error}>{errors.sex}</div>
+        )}
+      </fieldset>
+
       {isFormFieldVisible && (
         <>
           <label
@@ -77,10 +76,10 @@ const SecondForm = ({ changeForm, ...restProps }) => {
         <div className={css.error}>{errors.comments}</div>
       )}
       <div className={css.btn_box}>
-        <Button type="button" onClick={() => changeForm(true)}>
+        <Button type="button" onClick={() => setStep(1)}>
           Back
         </Button>
-        <Button type="submit" isActive={true}>
+        <Button type="submit" isActive>
           Done
         </Button>
       </div>

@@ -8,13 +8,14 @@ import UserCard from "../../components/UserCard";
 import UserPetList from "../../components/UserPetList";
 import css from "./_ProfilePage.module.scss";
 import Modal from "../../components/Modal";
-import AddPetForm from "../../components/AddPetForm";
+// import AddPetForm from "../../components/AddPetForm";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDetails } from "../../redux/auth/operations";
 import useAuth from "../../hooks/useAuth";
 import { addUserPet } from "../../redux/userPets/operations";
 import { selectError, selectMessage } from "../../redux/userPets/selectors";
 import { clearError, clearMessage } from "../../redux/userPets/slice";
+import AddUserPetForm from "../../components/AddUserPetForm/AddUserPetForm";
 
 const portalEl = document.getElementById("modal-root");
 
@@ -64,11 +65,16 @@ const ProfilePage = () => {
           {showModal &&
             createPortal(
               <Modal onClose={toggleModal}>
-                <AddPetForm
+                <AddUserPetForm
+                  onClose={toggleModal}
+                  addPet={addUserPet}
+                  initial={initialFormValues}
+                />
+                {/* <AddPetForm
                   onClose={toggleModal}
                   addEntity={addUserPet}
                   initial={initialFormValues}
-                />
+                /> */}
               </Modal>,
               portalEl
             )}

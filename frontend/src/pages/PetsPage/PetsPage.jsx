@@ -72,7 +72,7 @@ const PetsPage = () => {
               <Modal onClose={toggleModal}>
                 <AddPetForm
                   onClose={toggleModal}
-                  addEntity={addPet}
+                  addPet={addPet}
                   initial={initialFormValues}
                 />
               </Modal>,
