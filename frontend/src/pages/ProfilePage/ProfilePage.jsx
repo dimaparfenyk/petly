@@ -8,7 +8,6 @@ import UserCard from "../../components/UserCard";
 import UserPetList from "../../components/UserPetList";
 import css from "./_ProfilePage.module.scss";
 import Modal from "../../components/Modal";
-// import AddPetForm from "../../components/AddPetForm";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDetails } from "../../redux/auth/operations";
 import useAuth from "../../hooks/useAuth";
@@ -27,9 +26,9 @@ const ProfilePage = () => {
   const error = useSelector(selectError);
 
   const initialFormValues = {
-    name: "",
-    birth: "",
-    breed: "",
+    name: null,
+    birth: null,
+    breed: null,
     petImgUrl: "",
     comments: "",
   };
@@ -70,11 +69,6 @@ const ProfilePage = () => {
                   addPet={addUserPet}
                   initial={initialFormValues}
                 />
-                {/* <AddPetForm
-                  onClose={toggleModal}
-                  addEntity={addUserPet}
-                  initial={initialFormValues}
-                /> */}
               </Modal>,
               portalEl
             )}

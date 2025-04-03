@@ -19,6 +19,8 @@ const AddUserPetForm = ({ onClose, addPet, initial }) => {
       <Formik
         initialValues={initial}
         enableReinitialize
+        validateOnBlur={false}
+        validateOnChange={false}
         onSubmit={handleSubmit(submitOptions)}
         validationSchema={
           step === 1
@@ -26,23 +28,21 @@ const AddUserPetForm = ({ onClose, addPet, initial }) => {
             : addUserPetSchema.secondStepSchema
         }
       >
-        {({ values, touched, errors }) => (
+        {({ errors, setTouched, validateForm }) => (
           <Form method="post" className={css.form}>
             {step === 1 ? (
               <FirstStepForm
                 onClose={onClose}
                 setStep={setStep}
-                touched={touched}
+                setTouched={setTouched}
+                validateForm={validateForm}
                 errors={errors}
               />
             ) : (
               <SecondStepForm
-                onClose={onClose}
                 setStep={setStep}
                 setImage={setImage}
-                touched={touched}
                 errors={errors}
-                values={values}
               />
             )}
           </Form>

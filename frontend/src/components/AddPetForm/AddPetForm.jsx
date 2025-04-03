@@ -20,19 +20,22 @@ const AddPetForm = ({ onClose, addPet, initial }) => {
       <Formik
         initialValues={initial}
         enableReinitialize
+        validateOnBlur={false}
+        validateOnChange={false}
         onSubmit={handleSubmit(submitOptions)}
         validationSchema={
           step === 1 ? schema.firstStepSchema : schema.secondStepSchema
         }
       >
-        {({ values, touched, errors }) => (
+        {({ values, setTouched, validateForm, errors }) => (
           <Form method="post" className={css.form}>
             {step === 1 ? (
               <FirstForm
                 onClose={onClose}
                 setStep={setStep}
-                status={values.status}
-                touched={touched}
+                // status={values.status}
+                setTouched={setTouched}
+                validateForm={validateForm}
                 errors={errors}
               >
                 <RadioButtons values={values} />
@@ -42,7 +45,6 @@ const AddPetForm = ({ onClose, addPet, initial }) => {
                 setStep={setStep}
                 setImage={setImage}
                 status={values.status}
-                touched={touched}
                 errors={errors}
               />
             )}

@@ -1,7 +1,9 @@
 import * as Yup from "yup";
+
 const firstStepSchema = Yup.object({
   breed: Yup.string().required("Введите породу"),
   name: Yup.string()
+    .required("Введите имя")
     .trim()
     .min(2, "Минимум 2 символа")
     .max(30, "Максимум 30 символов"),

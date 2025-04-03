@@ -36,7 +36,7 @@ const PetsPage = () => {
     price: "",
     comments: "",
     sex: "male",
-    status: filter || "",
+    status: filter || "sell",
     birth: "",
   };
 
@@ -51,7 +51,9 @@ const PetsPage = () => {
     }
   }, [dispatch, error, message]);
 
-  const toggleModal = () => setShowModal((prev) => !prev);
+  const toggleModal = () => {
+    setShowModal((prev) => !prev);
+  };
 
   return (
     <>

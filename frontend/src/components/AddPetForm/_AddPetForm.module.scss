@@ -9,6 +9,7 @@
 .form {
   display: flex;
   flex-direction: column;
+  height: 100vh;
   padding-bottom: 40px;
   @media screen and (min-width: 768px) {
     width: 448px;
@@ -176,6 +177,7 @@
 }
 
 .btn_box {
+  margin-top: auto;
   @media screen and (min-width: 768px) {
     display: flex;
     column-gap: 20px;
@@ -197,4 +199,9 @@
   margin-bottom: 40px;
   resize: none;
   overflow: hidden;
+}
+
+.error {
+  color: red;
+  margin-bottom: 4px;
 }
