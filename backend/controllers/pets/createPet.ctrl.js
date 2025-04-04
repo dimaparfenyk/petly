@@ -2,7 +2,10 @@ const path = require("path");
 const { Pet } = require("../../models/pet");
 const { ctrlWrapper, uploadFile } = require("../../helpers");
 
-const petsImgDir = path.join(__dirname, "../../../frontend/public/pets");
+const petsImgDir =
+  process.env.NODE_ENV === "production"
+    ? path.join(__dirname, "../../../frontend/dist/pets")
+    : path.join(__dirname, "../../../frontend/public/pets");
 
 const createPet = async (req, res) => {
   const { _id, city, phone, email } = req.user;
