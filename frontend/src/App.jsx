@@ -33,7 +33,9 @@ const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  if (isRefreshing) return <Spinner loading={isRefreshing} />;
+  if (isRefreshing) {
+    return <Spinner fullscreen loading={isRefreshing} />;
+  }
 
   return (
     <>
@@ -65,6 +67,7 @@ const App = () => {
           />
         </Route>
       </Routes>
+      )
     </>
   );
 };

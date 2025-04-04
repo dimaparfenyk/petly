@@ -29,6 +29,7 @@ const initialState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
+
   extraReducers: (builder) => {
     builder
       .addCase(register.pending, handlePending)
@@ -50,12 +51,16 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.isLoggedIn = true;
+        if (state.token) {
+          state.isLoggedIn = true;
+          state.user = action.payload;
+        }
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, (state) => {
         state.isRefreshing = false;
+        state.isLoggedIn = false;
+        state.token = null;
       })
       .addCase(getUserDetails.fulfilled, (state, action) => {
         state.user = action.payload;

@@ -36,7 +36,7 @@ const PetsPage = () => {
     price: "",
     comments: "",
     sex: "male",
-    status: filter || "sell",
+    status: filter,
     birth: "",
   };
 
