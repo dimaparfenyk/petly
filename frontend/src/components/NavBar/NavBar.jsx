@@ -71,6 +71,7 @@ const NavBar = () => {
               className={`${css.account_link} ${
                 pathname === "/profile" ? css.active : ""
               }`}
+              onClick={() => setIsNavOpen(false)}
             >
               <RiAccountCircleFill />
               Account

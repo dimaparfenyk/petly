@@ -20,11 +20,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  button {
-    width: 100%;
-    margin-top: 40px;
-  }
 }
 
 .form_title {
@@ -56,4 +51,18 @@
 
 .auth_field + .auth_field {
   margin-top: 16px;
+}
+
+.btn_box {
+  display: flex;
+  width: 100%;
+  margin-top: 40px;
+
+  button + button {
+    margin-left: 20px;
+  }
+
+  button {
+    width: 100%;
+  }
 }

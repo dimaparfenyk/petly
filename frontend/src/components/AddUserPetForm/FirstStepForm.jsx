@@ -1,6 +1,7 @@
 import { Field } from "formik";
 import css from "./_AddUserPetForm.module.scss";
 import Button from "../Button";
+import { handleNext } from "../../utilities";
 
 const FirstStepForm = ({
   onClose,
@@ -9,21 +10,6 @@ const FirstStepForm = ({
   setTouched,
   validateForm,
 }) => {
-  const handleNext = async () => {
-    const validationErrors = await validateForm();
-
-    if (Object.keys(validationErrors).length > 0) {
-      setTouched(
-        Object.keys(validationErrors).reduce((acc, key) => {
-          acc[key] = true;
-          return acc;
-        }, {})
-      );
-      return;
-    }
-
-    setStep(2);
-  };
   return (
     <>
       <label htmlFor="name" className={css.label}>
@@ -62,7 +48,11 @@ const FirstStepForm = ({
         <Button type="button" onClick={() => onClose()}>
           Cancel
         </Button>
-        <Button type="button" onClick={() => handleNext()} isActive>
+        <Button
+          type="button"
+          onClick={() => handleNext(validateForm, setTouched, setStep)}
+          isActive
+        >
           Next
         </Button>
       </div>

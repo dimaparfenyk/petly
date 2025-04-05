@@ -7,8 +7,6 @@ const {
   getFavoritePets,
   createPet,
   toggleFavoritePets,
-
-  updatePet,
   removePet,
 } = require("../controllers/pets");
 const {
@@ -19,8 +17,6 @@ const {
 } = require("../middlewars");
 
 const { schemas } = require("../models/pet");
-
-// const { addSchema } = schemas;
 
 const petsRouter = express.Router();
 
@@ -42,13 +38,7 @@ petsRouter.post(
   createPet
 );
 
-petsRouter.put(
-  "/favorite/:id",
-  authenticate,
-  isValidId,
-  // validateBody(schemas.addSchema),
-  toggleFavoritePets
-);
+petsRouter.put("/favorite/:id", authenticate, isValidId, toggleFavoritePets);
 
 petsRouter.delete("/:id", authenticate, isValidId, removePet);
 

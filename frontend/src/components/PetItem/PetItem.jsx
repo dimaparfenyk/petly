@@ -33,7 +33,7 @@ const PetItem = ({ pet = {}, onClick }) => {
           </div>
           <div className={css.meta_text}>
             <span>Place:</span>
-            {owner.city ?? user.city}
+            {owner.city || user.city}
           </div>
           {status === "sell" && (
             <div className={css.meta_text}>

@@ -67,7 +67,6 @@ const App = () => {
           />
         </Route>
       </Routes>
-      )
     </>
   );
 };
