@@ -1,11 +1,8 @@
 const Joi = require("joi");
 const { model, Schema } = require("mongoose");
-const { handleMongooseError, getData } = require("../../helpers");
+const { handleMongooseError } = require("../../helpers");
 
 const dateRegexp = /^\d{2}-\d{2}-\d{4}$/;
-
-const dogList = getData("../db/data/dogBreeds.json");
-const catList = getData("../db/data/catBreeds.json");
 
 const petSchema = new Schema(
   {

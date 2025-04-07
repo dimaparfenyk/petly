@@ -3,17 +3,15 @@ const { Userpet } = require("../../models/userPet");
 const { uploadFile } = require("../../helpers");
 const { User } = require("../../models/user");
 
-const petsImgDir =
-  process.env.NODE_ENV === "production"
-    ? path.join(__dirname, "../../../frontend/dist/user/pets")
-    : path.join(__dirname, "../../../frontend/public/user/pets");
+// const petsImgDir =
+//   process.env.NODE_ENV === "production"
+//     ? path.join(__dirname, "../../../frontend/dist/user/pets")
+//     : path.join(__dirname, "../../../frontend/public/user/pets");
 
 const addUserPet = async (req, res) => {
   const { _id } = req.user;
 
-  const petImgUrl = req.file
-    ? await uploadFile(req, petsImgDir)
-    : "pet-avatar.png";
+  const petImgUrl = await uploadFile(req, "pet-avatar.png");
 
   const userPet = { ...req.body, petImgUrl, owner: _id };
 
