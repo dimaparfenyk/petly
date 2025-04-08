@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Field, useFormikContext } from "formik";
+import { FaPlus } from "react-icons/fa";
+
 import css from "./_ImageDownLoader.module.scss";
 
 const ImageDownloader = ({ setImage }) => {
@@ -7,6 +9,7 @@ const ImageDownloader = ({ setImage }) => {
   const [imagePreview, setImagePreview] = useState(
     values.petImgPreview || null
   );
+  const [error, setError] = useState(null);
   useEffect(() => {
     if (values.petImgPreview) {
       setImagePreview(values.petImgPreview);
@@ -15,7 +18,16 @@ const ImageDownloader = ({ setImage }) => {
 
   const handleChange = (e) => {
     const { files } = e.currentTarget;
+
     if (files && files[0]) {
+      const file = files[0];
+
+      if (!file.type.startsWith("image/")) {
+        setError("Please upload a valid image file.");
+        return;
+      }
+      setError(null);
+
       const previewUrl = URL.createObjectURL(files[0]);
       setImagePreview(previewUrl);
       setImage(files[0]);
@@ -24,10 +36,13 @@ const ImageDownloader = ({ setImage }) => {
   };
 
   return imagePreview ? (
-    <div
-      className={css.image_box}
-      style={{ backgroundImage: `url(${imagePreview})` }}
-    ></div>
+    <>
+      <label className={css.label}>Load the pet’s image:</label>
+      <div
+        className={css.image_box}
+        style={{ backgroundImage: `url(${imagePreview})` }}
+      ></div>
+    </>
   ) : (
     <Field as="fieldset" className={css.fieldset}>
       <label className={css.label}>Load the pet’s image:</label>
@@ -40,8 +55,9 @@ const ImageDownloader = ({ setImage }) => {
           className={css.img_field}
           onChange={handleChange}
         />
-        +
+        <FaPlus />
       </label>
+      {error && <div className={css.error}>{error}</div>}
     </Field>
   );
 };

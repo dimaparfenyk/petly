@@ -1,48 +1,43 @@
-import { Field } from "formik";
 import css from "./_AddUserPetForm.module.scss";
 import Button from "../Button";
 import { handleNext } from "../../utilities";
+import FormField from "./FormField";
 
 const FirstStepForm = ({
   onClose,
   setStep,
   errors,
+  touched,
   setTouched,
   validateForm,
 }) => {
   return (
     <>
-      <label htmlFor="name" className={css.label}>
-        Pet name
-      </label>
-      {<div className={css.error}>{errors.name}</div>}
-      <Field
+      <FormField
         id="name"
         name="name"
-        placeholder="Type pet name"
-        className={css.form_field}
+        placeholder="Pet name"
+        errors={errors.name}
+        touched={touched.name}
+        isValid={!errors.name && touched.name}
       />
-      <label htmlFor="birth" className={css.label}>
-        Date of birth:
-      </label>
-      <div className={css.error}>{errors.birth}</div>
-      <Field
+      <FormField
         id="birth"
         name="birth"
         type="date"
+        placeholder="Date of birth"
+        errors={errors.birth}
+        touched={touched.birth}
         max={new Date().toISOString().split("T")[0]}
-        placeholder="Type date of birth"
-        className={`${css.form_field} ${css.date_field}`}
+        isValid={!errors.birth && touched.birth}
       />
-      <label htmlFor="breed" className={css.label}>
-        Breed
-      </label>
-      <div className={css.error}>{errors.breed}</div>
-      <Field
+      <FormField
         id="breed"
         name="breed"
-        placeholder="Type breed"
-        className={`${css.form_field} ${css.last_field}`}
+        placeholder="Breed"
+        errors={errors.breed}
+        touched={touched.breed}
+        isValid={!errors.breed && touched.breed}
       />
       <div className={css.btn_box}>
         <Button type="button" onClick={() => onClose()}>

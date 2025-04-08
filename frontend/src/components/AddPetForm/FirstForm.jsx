@@ -1,9 +1,21 @@
-import { Field } from "formik";
+import { useEffect } from "react";
 import css from "./_AddPetForm.module.scss";
 import Button from "../Button";
+import InputField from "./InputField";
 
 const FirstForm = ({ children, ...restProps }) => {
-  const { setStep, onClose, errors, setTouched, validateForm } = restProps;
+  const { setStep, onClose, errors, touched, setTouched, validateForm } =
+    restProps;
+
+  useEffect(() => {
+    const keys = Object.keys(errors);
+    if (keys.length > 0) {
+      const field = document.querySelector(`[name="${keys[0]}"]`);
+      if (field) {
+        field.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+  }, [errors]);
 
   const handleNext = async () => {
     const validationErrors = await validateForm();
@@ -17,7 +29,6 @@ const FirstForm = ({ children, ...restProps }) => {
       );
       return;
     }
-
     setStep(2);
   };
 
@@ -28,47 +39,39 @@ const FirstForm = ({ children, ...restProps }) => {
         consectetur.
       </p>
       {children}
-      <label htmlFor="title" className={`${css.label} ${css.label_required}`}>
-        Title of ad
-      </label>
-      <div className={css.error}>{errors.title}</div>
-      <Field
+      <InputField
         id="title"
         name="title"
-        placeholder="Type title"
-        className={css.form_field}
+        placeholder="Title of ad"
+        errors={errors.title}
+        touched={touched.title}
+        className={css.label_required}
       />
-      <label htmlFor="name" className={css.label}>
-        Pet name
-      </label>
-      <div className={css.error}>{errors.name}</div>
-      <Field
+      <InputField
         id="name"
         name="name"
-        placeholder="Type pet name"
-        className={css.form_field}
+        placeholder="Pet name"
+        errors={errors.name}
+        touched={touched.name}
       />
-      <label htmlFor="birth" className={css.label}>
-        Date of birth:
-      </label>
-      <div className={css.error}>{errors.birth}</div>
-      <Field
+      <InputField
         id="birth"
         name="birth"
+        placeholder="Date of birth"
         type="date"
+        errors={errors.birth}
+        touched={touched.birth}
         max={new Date().toISOString().split("T")[0]}
-        placeholder="Type date of birth"
-        className={`${css.form_field} ${css.date_field}`}
+        className={css.date_field}
       />
-      <label htmlFor="breed" className={css.label}>
-        Breed
-      </label>
-      <div className={css.error}>{errors.breed}</div>
-      <Field
+
+      <InputField
         id="breed"
         name="breed"
-        placeholder="Type breed"
-        className={`${css.form_field} ${css.last_field}`}
+        placeholder="Breed"
+        errors={errors.breed}
+        touched={touched.breed}
+        className={css.last_field}
       />
       <div className={css.btn_box}>
         <Button type="button" onClick={() => onClose()}>

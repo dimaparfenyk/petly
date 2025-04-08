@@ -28,7 +28,7 @@ const AddUserPetForm = ({ onClose, addPet, initial }) => {
             : addUserPetSchema.secondStepSchema
         }
       >
-        {({ errors, setTouched, validateForm }) => (
+        {({ errors, touched, setTouched, validateForm }) => (
           <Form method="post" className={css.form}>
             {step === 1 ? (
               <FirstStepForm
@@ -37,12 +37,14 @@ const AddUserPetForm = ({ onClose, addPet, initial }) => {
                 setTouched={setTouched}
                 validateForm={validateForm}
                 errors={errors}
+                touched={touched}
               />
             ) : (
               <SecondStepForm
                 setStep={setStep}
                 setImage={setImage}
                 errors={errors}
+                touched={touched}
               />
             )}
           </Form>

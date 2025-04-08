@@ -9,7 +9,6 @@
 .form {
   display: flex;
   flex-direction: column;
-  height: 100vh;
   padding-bottom: 40px;
   @media screen and (min-width: 768px) {
     width: 448px;
@@ -202,6 +201,15 @@
 }
 
 .error {
+  transition: all 0.2s ease;
   color: red;
-  margin-bottom: 4px;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.valid {
+  border-color: green;
+  background-image: url(✅);
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
 }

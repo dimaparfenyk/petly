@@ -51,6 +51,7 @@
   width: 116px;
   height: 116px;
   display: flex;
+  margin-top: 8px;
   -webkit-box-align: center;
   align-items: center;
   -webkit-box-pack: center;
@@ -79,6 +80,7 @@
 .image_box {
   width: 116px;
   height: 116px;
+  margin-top: 8px;
   margin-bottom: 28px;
   background-repeat: no-repeat;
   background-size: contain;
@@ -243,7 +245,22 @@
   overflow: hidden;
 }
 
+.error_field {
+  border-color: red;
+  background-color: #fdf7f2;
+}
+
+.valid_field {
+  border-color: green;
+  background-image: url(✅);
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-color: #e0f7e0;
+}
+
 .error {
+  transition: all 0.2s ease;
   color: red;
-  margin-bottom: 4px;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
 }

@@ -1,23 +1,21 @@
-import { Field } from "formik";
 import Button from "../Button";
 import css from "./_AddUserPetForm.module.scss";
 import ImageDownloader from "../ImageDownLoader/ImageDownloader";
+import FormField from "./FormField";
 
-const SecondStepForm = ({ setStep, setImage, errors }) => {
+const SecondStepForm = ({ setStep, setImage, errors, touched }) => {
   return (
     <>
       <ImageDownloader setImage={setImage} />
-      <label htmlFor="comments" className={css.label}>
-        Comments
-      </label>
-      <div className={css.error}>{errors.comments}</div>
-      <Field
+      <FormField
         id="comments"
         name="comments"
         placeholder="Type comment"
         as="textarea"
         rows="1"
-        className={`${css.form_field} ${css.textarea}`}
+        errors={errors.comments}
+        touched={touched.comments}
+        isValid={!errors.comments && touched.comments}
       />
       <div className={css.btn_box}>
         <Button type="button" onClick={() => setStep(1)}>

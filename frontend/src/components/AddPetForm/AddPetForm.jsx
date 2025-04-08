@@ -27,15 +27,15 @@ const AddPetForm = ({ onClose, addPet, initial }) => {
           step === 1 ? schema.firstStepSchema : schema.secondStepSchema
         }
       >
-        {({ values, setTouched, validateForm, errors }) => (
+        {({ values, setTouched, validateForm, errors, touched }) => (
           <Form method="post" className={css.form}>
             {step === 1 ? (
               <FirstForm
                 onClose={onClose}
                 setStep={setStep}
-                // status={values.status}
                 setTouched={setTouched}
                 validateForm={validateForm}
+                touched={touched}
                 errors={errors}
               >
                 <RadioButtons values={values} />
@@ -46,6 +46,7 @@ const AddPetForm = ({ onClose, addPet, initial }) => {
                 setImage={setImage}
                 status={values.status}
                 errors={errors}
+                touched={touched}
               />
             )}
           </Form>

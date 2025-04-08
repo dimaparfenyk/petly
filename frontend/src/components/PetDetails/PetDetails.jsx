@@ -99,7 +99,9 @@ const PetDetails = ({ petId }) => {
           >
             <FaHeart />
           </Button>
-          <Button text={"Contact"} />
+          <a href={`mailto:${userEmail}`} className={css.email_link}>
+            <Button text={"Contact"} />
+          </a>
         </div>
       </div>
     )
